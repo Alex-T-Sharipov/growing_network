@@ -54,7 +54,7 @@ sbatch ./distributed_train.sh 1 --data-dir /home/sharipov/monet/data/imagenet100
 
 sbatch ./distributed_train.sh 1 --dataset torch/CIFAR10 \
   --data-dir /home/sharipov/monet/data/CIFAR10 \
-  --model MONet_T \
+  --model MONet_T_no_multistage_no_conv \
   --opt adamw \
   --lr 1e-4 \
   --batch-size 64 \
@@ -68,10 +68,29 @@ sbatch ./distributed_train.sh 1 --dataset torch/CIFAR10 \
   --mixup 0.5 \
   --cutmix 0.5 \
   --weight-decay 0.01 \
-  --experiment Upd_Exp2_CIFAR10 \
+  --experiment Upd_Exp1_CIFAR10_layers_restored \
   --num-classes 10 \
   --img-size 32 \
-  --resume /home/sharipov/monet/output/train/Upd_Exp1_CIFAR10/model_best.pth.tar
+
+  sbatch ./distributed_train.sh 1 --dataset torch/CIFAR10 \
+  --data-dir /home/sharipov/monet/data/CIFAR10 \
+  --model MONet_T_one \
+  --opt adamw \
+  --lr 1e-4 \
+  --batch-size 64 \
+  --epochs 300 \
+  --sched cosine \
+  --warmup-epochs 10 \
+  --min-lr 1e-5 \
+  --warmup-lr 1e-5 \
+  --lr-base 1e-3 \
+  --smoothing 0.1 \
+  --mixup 0.5 \
+  --cutmix 0.5 \
+  --weight-decay 0.01 \
+  --experiment Upd_Exp1_CIFAR10_1_layer \
+  --num-classes 10 \
+  --img-size 32 
 
   sbatch ./distributed_train.sh 1 --dataset torch/CIFAR10 \
   --data-dir /home/sharipov/monet/data/CIFAR10 \
