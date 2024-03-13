@@ -1,26 +1,15 @@
 #!/bin/bash
+#SBATCH --time 11:59:00
+#SBATCH --partition=gpu  # Request 1 GPU
+#SBATCH --qos=gpu_free  # Request 1 GPU
+#SBATCH --gres=gpu:1  # Request 1 GPU
+#SBATCH --output=/home/sharipov/monet/output/output_%j.txt
+#SBATCH --error=/home/sharipov/monet/output/error_%j.txt
 
-# Activate the virtual environment
-source /Users/alexanders/LIONS_Semester_Project/.venv/bin/activate
-
-# Get the number of processes
 NUM_PROC=$1
 shift
 
-# Use the 'which' command to ensure that we're using the 'torchrun' from the virtual environment
-TORCHRUN=$(which torchrun)
+# Optionally, set CUDA_VISIBLE_DEVICES if you are sure about the GPU allocation
+# CUDA_VISIBLE_DEVICES=0
 
-# Check if 'torchrun' is available in the virtual environment
-if [ -z "$TORCHRUN" ]; then
-  echo "torchrun not found in the virtual environment"
-  exit 1
-fi
-
-# Set CUDA visible devices
-CUDA_VISIBLE_DEVICES=2,3,4
-
-# Run 'torchrun' with the virtual environment's Python
-$TORCHRUN --nproc_per_node=$NUM_PROC train.py "$@"
-
-# Deactivate the virtual environment
-deactivate
+torchrun --nproc_per_node=$NUM_PROC train.py "$@"

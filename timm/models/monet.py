@@ -273,6 +273,44 @@ def MONet_T(pretrained=False, **kwargs):
 
 
 @register_model
+def MONet_T_no_multistage(pretrained=False, **kwargs):
+    transitions = [True, True, True, True]
+    layers = [1, 1, 1, 1]  # real patch size [8,16,32,64]
+    embed_dims = [192, 192, 192, 192]
+    expansion_factor = [3, 3, 3, 3]
+    dict_args = dict(
+        patch_size=[2], 
+        layers=layers,
+        transitions=transitions,
+        embed_dim=embed_dims,
+        expansion_factor = expansion_factor,
+        **kwargs
+        )
+    
+    model_args = dict_args
+    model = _create_improved_MONet('MONet_T', pretrained=pretrained, **model_args)
+    return model
+
+@register_model
+def MONet_T_no_multistage_no_conv(pretrained=False, **kwargs):
+    transitions = [False, False, False, False]
+    layers = [1, 1, 1, 1]  # real patch size [8,16,32,64]
+    embed_dims = [192, 192, 192, 192]
+    expansion_factor = [3, 3, 3, 3]
+    dict_args = dict(
+        patch_size=[2], 
+        layers=layers,
+        transitions=transitions,
+        embed_dim=embed_dims,
+        expansion_factor = expansion_factor,
+        **kwargs
+        )
+    
+    model_args = dict_args
+    model = _create_improved_MONet('MONet_T', pretrained=pretrained, **model_args)
+    return model
+
+@register_model
 def MONet_S(pretrained=False, **kwargs):
     transitions = [True, True, True, True]
     layers = [4,6,12,14]  # [4,8,16,32]
