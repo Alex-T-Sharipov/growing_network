@@ -1,0 +1,72 @@
+[2024-03-01 22:40:00,277] torch.distributed.run: [WARNING] 
+[2024-03-01 22:40:00,277] torch.distributed.run: [WARNING] *****************************************
+[2024-03-01 22:40:00,277] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-01 22:40:00,277] torch.distributed.run: [WARNING] *****************************************
+Training in distributed mode with multiple processes, 1 device per process.Process 0, total 2, device cuda:0.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Training in distributed mode with multiple processes, 1 device per process.Process 1, total 2, device cuda:1.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10148366
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+Restoring model state from checkpoint...
+Restoring optimizer state from checkpoint...
+Loaded checkpoint '/home/sharipov/monet/output/train/Exp4_CIFAR10/model_best.pth.tar' (epoch 152)
+Using native Torch DistributedDataParallel.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 200. LR stepped per epoch.
+Train: 153 [   0/195 (  0%)]  Loss: 1.01 (1.01)  Time: 11.009s,   23.25/s  (11.009s,   23.25/s)  LR: 1.302e-05  Data: 2.495 (2.495)
+Train: 153 [  50/195 ( 26%)]  Loss: 0.990 (0.999)  Time: 0.369s,  694.08/s  (0.578s,  443.09/s)  LR: 1.302e-05  Data: 0.032 (0.071)
+Train: 153 [ 100/195 ( 52%)]  Loss: 1.07 (1.02)  Time: 0.380s,  673.78/s  (0.473s,  541.74/s)  LR: 1.302e-05  Data: 0.012 (0.047)
+Train: 153 [ 150/195 ( 77%)]  Loss: 1.02 (1.02)  Time: 0.370s,  692.17/s  (0.437s,  585.54/s)  LR: 1.302e-05  Data: 0.028 (0.039)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 2.482 (2.482)  Loss:   0.665 ( 0.665)  Acc@1:  77.734 ( 77.734)  Acc@5:  99.219 ( 99.219)
+Test: [  39/39]  Time: 0.232 (0.137)  Loss:   0.728 ( 0.637)  Acc@1:  68.750 ( 80.390)  Acc@5: 100.000 ( 98.420)
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1083, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 838, in main
+    best_metric, best_epoch = saver.save_checkpoint(epoch, metric=save_metric)
+  File "/home/sharipov/monet/timm/utils/checkpoint_saver.py", line 78, in save_checkpoint
+    os.link(last_save_path, save_path)
+FileExistsError: [Errno 17] File exists: './output/train/Exp4_CIFAR10/last.pth.tar' -> './output/train/Exp4_CIFAR10/checkpoint-153.pth.tar'
+[2024-03-01 22:42:01,123] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 3582845 closing signal SIGTERM
+[2024-03-01 22:42:01,323] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 3582844) of binary: /home/sharipov/monet/venv/bin/python
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-03-01_22:42:01
+  host      : i06.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3582844)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

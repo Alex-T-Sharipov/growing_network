@@ -1,0 +1,89 @@
+[2024-03-05 17:03:25,688] torch.distributed.run: [WARNING] 
+[2024-03-05 17:03:25,688] torch.distributed.run: [WARNING] *****************************************
+[2024-03-05 17:03:25,688] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-05 17:03:25,688] torch.distributed.run: [WARNING] *****************************************
+Training in distributed mode with multiple processes, 1 device per process.Process 0, total 2, device cuda:0.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Training in distributed mode with multiple processes, 1 device per process.Process 1, total 2, device cuda:1.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10165736
+Data processing configuration for current model + dataset:
+	input_size: (3, 224, 224)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+Learning rate (0.0007071067811865476) calculated from base learning rate (0.001) and effective global batch size (128) with sqrt scaling.
+AMP not enabled. Training in float32.
+Restoring model state from checkpoint...
+Restoring optimizer state from checkpoint...
+Loaded checkpoint '/home/sharipov/monet/output/train/Upd_Exp2_Image100/model_best.pth.tar' (epoch 63)
+Using native Torch DistributedDataParallel.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 64 [   0/989 (  0%)]  Loss: 3.09 (3.09)  Time: 14.749s,    8.68/s  (14.749s,    8.68/s)  LR: 6.317e-04  Data: 4.445 (4.445)
+Train: 64 [  50/989 (  5%)]  Loss: 2.09 (2.59)  Time: 0.673s,  190.15/s  (0.997s,  128.33/s)  LR: 6.317e-04  Data: 0.031 (0.121)
+Train: 64 [ 100/989 ( 10%)]  Loss: 2.76 (2.64)  Time: 0.698s,  183.34/s  (0.860s,  148.90/s)  LR: 6.317e-04  Data: 0.029 (0.079)
+Train: 64 [ 150/989 ( 15%)]  Loss: 2.84 (2.69)  Time: 0.723s,  176.98/s  (0.813s,  157.45/s)  LR: 6.317e-04  Data: 0.046 (0.065)
+Train: 64 [ 200/989 ( 20%)]  Loss: 3.18 (2.79)  Time: 0.773s,  165.68/s  (0.788s,  162.35/s)  LR: 6.317e-04  Data: 0.033 (0.058)
+Train: 64 [ 250/989 ( 25%)]  Loss: 2.80 (2.79)  Time: 0.678s,  188.71/s  (0.773s,  165.64/s)  LR: 6.317e-04  Data: 0.031 (0.055)
+Train: 64 [ 300/989 ( 30%)]  Loss: 2.92 (2.81)  Time: 0.696s,  183.87/s  (0.765s,  167.39/s)  LR: 6.317e-04  Data: 0.036 (0.051)
+Train: 64 [ 350/989 ( 35%)]  Loss: 2.50 (2.77)  Time: 0.719s,  178.14/s  (0.759s,  168.68/s)  LR: 6.317e-04  Data: 0.028 (0.049)
+Train: 64 [ 400/989 ( 40%)]  Loss: 3.18 (2.82)  Time: 0.696s,  183.81/s  (0.754s,  169.80/s)  LR: 6.317e-04  Data: 0.035 (0.047)
+Train: 64 [ 450/989 ( 46%)]  Loss: 2.33 (2.77)  Time: 0.726s,  176.42/s  (0.749s,  170.79/s)  LR: 6.317e-04  Data: 0.044 (0.046)
+Train: 64 [ 500/989 ( 51%)]  Loss: 3.26 (2.81)  Time: 0.689s,  185.87/s  (0.745s,  171.76/s)  LR: 6.317e-04  Data: 0.026 (0.045)
+Train: 64 [ 550/989 ( 56%)]  Loss: 2.59 (2.79)  Time: 0.718s,  178.34/s  (0.743s,  172.28/s)  LR: 6.317e-04  Data: 0.036 (0.045)
+Train: 64 [ 600/989 ( 61%)]  Loss: 3.21 (2.83)  Time: 0.705s,  181.44/s  (0.741s,  172.79/s)  LR: 6.317e-04  Data: 0.037 (0.044)
+Train: 64 [ 650/989 ( 66%)]  Loss: 3.07 (2.84)  Time: 0.728s,  175.85/s  (0.739s,  173.25/s)  LR: 6.317e-04  Data: 0.047 (0.044)
+Train: 64 [ 700/989 ( 71%)]  Loss: 3.18 (2.87)  Time: 0.729s,  175.46/s  (0.737s,  173.65/s)  LR: 6.317e-04  Data: 0.050 (0.043)
+Train: 64 [ 750/989 ( 76%)]  Loss: 3.27 (2.89)  Time: 0.559s,  228.98/s  (0.735s,  174.04/s)  LR: 6.317e-04  Data: 0.034 (0.043)
+Train: 64 [ 800/989 ( 81%)]  Loss: 3.25 (2.91)  Time: 0.704s,  181.84/s  (0.734s,  174.31/s)  LR: 6.317e-04  Data: 0.029 (0.042)
+Train: 64 [ 850/989 ( 86%)]  Loss: 2.48 (2.89)  Time: 0.761s,  168.18/s  (0.733s,  174.59/s)  LR: 6.317e-04  Data: 0.029 (0.042)
+Train: 64 [ 900/989 ( 91%)]  Loss: 2.25 (2.85)  Time: 0.710s,  180.40/s  (0.732s,  174.77/s)  LR: 6.317e-04  Data: 0.038 (0.042)
+Train: 64 [ 950/989 ( 96%)]  Loss: 3.24 (2.87)  Time: 0.700s,  182.97/s  (0.732s,  174.95/s)  LR: 6.317e-04  Data: 0.036 (0.042)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 4.988 (4.988)  Loss:   1.072 ( 1.072)  Acc@1:  77.344 ( 77.344)  Acc@5:  91.406 ( 91.406)
+Test: [  39/39]  Time: 0.946 (0.452)  Loss:   0.529 ( 1.005)  Acc@1:  87.500 ( 76.620)  Acc@5: 100.000 ( 93.400)
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1083, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 838, in main
+    best_metric, best_epoch = saver.save_checkpoint(epoch, metric=save_metric)
+  File "/home/sharipov/monet/timm/utils/checkpoint_saver.py", line 78, in save_checkpoint
+    os.link(last_save_path, save_path)
+FileExistsError: [Errno 17] File exists: './output/train/Upd_Exp3_Image100/last.pth.tar' -> './output/train/Upd_Exp3_Image100/checkpoint-64.pth.tar'
+[2024-03-05 17:16:19,595] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 3409181 closing signal SIGTERM
+[2024-03-05 17:16:19,895] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 3409180) of binary: /home/sharipov/monet/venv/bin/python
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-03-05_17:16:19
+  host      : i01.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3409180)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,65 @@
+[2024-03-03 10:56:12,141] torch.distributed.run: [WARNING] 
+[2024-03-03 10:56:12,141] torch.distributed.run: [WARNING] *****************************************
+[2024-03-03 10:56:12,141] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-03 10:56:12,141] torch.distributed.run: [WARNING] *****************************************
+Training in distributed mode with multiple processes, 1 device per process.Process 0, total 2, device cuda:0.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Training in distributed mode with multiple processes, 1 device per process.Process 1, total 2, device cuda:1.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10148366
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1083, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 478, in main
+    model.to(device=device)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1152, in to
+    return self._apply(convert)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 802, in _apply
+    module._apply(fn)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 825, in _apply
+    param_applied = fn(param)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/nn/modules/module.py", line 1150, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+RuntimeError: CUDA error: CUDA-capable device(s) is/are busy or unavailable
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[2024-03-03 10:56:37,499] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 801428 closing signal SIGTERM
+[2024-03-03 10:56:37,570] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 801427) of binary: /home/sharipov/monet/venv/bin/python
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-03-03_10:56:37
+  host      : i39.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 801427)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

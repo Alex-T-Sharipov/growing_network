@@ -1,0 +1,21 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10165736
+Data processing configuration for current model + dataset:
+	input_size: (3, 224, 224)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 10. LR stepped per epoch.
+Train: 0 [   0/989 (  0%)]  Loss: 4.61 (4.61)  Time: 13.122s,    9.75/s  (13.122s,    9.75/s)  LR: 1.000e-05  Data: 4.295 (4.295)
+Train: 0 [  50/989 (  5%)]  Loss: 4.56 (4.58)  Time: 0.929s,  137.76/s  (1.174s,  109.01/s)  LR: 1.000e-05  Data: 0.011 (0.097)
+Train: 0 [ 100/989 ( 10%)]  Loss: 4.37 (4.52)  Time: 0.963s,  132.95/s  (1.055s,  121.36/s)  LR: 1.000e-05  Data: 0.014 (0.055)
+Train: 0 [ 150/989 ( 15%)]  Loss: 4.35 (4.49)  Time: 0.932s,  137.33/s  (1.015s,  126.16/s)  LR: 1.000e-05  Data: 0.014 (0.041)
+Train: 0 [ 200/989 ( 20%)]  Loss: 4.44 (4.46)  Time: 0.932s,  137.30/s  (0.994s,  128.75/s)  LR: 1.000e-05  Data: 0.012 (0.035)
+Train: 0 [ 250/989 ( 25%)]  Loss: 4.27 (4.45)  Time: 0.935s,  136.97/s  (0.982s,  130.32/s)  LR: 1.000e-05  Data: 0.015 (0.031)
+slurmstepd: error: *** JOB 2004418 ON i41 CANCELLED AT 2024-02-29T12:09:57 ***

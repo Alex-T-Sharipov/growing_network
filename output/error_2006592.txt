@@ -1,0 +1,152 @@
+[2024-03-02 20:19:59,275] torch.distributed.run: [WARNING] 
+[2024-03-02 20:19:59,275] torch.distributed.run: [WARNING] *****************************************
+[2024-03-02 20:19:59,275] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-02 20:19:59,275] torch.distributed.run: [WARNING] *****************************************
+usage: train.py [-h] [--data-dir DIR] [--dataset NAME] [--train-split NAME]
+                [--val-split NAME] [--dataset-download] [--class-map FILENAME]
+                [--model MODEL] [--pretrained] [--initial-checkpoint PATH]
+                [--resume PATH] [--no-resume-opt] [--num-classes N]
+                [--gp POOL] [--img-size N] [--in-chans N]
+                [--input-size N N N N N N N N N] [--crop-pct N]
+                [--mean MEAN [MEAN ...]] [--std STD [STD ...]]
+                [--interpolation NAME] [-b N] [-vb N] [--channels-last]
+                [--fuser FUSER] [--grad-accum-steps N] [--grad-checkpointing]
+                [--fast-norm] [--model-kwargs [MODEL_KWARGS ...]]
+                [--head-init-scale HEAD_INIT_SCALE]
+                [--head-init-bias HEAD_INIT_BIAS]
+                [--torchscript | --torchcompile [TORCHCOMPILE]]
+                [--opt OPTIMIZER] [--opt-eps EPSILON]
+                [--opt-betas BETA [BETA ...]] [--momentum M]
+                [--weight-decay WEIGHT_DECAY] [--clip-grad NORM]
+                [--clip-mode CLIP_MODE] [--layer-decay LAYER_DECAY]
+                [--opt-kwargs [OPT_KWARGS ...]] [--sched SCHEDULER]
+                [--sched-on-updates] [--lr LR] [--lr-base LR]
+                [--lr-base-size DIV] [--lr-base-scale SCALE]
+                [--lr-noise pct, pct [pct, pct ...]] [--lr-noise-pct PERCENT]
+                [--lr-noise-std STDDEV] [--lr-cycle-mul MULT]
+                [--lr-cycle-decay MULT] [--lr-cycle-limit N]
+                [--lr-k-decay LR_K_DECAY] [--warmup-lr LR] [--min-lr LR]
+                [--epochs N] [--epoch-repeats N] [--start-epoch N]
+                [--decay-milestones MILESTONES [MILESTONES ...]]
+                [--decay-epochs N] [--warmup-epochs N] [--warmup-prefix]
+                [--cooldown-epochs N] [--patience-epochs N]
+                [--decay-rate RATE] [--no-aug] [--scale PCT [PCT ...]]
+                [--ratio RATIO [RATIO ...]] [--hflip HFLIP] [--vflip VFLIP]
+                [--color-jitter PCT] [--aa NAME] [--aug-repeats AUG_REPEATS]
+                [--aug-splits AUG_SPLITS] [--jsd-loss] [--bce-loss]
+                [--bce-target-thresh BCE_TARGET_THRESH] [--reprob PCT]
+                [--remode REMODE] [--recount RECOUNT] [--resplit]
+                [--mixup MIXUP] [--cutmix CUTMIX]
+                [--cutmix-minmax CUTMIX_MINMAX [CUTMIX_MINMAX ...]]
+                [--mixup-prob MIXUP_PROB]
+                [--mixup-switch-prob MIXUP_SWITCH_PROB]
+                [--mixup-mode MIXUP_MODE] [--mixup-off-epoch N]
+                [--smoothing SMOOTHING]
+                [--train-interpolation TRAIN_INTERPOLATION] [--drop PCT]
+                [--drop-connect PCT] [--drop-path PCT] [--drop-block PCT]
+                [--bn-momentum BN_MOMENTUM] [--bn-eps BN_EPS] [--sync-bn]
+                [--dist-bn DIST_BN] [--split-bn] [--model-ema]
+                [--model-ema-force-cpu] [--model-ema-decay MODEL_EMA_DECAY]
+                [--seed S] [--worker-seeding WORKER_SEEDING]
+                [--log-interval N] [--recovery-interval N]
+                [--checkpoint-hist N] [-j N] [--save-images] [--amp]
+                [--amp-dtype AMP_DTYPE] [--amp-impl AMP_IMPL] [--no-ddp-bb]
+                [--synchronize-step] [--pin-mem] [--no-prefetcher]
+                [--output PATH] [--experiment NAME]
+                [--eval-metric EVAL_METRIC] [--tta N]
+                [--local_rank LOCAL_RANK] [--use-multi-epochs-loader]
+                [--log-wandb]
+                [DIR]
+train.py: error: unrecognized arguments: --lr-min --lr-max 1e-3 --auto-augment rand-m9-mstd0.5-inc1
+usage: train.py [-h] [--data-dir DIR] [--dataset NAME] [--train-split NAME]
+                [--val-split NAME] [--dataset-download] [--class-map FILENAME]
+                [--model MODEL] [--pretrained] [--initial-checkpoint PATH]
+                [--resume PATH] [--no-resume-opt] [--num-classes N]
+                [--gp POOL] [--img-size N] [--in-chans N]
+                [--input-size N N N N N N N N N] [--crop-pct N]
+                [--mean MEAN [MEAN ...]] [--std STD [STD ...]]
+                [--interpolation NAME] [-b N] [-vb N] [--channels-last]
+                [--fuser FUSER] [--grad-accum-steps N] [--grad-checkpointing]
+                [--fast-norm] [--model-kwargs [MODEL_KWARGS ...]]
+                [--head-init-scale HEAD_INIT_SCALE]
+                [--head-init-bias HEAD_INIT_BIAS]
+                [--torchscript | --torchcompile [TORCHCOMPILE]]
+                [--opt OPTIMIZER] [--opt-eps EPSILON]
+                [--opt-betas BETA [BETA ...]] [--momentum M]
+                [--weight-decay WEIGHT_DECAY] [--clip-grad NORM]
+                [--clip-mode CLIP_MODE] [--layer-decay LAYER_DECAY]
+                [--opt-kwargs [OPT_KWARGS ...]] [--sched SCHEDULER]
+                [--sched-on-updates] [--lr LR] [--lr-base LR]
+                [--lr-base-size DIV] [--lr-base-scale SCALE]
+                [--lr-noise pct, pct [pct, pct ...]] [--lr-noise-pct PERCENT]
+                [--lr-noise-std STDDEV] [--lr-cycle-mul MULT]
+                [--lr-cycle-decay MULT] [--lr-cycle-limit N]
+                [--lr-k-decay LR_K_DECAY] [--warmup-lr LR] [--min-lr LR]
+                [--epochs N] [--epoch-repeats N] [--start-epoch N]
+                [--decay-milestones MILESTONES [MILESTONES ...]]
+                [--decay-epochs N] [--warmup-epochs N] [--warmup-prefix]
+                [--cooldown-epochs N] [--patience-epochs N]
+                [--decay-rate RATE] [--no-aug] [--scale PCT [PCT ...]]
+                [--ratio RATIO [RATIO ...]] [--hflip HFLIP] [--vflip VFLIP]
+                [--color-jitter PCT] [--aa NAME] [--aug-repeats AUG_REPEATS]
+                [--aug-splits AUG_SPLITS] [--jsd-loss] [--bce-loss]
+                [--bce-target-thresh BCE_TARGET_THRESH] [--reprob PCT]
+                [--remode REMODE] [--recount RECOUNT] [--resplit]
+                [--mixup MIXUP] [--cutmix CUTMIX]
+                [--cutmix-minmax CUTMIX_MINMAX [CUTMIX_MINMAX ...]]
+                [--mixup-prob MIXUP_PROB]
+                [--mixup-switch-prob MIXUP_SWITCH_PROB]
+                [--mixup-mode MIXUP_MODE] [--mixup-off-epoch N]
+                [--smoothing SMOOTHING]
+                [--train-interpolation TRAIN_INTERPOLATION] [--drop PCT]
+                [--drop-connect PCT] [--drop-path PCT] [--drop-block PCT]
+                [--bn-momentum BN_MOMENTUM] [--bn-eps BN_EPS] [--sync-bn]
+                [--dist-bn DIST_BN] [--split-bn] [--model-ema]
+                [--model-ema-force-cpu] [--model-ema-decay MODEL_EMA_DECAY]
+                [--seed S] [--worker-seeding WORKER_SEEDING]
+                [--log-interval N] [--recovery-interval N]
+                [--checkpoint-hist N] [-j N] [--save-images] [--amp]
+                [--amp-dtype AMP_DTYPE] [--amp-impl AMP_IMPL] [--no-ddp-bb]
+                [--synchronize-step] [--pin-mem] [--no-prefetcher]
+                [--output PATH] [--experiment NAME]
+                [--eval-metric EVAL_METRIC] [--tta N]
+                [--local_rank LOCAL_RANK] [--use-multi-epochs-loader]
+                [--log-wandb]
+                [DIR]
+train.py: error: unrecognized arguments: --lr-min --lr-max 1e-3 --auto-augment rand-m9-mstd0.5-inc1
+[2024-03-02 20:20:04,328] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 2) local_rank: 0 (pid: 1124433) of binary: /home/sharipov/monet/venv/bin/python
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2024-03-02_20:20:04
+  host      : i67.izar.cluster
+  rank      : 1 (local_rank: 1)
+  exitcode  : 2 (pid: 1124434)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-03-02_20:20:04
+  host      : i67.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 2 (pid: 1124433)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

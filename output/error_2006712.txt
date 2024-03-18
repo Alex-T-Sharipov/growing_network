@@ -1,0 +1,32 @@
+[2024-03-03 10:50:19,986] torch.distributed.run: [WARNING] 
+[2024-03-03 10:50:19,986] torch.distributed.run: [WARNING] *****************************************
+[2024-03-03 10:50:19,986] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-03 10:50:19,986] torch.distributed.run: [WARNING] *****************************************
+Training in distributed mode with multiple processes, 1 device per process.Process 0, total 2, device cuda:0.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Training in distributed mode with multiple processes, 1 device per process.Process 1, total 2, device cuda:1.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10165736
+Data processing configuration for current model + dataset:
+	input_size: (3, 224, 224)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+Learning rate (0.0007071067811865476) calculated from base learning rate (0.001) and effective global batch size (128) with sqrt scaling.
+AMP not enabled. Training in float32.
+Restoring model state from checkpoint...
+Restoring optimizer state from checkpoint...
+Loaded checkpoint '/home/sharipov/monet/output/train/Upd_Exp1_Image100/model_best.pth.tar' (epoch 31)
+Using native Torch DistributedDataParallel.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 32 [   0/989 (  0%)]  Loss: 3.21 (3.21)  Time: 13.378s,    9.57/s  (13.378s,    9.57/s)  LR: 6.877e-04  Data: 3.728 (3.728)
+Train: 32 [  50/989 (  5%)]  Loss: 2.58 (2.89)  Time: 0.788s,  162.33/s  (0.961s,  133.22/s)  LR: 6.877e-04  Data: 0.010 (0.107)
+Train: 32 [ 100/989 ( 10%)]  Loss: 3.36 (3.05)  Time: 0.688s,  186.04/s  (0.834s,  153.39/s)  LR: 6.877e-04  Data: 0.059 (0.071)
+Train: 32 [ 150/989 ( 15%)]  Loss: 3.27 (3.10)  Time: 0.747s,  171.37/s  (0.790s,  162.01/s)  LR: 6.877e-04  Data: 0.006 (0.060)
+slurmstepd: error: *** JOB 2006712 ON i67 CANCELLED AT 2024-03-03T10:52:51 ***

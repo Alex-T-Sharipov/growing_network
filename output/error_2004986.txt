@@ -1,0 +1,138 @@
+[2024-03-01 12:19:27,039] torch.distributed.run: [WARNING] 
+[2024-03-01 12:19:27,039] torch.distributed.run: [WARNING] *****************************************
+[2024-03-01 12:19:27,039] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2024-03-01 12:19:27,039] torch.distributed.run: [WARNING] *****************************************
+Training in distributed mode with multiple processes, 1 device per process.Process 0, total 2, device cuda:0.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Training in distributed mode with multiple processes, 1 device per process.Process 1, total 2, device cuda:1.
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T created, param count:10148366
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+Restoring model state from checkpoint...
+Restoring optimizer state from checkpoint...
+Loaded checkpoint '/home/sharipov/monet/output/train/Exp1_CIFAR10/model_best.pth.tar' (epoch 9)
+Using native Torch DistributedDataParallel.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 90. LR stepped per epoch.
+Train: 10 [   0/195 (  0%)]  Loss: 1.72 (1.72)  Time: 4.459s,   57.42/s  (4.459s,   57.42/s)  LR: 9.698e-05  Data: 2.349 (2.349)
+Train: 10 [  50/195 ( 26%)]  Loss: 1.72 (1.72)  Time: 0.336s,  761.36/s  (0.447s,  572.20/s)  LR: 9.698e-05  Data: 0.029 (0.071)
+Train: 10 [ 100/195 ( 52%)]  Loss: 1.69 (1.71)  Time: 0.330s,  775.21/s  (0.406s,  630.84/s)  LR: 9.698e-05  Data: 0.024 (0.047)
+Train: 10 [ 150/195 ( 77%)]  Loss: 1.71 (1.71)  Time: 0.333s,  769.28/s  (0.392s,  653.48/s)  LR: 9.698e-05  Data: 0.012 (0.039)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 1.939 (1.939)  Loss:   1.434 ( 1.434)  Acc@1:  50.000 ( 50.000)  Acc@5:  91.406 ( 91.406)
+Test: [  39/39]  Time: 0.208 (0.124)  Loss:   1.570 ( 1.369)  Acc@1:  25.000 ( 52.320)  Acc@5:  93.750 ( 93.620)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 11 [   0/195 (  0%)]  Loss: 1.72 (1.72)  Time: 0.775s,  330.13/s  (0.775s,  330.13/s)  LR: 9.636e-05  Data: 0.244 (0.244)
+Train: 11 [  50/195 ( 26%)]  Loss: 1.68 (1.70)  Time: 0.337s,  759.98/s  (0.370s,  691.21/s)  LR: 9.636e-05  Data: 0.028 (0.027)
+Train: 11 [ 100/195 ( 52%)]  Loss: 1.74 (1.71)  Time: 0.373s,  686.71/s  (0.366s,  699.65/s)  LR: 9.636e-05  Data: 0.034 (0.026)
+Train: 11 [ 150/195 ( 77%)]  Loss: 1.76 (1.73)  Time: 0.346s,  739.87/s  (0.364s,  702.77/s)  LR: 9.636e-05  Data: 0.035 (0.026)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.349 (0.349)  Loss:   1.426 ( 1.426)  Acc@1:  53.125 ( 53.125)  Acc@5:  93.359 ( 93.359)
+Test: [  39/39]  Time: 0.035 (0.080)  Loss:   1.473 ( 1.346)  Acc@1:  43.750 ( 53.360)  Acc@5:  93.750 ( 94.190)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 12 [   0/195 (  0%)]  Loss: 1.72 (1.72)  Time: 0.738s,  346.75/s  (0.738s,  346.75/s)  LR: 9.568e-05  Data: 0.237 (0.237)
+Train: 12 [  50/195 ( 26%)]  Loss: 1.73 (1.73)  Time: 0.336s,  761.02/s  (0.369s,  694.32/s)  LR: 9.568e-05  Data: 0.019 (0.030)
+Train: 12 [ 100/195 ( 52%)]  Loss: 1.69 (1.71)  Time: 0.353s,  724.26/s  (0.365s,  701.63/s)  LR: 9.568e-05  Data: 0.040 (0.028)
+Train: 12 [ 150/195 ( 77%)]  Loss: 1.68 (1.71)  Time: 0.346s,  739.94/s  (0.364s,  703.68/s)  LR: 9.568e-05  Data: 0.015 (0.027)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.361 (0.361)  Loss:   1.441 ( 1.441)  Acc@1:  48.438 ( 48.438)  Acc@5:  94.531 ( 94.531)
+Test: [  39/39]  Time: 0.045 (0.081)  Loss:   1.441 ( 1.338)  Acc@1:  37.500 ( 53.490)  Acc@5:  93.750 ( 93.820)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 13 [   0/195 (  0%)]  Loss: 1.64 (1.64)  Time: 0.750s,  341.50/s  (0.750s,  341.50/s)  LR: 9.494e-05  Data: 0.230 (0.230)
+Train: 13 [  50/195 ( 26%)]  Loss: 1.71 (1.67)  Time: 0.338s,  758.10/s  (0.369s,  693.77/s)  LR: 9.494e-05  Data: 0.012 (0.027)
+Train: 13 [ 100/195 ( 52%)]  Loss: 1.67 (1.67)  Time: 0.361s,  708.16/s  (0.365s,  700.78/s)  LR: 9.494e-05  Data: 0.030 (0.025)
+Train: 13 [ 150/195 ( 77%)]  Loss: 1.63 (1.66)  Time: 0.366s,  698.88/s  (0.364s,  703.70/s)  LR: 9.494e-05  Data: 0.038 (0.025)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.341 (0.341)  Loss:   1.400 ( 1.400)  Acc@1:  51.953 ( 51.953)  Acc@5:  93.750 ( 93.750)
+Test: [  39/39]  Time: 0.114 (0.082)  Loss:   1.496 ( 1.315)  Acc@1:  31.250 ( 54.010)  Acc@5: 100.000 ( 93.950)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-13.pth.tar', 54.01)
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 14 [   0/195 (  0%)]  Loss: 1.62 (1.62)  Time: 0.731s,  350.35/s  (0.731s,  350.35/s)  LR: 9.415e-05  Data: 0.229 (0.229)
+Train: 14 [  50/195 ( 26%)]  Loss: 1.65 (1.64)  Time: 0.324s,  789.73/s  (0.371s,  689.24/s)  LR: 9.415e-05  Data: 0.030 (0.026)
+Train: 14 [ 100/195 ( 52%)]  Loss: 1.70 (1.66)  Time: 0.360s,  710.93/s  (0.366s,  699.03/s)  LR: 9.415e-05  Data: 0.038 (0.025)
+Train: 14 [ 150/195 ( 77%)]  Loss: 1.70 (1.67)  Time: 0.344s,  743.68/s  (0.365s,  700.61/s)  LR: 9.415e-05  Data: 0.026 (0.025)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.187 (0.187)  Loss:   1.358 ( 1.358)  Acc@1:  51.562 ( 51.562)  Acc@5:  92.969 ( 92.969)
+Test: [  39/39]  Time: 0.048 (0.077)  Loss:   1.467 ( 1.289)  Acc@1:  31.250 ( 55.400)  Acc@5:  93.750 ( 94.250)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-14.pth.tar', 55.4)
+ ('./output/train/Exp3_CIFAR10/checkpoint-13.pth.tar', 54.01)
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 15 [   0/195 (  0%)]  Loss: 1.63 (1.63)  Time: 0.734s,  348.69/s  (0.734s,  348.69/s)  LR: 9.330e-05  Data: 0.234 (0.234)
+Train: 15 [  50/195 ( 26%)]  Loss: 1.67 (1.65)  Time: 0.346s,  740.80/s  (0.369s,  694.37/s)  LR: 9.330e-05  Data: 0.024 (0.027)
+Train: 15 [ 100/195 ( 52%)]  Loss: 1.64 (1.65)  Time: 0.331s,  772.27/s  (0.365s,  701.12/s)  LR: 9.330e-05  Data: 0.026 (0.025)
+Train: 15 [ 150/195 ( 77%)]  Loss: 1.65 (1.65)  Time: 0.322s,  794.65/s  (0.364s,  703.71/s)  LR: 9.330e-05  Data: 0.022 (0.025)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.371 (0.371)  Loss:   1.369 ( 1.369)  Acc@1:  52.734 ( 52.734)  Acc@5:  94.531 ( 94.531)
+Test: [  39/39]  Time: 0.107 (0.082)  Loss:   1.528 ( 1.269)  Acc@1:  43.750 ( 56.280)  Acc@5:  93.750 ( 94.430)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-15.pth.tar', 56.28)
+ ('./output/train/Exp3_CIFAR10/checkpoint-14.pth.tar', 55.4)
+ ('./output/train/Exp3_CIFAR10/checkpoint-13.pth.tar', 54.01)
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 16 [   0/195 (  0%)]  Loss: 1.65 (1.65)  Time: 0.733s,  349.19/s  (0.733s,  349.19/s)  LR: 9.240e-05  Data: 0.232 (0.232)
+Train: 16 [  50/195 ( 26%)]  Loss: 1.59 (1.62)  Time: 0.358s,  714.79/s  (0.368s,  695.06/s)  LR: 9.240e-05  Data: 0.030 (0.028)
+Train: 16 [ 100/195 ( 52%)]  Loss: 1.60 (1.61)  Time: 0.365s,  701.62/s  (0.365s,  701.81/s)  LR: 9.240e-05  Data: 0.031 (0.028)
+Train: 16 [ 150/195 ( 77%)]  Loss: 1.67 (1.63)  Time: 0.333s,  769.91/s  (0.364s,  703.88/s)  LR: 9.240e-05  Data: 0.023 (0.026)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.260 (0.260)  Loss:   1.303 ( 1.303)  Acc@1:  57.422 ( 57.422)  Acc@5:  93.750 ( 93.750)
+Test: [  39/39]  Time: 0.049 (0.079)  Loss:   1.397 ( 1.247)  Acc@1:  37.500 ( 56.970)  Acc@5:  93.750 ( 94.850)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-16.pth.tar', 56.97)
+ ('./output/train/Exp3_CIFAR10/checkpoint-15.pth.tar', 56.28)
+ ('./output/train/Exp3_CIFAR10/checkpoint-14.pth.tar', 55.4)
+ ('./output/train/Exp3_CIFAR10/checkpoint-13.pth.tar', 54.01)
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 17 [   0/195 (  0%)]  Loss: 1.60 (1.60)  Time: 0.738s,  346.67/s  (0.738s,  346.67/s)  LR: 9.145e-05  Data: 0.236 (0.236)
+Train: 17 [  50/195 ( 26%)]  Loss: 1.60 (1.60)  Time: 0.381s,  672.41/s  (0.368s,  695.30/s)  LR: 9.145e-05  Data: 0.031 (0.028)
+Train: 17 [ 100/195 ( 52%)]  Loss: 1.63 (1.61)  Time: 0.327s,  783.93/s  (0.365s,  701.41/s)  LR: 9.145e-05  Data: 0.024 (0.026)
+Train: 17 [ 150/195 ( 77%)]  Loss: 1.62 (1.61)  Time: 0.362s,  706.41/s  (0.364s,  704.09/s)  LR: 9.145e-05  Data: 0.018 (0.025)
+Distributing BatchNorm running means and vars
+Test: [   0/39]  Time: 0.205 (0.205)  Loss:   1.309 ( 1.309)  Acc@1:  53.906 ( 53.906)  Acc@5:  95.312 ( 95.312)
+Test: [  39/39]  Time: 0.048 (0.076)  Loss:   1.438 ( 1.236)  Acc@1:  43.750 ( 56.750)  Acc@5: 100.000 ( 95.060)
+Current checkpoints:
+ ('./output/train/Exp3_CIFAR10/checkpoint-16.pth.tar', 56.97)
+ ('./output/train/Exp3_CIFAR10/checkpoint-17.pth.tar', 56.75)
+ ('./output/train/Exp3_CIFAR10/checkpoint-15.pth.tar', 56.28)
+ ('./output/train/Exp3_CIFAR10/checkpoint-14.pth.tar', 55.4)
+ ('./output/train/Exp3_CIFAR10/checkpoint-13.pth.tar', 54.01)
+ ('./output/train/Exp3_CIFAR10/checkpoint-12.pth.tar', 53.49)
+ ('./output/train/Exp3_CIFAR10/checkpoint-11.pth.tar', 53.36)
+ ('./output/train/Exp3_CIFAR10/checkpoint-10.pth.tar', 52.32)
+
+Train: 18 [   0/195 (  0%)]  Loss: 1.59 (1.59)  Time: 0.738s,  346.80/s  (0.738s,  346.80/s)  LR: 9.045e-05  Data: 0.228 (0.228)
+Train: 18 [  50/195 ( 26%)]  Loss: 1.58 (1.59)  Time: 0.317s,  806.70/s  (0.371s,  689.42/s)  LR: 9.045e-05  Data: 0.019 (0.027)
+Train: 18 [ 100/195 ( 52%)]  Loss: 1.65 (1.61)  Time: 0.332s,  771.56/s  (0.367s,  698.42/s)  LR: 9.045e-05  Data: 0.020 (0.025)
+slurmstepd: error: *** JOB 2004986 ON i51 CANCELLED AT 2024-03-01T12:30:22 ***

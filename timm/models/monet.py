@@ -288,8 +288,28 @@ def MONet_T_no_multistage(pretrained=False, **kwargs):
         )
     
     model_args = dict_args
-    model = _create_improved_MONet('MONet_T', pretrained=pretrained, **model_args)
+    model = _create_improved_MONet('MONet_T_no_mult', pretrained=pretrained, **model_args)
     return model
+
+@register_model
+def MONet_T_no_multistage_no_conv_og(pretrained=False, **kwargs):
+    transitions = [False, False, False, False]
+    layers = [1, 1, 1, 1]  # real patch size [8,16,32,64]
+    embed_dims = [192, 192, 192, 192]
+    expansion_factor = [3, 3, 3, 3]
+    dict_args = dict(
+        patch_size=[2], 
+        layers=layers,
+        transitions=transitions,
+        embed_dim=embed_dims,
+        expansion_factor = expansion_factor,
+        **kwargs
+        )
+    
+    model_args = dict_args
+    model = _create_improved_MONet('MONet_T_no_multistage_no_conv_og', pretrained=pretrained, **model_args)
+    return model
+
 
 @register_model
 def MONet_T_no_multistage_no_conv(pretrained=False, **kwargs):
@@ -307,7 +327,26 @@ def MONet_T_no_multistage_no_conv(pretrained=False, **kwargs):
         )
     
     model_args = dict_args
-    model = _create_improved_MONet('MONet_T', pretrained=pretrained, **model_args)
+    model = _create_improved_MONet('MONet_T_no_multistage_no_conv', pretrained=pretrained, **model_args)
+    return model
+
+@register_model
+def MONet_T_variable(pretrained=False, **kwargs):
+    transitions = [False, False, False, False]
+    layers = [4, 8, 12, 10]  # real patch size [8,16,32,64]
+    embed_dims = [64, 128, 192, 192]
+    expansion_factor = [3, 3, 3, 3]
+    dict_args = dict(
+        patch_size=[2], 
+        layers=layers,
+        transitions=transitions,
+        embed_dim=embed_dims,
+        expansion_factor = expansion_factor,
+        **kwargs
+        )
+    
+    model_args = dict_args
+    model = _create_improved_MONet('MONet_T_variable', pretrained=pretrained, **model_args)
     return model
 
 @register_model
