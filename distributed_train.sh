@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time 1:59:00
+#SBATCH --time 5:59:00
 #SBATCH --partition=gpu  # Request 1 GPU
 #SBATCH --qos=gpu_free  # Request 1 GPU
 #SBATCH --gres=gpu:1  # Request 1 GPU

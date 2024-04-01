@@ -771,11 +771,23 @@ def main():
             f'Scheduled epochs: {num_epochs}. LR stepped per {"epoch" if lr_scheduler.t_in_epochs else "update"}.')
 
     try:
+        #
+        # Training loop!
+        #
+        val_acc_history = []
         for epoch in range(start_epoch, num_epochs):
             if hasattr(dataset_train, 'set_epoch'):
                 dataset_train.set_epoch(epoch)
             elif args.distributed and hasattr(loader_train.sampler, 'set_epoch'):
                 loader_train.sampler.set_epoch(epoch)
+
+            # Here, add logic to update the model's active layers based on validation accuracy history
+            if len(val_acc_history) >= 11:  # Ensure we have at least 11 epochs to compare the last 10
+                if (val_acc_history[-1] - val_acc_history[-11]) / val_acc_history[-11] * 100 < 1:
+                    # Check if model has attribute `active_layers` and update it
+                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
+                        model.active_layers += 2
+                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
 
             train_metrics = train_one_epoch(
                 epoch,
@@ -805,6 +817,8 @@ def main():
                 args,
                 amp_autocast=amp_autocast,
             )
+            current_top1_acc = eval_metrics['top1']
+            val_acc_history.append(current_top1_acc)
 
             if model_ema is not None and not args.model_ema_force_cpu:
                 if args.distributed and args.dist_bn in ('broadcast', 'reduce'):
@@ -819,18 +833,23 @@ def main():
                     log_suffix=' (EMA)',
                 )
                 eval_metrics = ema_eval_metrics
+            # Before calling update_summary, ensure you have the number of active layers
+            active_layers_count = model.active_layers if hasattr(model, 'active_layers') else 'N/A'
+
+            # When calling update_summary, include the active_layers_count
 
             if output_dir is not None:
                 lrs = [param_group['lr'] for param_group in optimizer.param_groups]
                 utils.update_summary(
-                    epoch,
-                    train_metrics,
-                    eval_metrics,
-                    filename=os.path.join(output_dir, 'summary.csv'),
-                    lr=sum(lrs) / len(lrs),
-                    write_header=best_metric is None,
-                    log_wandb=args.log_wandb and has_wandb,
-                )
+                epoch=epoch,
+                train_metrics=train_metrics,
+                eval_metrics=eval_metrics,
+                filename=os.path.join(output_dir, 'summary.csv'),
+                lr=sum(lrs) / len(lrs),
+                write_header=best_epoch is None,
+                log_wandb=args.log_wandb and has_wandb,
+                active_layers=active_layers_count  # Add the number of active layers here
+            )
 
             if saver is not None:
                 # save proper checkpoint with eval metric
@@ -908,6 +927,9 @@ def train_one_epoch(
         def _forward():
             with amp_autocast():
                 output = model(input)
+                # print("\n\n\n")
+                # print("Output shape:", output.shape)
+                # print("Target shape:", target.shape)
                 loss = loss_fn(output, target)
             if accum_steps > 1:
                 loss /= accum_steps
