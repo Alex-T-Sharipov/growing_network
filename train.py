@@ -354,7 +354,8 @@ group.add_argument('--use-multi-epochs-loader', action='store_true', default=Fal
                    help='use the multi-epochs-loader to save time at the beginning of every epoch')
 group.add_argument('--log-wandb', action='store_true', default=False,
                    help='log training and validation metrics to wandb')
-
+group.add_argument('--strategy', default=0, type=str, 
+                   help='Strategy to use for adjusting layers during training, options: [static, incremental]')
 
 def _parse_args():
     # Do we have a config file to parse?
@@ -771,23 +772,109 @@ def main():
             f'Scheduled epochs: {num_epochs}. LR stepped per {"epoch" if lr_scheduler.t_in_epochs else "update"}.')
 
     try:
+        threshold = [0.01]
+
+        def baseline(window=10):
+            # Here, add logic to update the model's active layers based on validation accuracy history
+            if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
+                if (val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)] < 0.01:
+                    # Check if model has attribute `active_layers` and update it
+                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
+                        model.active_layers += 1
+                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+
+        def exp(window=10):
+            current_threshold = threshold[0]
+            threshold[0] *= 0.9
+            # Here, add logic to update the model's active layers based on validation accuracy history
+            if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
+                if (val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)] < current_threshold:
+                    # Check if model has attribute `active_layers` and update it
+                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
+                        model.active_layers += 1
+                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+        
+        def avg(l): return sum(l) / len(l)
+
+        def smooth(window=10):
+            current_threshold = threshold[0]
+            threshold[0] *= 0.9
+            # Here, add logic to update the model's active layers based on validation accuracy history
+            if len(val_acc_history) >= 2*window:  # Ensure we have at least 11 epochs to compare the last 10
+                if (avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)]) < current_threshold:
+                    # Check if model has attribute `active_layers` and update it
+                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
+                        model.active_layers += 1
+                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+        
+        def weight_change(window=10, norm_type="Frobenius"):
+            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+            current_threshold = threshold[0]
+            threshold[0] *= 0.9
+            if len(weight_f_history) >= window+1:
+                if norm_type=="Frobenius": old, new = weight_f_history[-(window+1)], weight_f_history[-1]
+                else: old, new = weight_p1_history[-(window+1)], weight_p1_history[-1]
+                if abs(new - old) / old < current_threshold:
+                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
+                        model.active_layers += 1
+                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+            
+        def layer_strategy(s):
+            d = {
+                0: baseline,
+                1: exp,
+                2: smooth,
+                3: lambda: weight_change(norm_type="Frobenius"), 
+                4: lambda: weight_change(norm_type="p1"), 
+                # For learnable pruning, do nothing
+                5: lambda: None,
+            }
+            if not s in d: pass
+            else: d[s]()
+        
+        def weight_norms(model):
+            cur_sum_p1 = 0
+            cur_sum_f = 0
+            for name, param in model.named_parameters():
+                if 'weight' in name:  # Filter to include only weights, exclude biases etc.
+                    current_f_norm = torch.norm(param.data, p=2)
+                    cur_sum_f += current_f_norm
+                    # print(f"Shape of {name}: {param.data.shape}")
+                    # Check the dimensionality of the parameter
+                    # if param.ndimension() < 2:
+                    #     print(f"Skipping spectral norm calculation for {name} because it is not a matrix.")
+                    #     continue
+                    current_p1_norm = torch.norm(param.data, p=1)
+                    cur_sum_p1 += current_p1_norm
+            
+            weight_f_history.append(cur_sum_p1)
+            weight_p1_history.append(cur_sum_f)
+                    
         #
         # Training loop!
         #
         val_acc_history = []
+        total_layers = 0
+        active_layers_count = 0
+        HW = args.input_size[1] * args.input_size[2]
+        total_flops = 19584 * HW
+        start_training_time = time.time()
+        weight_f_history = []
+        weight_p1_history = []
+
         for epoch in range(start_epoch, num_epochs):
+            epoch_start_time = time.time()
+            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
             if hasattr(dataset_train, 'set_epoch'):
                 dataset_train.set_epoch(epoch)
             elif args.distributed and hasattr(loader_train.sampler, 'set_epoch'):
                 loader_train.sampler.set_epoch(epoch)
 
             # Here, add logic to update the model's active layers based on validation accuracy history
-            if len(val_acc_history) >= 11:  # Ensure we have at least 11 epochs to compare the last 10
-                if (val_acc_history[-1] - val_acc_history[-11]) / val_acc_history[-11] * 100 < 1:
-                    # Check if model has attribute `active_layers` and update it
-                    if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
-                        model.active_layers += 2
-                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+            layer_strategy(args.strategy)
 
             train_metrics = train_one_epoch(
                 epoch,
@@ -819,6 +906,7 @@ def main():
             )
             current_top1_acc = eval_metrics['top1']
             val_acc_history.append(current_top1_acc)
+            weight_norms(model)
 
             if model_ema is not None and not args.model_ema_force_cpu:
                 if args.distributed and args.dist_bn in ('broadcast', 'reduce'):
@@ -835,6 +923,11 @@ def main():
                 eval_metrics = ema_eval_metrics
             # Before calling update_summary, ensure you have the number of active layers
             active_layers_count = model.active_layers if hasattr(model, 'active_layers') else 'N/A'
+            
+            total_flops += active_layers_count * (HW * 505.5 + 60*HW**2)
+            total_layers += active_layers_count
+            elapsed_time = time.time() - epoch_start_time
+            total_training_time = time.time() - start_training_time
 
             # When calling update_summary, include the active_layers_count
 
@@ -848,7 +941,15 @@ def main():
                 lr=sum(lrs) / len(lrs),
                 write_header=best_epoch is None,
                 log_wandb=args.log_wandb and has_wandb,
-                active_layers=active_layers_count  # Add the number of active layers here
+                additional_metrics={
+                    'Active layers': model.active_layers,
+                    'Total Training Time (s)': total_training_time,
+                    'Epoch Time (s)': elapsed_time, 
+                    'FLOPs': total_flops,
+                    'Layers': total_layers,
+                    'Spectral norm': weight_p1_history[-1].item(),
+                    'Frobenius norm': weight_f_history[-1].item()
+                    }
             )
 
             if saver is not None:

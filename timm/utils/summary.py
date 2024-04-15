@@ -35,19 +35,20 @@ def update_summary(
         lr=None,
         write_header=False,
         log_wandb=False,
-        active_layers=None  # Add the new parameter here
+        additional_metrics=None  # New parameter for additional metrics
 ):
     rowd = OrderedDict(epoch=epoch)
     rowd.update([('train_' + k, v) for k, v in train_metrics.items()])
     rowd.update([('eval_' + k, v) for k, v in eval_metrics.items()])
     if lr is not None:
         rowd['lr'] = lr
-    if active_layers is not None:  # Insert the active layers into the dictionary
-        rowd['active_layers'] = active_layers
+    if additional_metrics:  # Check if there are additional metrics to add
+        rowd.update(additional_metrics)  # Update the row dictionary with the additional metrics
+
     if log_wandb:
         wandb.log(rowd)
     with open(filename, mode='a') as cf:
         dw = csv.DictWriter(cf, fieldnames=rowd.keys())
-        if write_header:  # First iteration (epoch == 1 can't be used)
+        if write_header:  # Check whether to write the CSV header
             dw.writeheader()
         dw.writerow(rowd)

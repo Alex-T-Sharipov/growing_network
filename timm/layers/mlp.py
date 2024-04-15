@@ -16,6 +16,7 @@ class Spatial_Shift(nn.Module):
         super().__init__()
     
     def forward(self, x):
+        # FLOPS: D
         b,w,h,c = x.size()
         x[:,1:,:,:c//4] = x[:,:w-1,:,:c//4]
         x[:,:w-1,:,c//4:c//2] = x[:,1:,:,c//4:c//2]
@@ -290,6 +291,8 @@ class PolyMlp(nn.Module):
             norm_layer=partial(nn.LayerNorm, eps=1e-6),
             use_alpha=True,
             use_spatial=False,
+            crate=3,  # Critical rate for dynamic pruning
+            prune = False,
     ):
         super().__init__()
         self.in_features = in_features
@@ -303,6 +306,8 @@ class PolyMlp(nn.Module):
         linear_layer = partial(nn.Conv2d, kernel_size=1) if use_conv else nn.Linear
         self.norm1 =norm_layer(self.hidden_features)
         self.norm3 =norm_layer(self.hidden_features)
+        self.crate = crate
+        self.prune = prune
 
         self.n_degree = n_degree
         self.hidden_features = hidden_features
@@ -311,6 +316,14 @@ class PolyMlp(nn.Module):
         self.U3 = linear_layer(self.hidden_features//8, self.hidden_features, bias=bias)
         self.C = linear_layer(self.hidden_features, self.out_features, bias=True) 
         self.drop2 = nn.Dropout(drop_probs[0])
+
+        # Masks initialized to ones
+        # Turned off gradient since these are updated through a heuristic and not through the gradient descent
+        self.mask_U1 = nn.Parameter(torch.ones_like(self.U1.weight), requires_grad=False)
+        self.mask_U2 = nn.Parameter(torch.ones_like(self.U2.weight), requires_grad=False)
+        self.mask_U3 = nn.Parameter(torch.ones_like(self.U3.weight), requires_grad=False)
+        self.mask_C = nn.Parameter(torch.ones_like(self.C.weight), requires_grad=False)
+
         
         if self.use_act:
             self.act = act_layer()
@@ -327,23 +340,54 @@ class PolyMlp(nn.Module):
         nn.init.ones_(self.U1.bias)
         nn.init.ones_(self.U2.bias)
         nn.init.ones_(self.U3.bias)
-            
+    
+    def apply_masks(self):
+        # Updating and applying masks
+        layers = [(self.U1, self.mask_U1), (self.U2, self.mask_U2), (self.U3, self.mask_U3), (self.C, self.mask_C)]
+        for layer, mask in layers:
+            data = layer.weight.data
+            std, mean = torch.std_mean(data)
+            threshold_deactivation = 0.9 * max(mean + self.crate * std, torch.tensor(0.0).to(data.device))
+            threshold_activation = 1.1 * max(mean + self.crate * std, torch.tensor(0.0).to(data.device))
+            # Update mask
+            mask.data = torch.clamp((data.abs() > threshold_activation).float() - (data.abs() <= threshold_deactivation).float() + mask * ((data.abs() <= threshold_activation) & (data.abs() > threshold_deactivation)).float(), min=0)
+            # Apply mask
+            data.mul_(mask)
+    
     def forward(self, x):  #
-        if self.use_spatial:               
-            out1 = self.U1(x)             
-            out2 = self.U2(x)       
+        # Assuming x has dimension B * D
+        if self.prune: self.apply_masks()
+        if self.use_spatial:   
+            # 2 * D * D            
+            out1 = self.U1(x)     
+            # 2 * D * D / 8        
+            out2 = self.U2(x)     
+            # D
             out1 = self.spatial_shift(out1)
+            # D / 8
             out2 = self.spatial_shift(out2)
+            # 2 * D * D / 8
             out2 = self.U3(out2) 
+            # 6D
             out1 = self.norm1(out1)
+            # 6D
             out2 = self.norm3(out2)
+            # D
             out_so = out1 * out2
+            # Total: 14.125*D + 2.5*D^2
         else:
+            # FLOPS: 2 * D * D (2 * input dimension * output dimension)
+            # Factor 2 is due to the fact that we do multiplications and additions
             out1 = self.U1(x)          
+            # FLOPS: 2 * D * D / 8 
             out2 = self.U2(x)
+            # FLOPS: 2 * D / 8 * D 
             out2 = self.U3(out2)
+            # FLOPS: 6D
             out1 = self.norm1(out1)
+            # FLOPS: 6D
             out2 = self.norm3(out2)
+            # FLOPS: D
             out_so = out1 * out2
         if self.use_alpha:
             out1 = out1 + self.alpha * out_so
@@ -353,5 +397,7 @@ class PolyMlp(nn.Module):
             del out_so
         if self.use_act:
             out1 = self.act(out1)
+        # Flops: 2*D*D
         out1 = self.C(out1)
+        # Total FLOPS: 13* D + 4.5 * D^2
         return out1

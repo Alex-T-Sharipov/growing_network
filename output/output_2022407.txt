@@ -137,3 +137,10 @@ init kaiming normal
 init kaiming normal
 init kaiming normal
 init kaiming normal
+Epoch 65: Increasing active layers to 4
+Epoch 66: Increasing active layers to 6
+Epoch 73: Increasing active layers to 8
+Epoch 79: Increasing active layers to 10
+Epoch 80: Increasing active layers to 12
+Epoch 85: Increasing active layers to 14
+Epoch 87: Increasing active layers to 16

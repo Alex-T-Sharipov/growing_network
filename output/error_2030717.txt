@@ -1,0 +1,70 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_one model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_one created, param count:876396
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/625 (  0%)]  Loss: 2.30 (2.30)  Time: 6.146s,   10.41/s  (6.146s,   10.41/s)  LR: 1.000e-05  Data: 1.088 (1.088)
+Train: 0 [  50/625 (  8%)]  Loss: 2.28 (2.30)  Time: 0.019s, 3358.72/s  (0.147s,  435.67/s)  LR: 1.000e-05  Data: 0.014 (0.042)
+Train: 0 [ 100/625 ( 16%)]  Loss: 2.23 (2.28)  Time: 0.027s, 2411.93/s  (0.089s,  722.43/s)  LR: 1.000e-05  Data: 0.022 (0.033)
+Train: 0 [ 150/625 ( 24%)]  Loss: 2.23 (2.27)  Time: 0.005s, 12469.13/s  (0.069s,  927.24/s)  LR: 1.000e-05  Data: 0.000 (0.030)
+Train: 0 [ 200/625 ( 32%)]  Loss: 2.20 (2.26)  Time: 0.027s, 2335.16/s  (0.059s, 1082.46/s)  LR: 1.000e-05  Data: 0.023 (0.029)
+Train: 0 [ 250/625 ( 40%)]  Loss: 2.26 (2.25)  Time: 0.005s, 12417.79/s  (0.053s, 1200.48/s)  LR: 1.000e-05  Data: 0.000 (0.028)
+Train: 0 [ 300/625 ( 48%)]  Loss: 2.19 (2.24)  Time: 0.033s, 1912.86/s  (0.049s, 1299.02/s)  LR: 1.000e-05  Data: 0.029 (0.027)
+Train: 0 [ 350/625 ( 56%)]  Loss: 2.21 (2.24)  Time: 0.005s, 12260.69/s  (0.047s, 1376.05/s)  LR: 1.000e-05  Data: 0.000 (0.027)
+Train: 0 [ 400/625 ( 64%)]  Loss: 2.12 (2.23)  Time: 0.028s, 2294.58/s  (0.044s, 1444.17/s)  LR: 1.000e-05  Data: 0.023 (0.027)
+Train: 0 [ 450/625 ( 72%)]  Loss: 2.20 (2.23)  Time: 0.005s, 12419.52/s  (0.043s, 1499.17/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 500/625 ( 80%)]  Loss: 2.22 (2.22)  Time: 0.020s, 3227.75/s  (0.041s, 1548.39/s)  LR: 1.000e-05  Data: 0.015 (0.026)
+Train: 0 [ 550/625 ( 88%)]  Loss: 2.23 (2.22)  Time: 0.005s, 12480.73/s  (0.040s, 1588.02/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 600/625 ( 96%)]  Loss: 2.18 (2.21)  Time: 0.012s, 5152.61/s  (0.039s, 1627.82/s)  LR: 1.000e-05  Data: 0.008 (0.026)
+Test: [   0/156]  Time: 1.465 (1.465)  Loss:   2.037 ( 2.037)  Acc@1:  26.562 ( 26.562)  Acc@5:  84.375 ( 84.375)
+Test: [  50/156]  Time: 0.009 (0.038)  Loss:   2.093 ( 2.062)  Acc@1:  15.625 ( 23.346)  Acc@5:  76.562 ( 79.412)
+Test: [ 100/156]  Time: 0.010 (0.024)  Loss:   1.967 ( 2.060)  Acc@1:  28.125 ( 23.159)  Acc@5:  87.500 ( 79.935)
+Test: [ 150/156]  Time: 0.002 (0.019)  Loss:   2.054 ( 2.057)  Acc@1:  25.000 ( 23.489)  Acc@5:  81.250 ( 79.677)
+Test: [ 156/156]  Time: 0.357 (0.021)  Loss:   2.123 ( 2.057)  Acc@1:  18.750 ( 23.580)  Acc@5:  68.750 ( 79.680)
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1199, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 909, in main
+    weight_norms(model)
+  File "/home/sharipov/monet/train.py", line 853, in weight_norms
+    cur_sum_s += current_s_norm
+RuntimeError: The size of tensor a (3) must match the size of tensor b (192) at non-singleton dimension 0
+[2024-04-13 20:27:27,943] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1568883) of binary: /home/sharipov/monet/venv/bin/python
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-04-13_20:27:27
+  host      : i12.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1568883)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

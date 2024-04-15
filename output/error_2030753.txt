@@ -1,0 +1,43 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_dynamic model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_dynamic created, param count:11741226
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/625 (  0%)]  Loss: 2.30 (2.30)  Time: 1.502s,   42.62/s  (1.502s,   42.62/s)  LR: 1.000e-05  Data: 0.968 (0.968)
+Train: 0 [  50/625 (  8%)]  Loss: 2.25 (2.28)  Time: 0.078s,  816.08/s  (0.107s,  595.93/s)  LR: 1.000e-05  Data: 0.009 (0.029)
+Train: 0 [ 100/625 ( 16%)]  Loss: 2.21 (2.25)  Time: 0.080s,  804.04/s  (0.093s,  684.89/s)  LR: 1.000e-05  Data: 0.009 (0.019)
+Train: 0 [ 150/625 ( 24%)]  Loss: 2.07 (2.23)  Time: 0.078s,  815.30/s  (0.089s,  722.75/s)  LR: 1.000e-05  Data: 0.010 (0.016)
+Train: 0 [ 200/625 ( 32%)]  Loss: 2.18 (2.21)  Time: 0.079s,  808.59/s  (0.086s,  743.30/s)  LR: 1.000e-05  Data: 0.010 (0.015)
+Train: 0 [ 250/625 ( 40%)]  Loss: 2.12 (2.20)  Time: 0.080s,  804.67/s  (0.085s,  756.06/s)  LR: 1.000e-05  Data: 0.009 (0.014)
+Train: 0 [ 300/625 ( 48%)]  Loss: 2.17 (2.19)  Time: 0.079s,  813.58/s  (0.084s,  765.31/s)  LR: 1.000e-05  Data: 0.009 (0.013)
+Train: 0 [ 350/625 ( 56%)]  Loss: 2.24 (2.18)  Time: 0.079s,  810.37/s  (0.083s,  771.85/s)  LR: 1.000e-05  Data: 0.010 (0.013)
+Train: 0 [ 400/625 ( 64%)]  Loss: 2.22 (2.18)  Time: 0.079s,  806.98/s  (0.082s,  776.77/s)  LR: 1.000e-05  Data: 0.010 (0.012)
+Train: 0 [ 450/625 ( 72%)]  Loss: 2.20 (2.17)  Time: 0.080s,  804.86/s  (0.082s,  780.08/s)  LR: 1.000e-05  Data: 0.009 (0.012)
+Train: 0 [ 500/625 ( 80%)]  Loss: 2.15 (2.17)  Time: 0.078s,  820.15/s  (0.082s,  783.33/s)  LR: 1.000e-05  Data: 0.010 (0.012)
+Train: 0 [ 550/625 ( 88%)]  Loss: 2.15 (2.17)  Time: 0.078s,  821.00/s  (0.081s,  785.99/s)  LR: 1.000e-05  Data: 0.009 (0.012)
+Train: 0 [ 600/625 ( 96%)]  Loss: 2.03 (2.16)  Time: 0.078s,  819.64/s  (0.081s,  788.33/s)  LR: 1.000e-05  Data: 0.009 (0.012)
+Test: [   0/156]  Time: 1.072 (1.072)  Loss:   1.846 ( 1.846)  Acc@1:  35.938 ( 35.938)  Acc@5:  89.062 ( 89.062)
+Test: [  50/156]  Time: 0.024 (0.044)  Loss:   1.952 ( 1.919)  Acc@1:  29.688 ( 30.852)  Acc@5:  79.688 ( 84.038)
+Test: [ 100/156]  Time: 0.023 (0.034)  Loss:   1.828 ( 1.912)  Acc@1:  28.125 ( 31.513)  Acc@5:  87.500 ( 84.437)
+Test: [ 150/156]  Time: 0.016 (0.030)  Loss:   1.928 ( 1.909)  Acc@1:  32.812 ( 31.767)  Acc@5:  85.938 ( 84.582)
+Test: [ 156/156]  Time: 0.055 (0.030)  Loss:   2.049 ( 1.909)  Acc@1:  18.750 ( 31.680)  Acc@5:  75.000 ( 84.720)
+Traceback (most recent call last):
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/serialization.py", line 629, in save
+    _save(obj, opened_zipfile, pickle_module, pickle_protocol, _disable_byteorder_record)
+  File "/home/sharipov/monet/venv/lib64/python3.9/site-packages/torch/serialization.py", line 863, in _save
+    zip_file.write_record(name, storage.data_ptr(), num_bytes)
+RuntimeError: [enforce fail at inline_container.cc:764] . PytorchStreamWriter failed writing file data/146: file write failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+
