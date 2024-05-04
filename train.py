@@ -22,7 +22,7 @@ from collections import OrderedDict
 from contextlib import suppress
 from datetime import datetime
 from functools import partial
-
+import random
 import torch
 import torch.nn as nn
 import torchvision.utils
@@ -321,7 +321,7 @@ group.add_argument('--log-interval', type=int, default=50, metavar='N',
                    help='how many batches to wait before logging training status')
 group.add_argument('--recovery-interval', type=int, default=0, metavar='N',
                    help='how many batches to wait before writing recovery checkpoint')
-group.add_argument('--checkpoint-hist', type=int, default=10, metavar='N',
+group.add_argument('--checkpoint-hist', type=int, default=1, metavar='N',
                    help='number of checkpoints to keep (default: 10)')
 group.add_argument('-j', '--workers', type=int, default=4, metavar='N',
                    help='how many training processes to use (default: 4)')
@@ -354,8 +354,12 @@ group.add_argument('--use-multi-epochs-loader', action='store_true', default=Fal
                    help='use the multi-epochs-loader to save time at the beginning of every epoch')
 group.add_argument('--log-wandb', action='store_true', default=False,
                    help='log training and validation metrics to wandb')
-group.add_argument('--strategy', default=0, type=str, 
-                   help='Strategy to use for adjusting layers during training, options: [static, incremental]')
+group.add_argument('--strategy', default=5, type=str, 
+                   help='Strategy to use for adjusting layers during training')
+group.add_argument('--initialization_choice', default=5, type=str, 
+                   help='intitialization choice')
+group.add_argument('--double_at_epoch', default=-1, type=str, 
+                   help='double the number of layers at a certain epoch.')
 
 def _parse_args():
     # Do we have a config file to parse?
@@ -442,6 +446,7 @@ def main():
         bn_eps=args.bn_eps,
         scriptable=args.torchscript,
         checkpoint_path=args.initial_checkpoint,
+        initialization_choice = int(args.initialization_choice),
         **args.model_kwargs,
     )
     if args.head_init_scale is not None:
@@ -587,6 +592,8 @@ def main():
     # create the train and eval datasets
     if args.data and not args.data_dir:
         args.data_dir = args.data
+
+
     dataset_train = create_dataset(
         args.dataset,
         root=args.data_dir,
@@ -597,9 +604,24 @@ def main():
         batch_size=args.batch_size,
         seed=args.seed,
         repeats=args.epoch_repeats,
+        validation = False
     )
 
     dataset_eval = create_dataset(
+        args.dataset,
+        root=args.data_dir,
+        split=args.train_split,
+        is_training=True,
+        class_map=args.class_map,
+        download=args.dataset_download,
+        batch_size=args.batch_size,
+        seed=args.seed,
+        repeats=args.epoch_repeats,
+        validation = True
+    )
+
+
+    dataset_test = create_dataset(
         args.dataset,
         root=args.data_dir,
         split=args.val_split,
@@ -675,6 +697,22 @@ def main():
         eval_workers = min(2, args.workers)
     loader_eval = create_loader(
         dataset_eval,
+        input_size=data_config['input_size'],
+        batch_size=args.validation_batch_size or args.batch_size,
+        is_training=False,
+        use_prefetcher=args.prefetcher,
+        interpolation=data_config['interpolation'],
+        mean=data_config['mean'],
+        std=data_config['std'],
+        num_workers=eval_workers,
+        distributed=args.distributed,
+        crop_pct=data_config['crop_pct'],
+        pin_memory=args.pin_mem,
+        device=device,
+    )
+
+    loader_test = create_loader(
+        dataset_test,
         input_size=data_config['input_size'],
         batch_size=args.validation_batch_size or args.batch_size,
         is_training=False,
@@ -772,57 +810,73 @@ def main():
             f'Scheduled epochs: {num_epochs}. LR stepped per {"epoch" if lr_scheduler.t_in_epochs else "update"}.')
 
     try:
-        threshold = [0.01]
+        # Corresponds to about 50th rpoch
+        threshold = [0.04, 0.07, 0.0003]
 
         def baseline(window=10):
+            print("baseline strategy")
+            current_threshold = threshold[0]
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
-                if (val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)] < 0.01:
+                print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])<current_threshold}")
+                if ((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
-                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
-                        model.active_layers += 1
+                        model.active_layers *=2
+                        threshold[0] *= 0.5
                         print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
 
         def exp(window=10):
-            current_threshold = threshold[0]
-            threshold[0] *= 0.9
+            print("exponential strategy")
+            current_threshold = threshold[1]
+            threshold[1] *= 0.99
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
-                if (val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)] < current_threshold:
+                print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold}")
+                if ((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
-                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
-                        model.active_layers += 1
+                        model.active_layers *=2
                         print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
         
         def avg(l): return sum(l) / len(l)
 
         def smooth(window=10):
+            print("Smoothing strategy")
             current_threshold = threshold[0]
-            threshold[0] *= 0.9
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= 2*window:  # Ensure we have at least 11 epochs to compare the last 10
-                if (avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)]) < current_threshold:
+                print(f"Current difference: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)]))}, threshold: {current_threshold}, condition: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)])) < current_threshold}")
+                if ((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)])) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
-                    print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+                    # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
-                        model.active_layers += 1
+                        model.active_layers *=2
+                        threshold[0] *= 0.5
                         print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
         
         def weight_change(window=10, norm_type="Frobenius"):
-            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
-            current_threshold = threshold[0]
-            threshold[0] *= 0.9
+            print("The Frobenius based strategy!!")
+            # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+            current_threshold = threshold[2]
+            # Problem: deep network, the sum doesn't reflect individuals
+            # Max of the norm is above the threshold
+            # Max over different norms of each matrix
             if len(weight_f_history) >= window+1:
                 if norm_type=="Frobenius": old, new = weight_f_history[-(window+1)], weight_f_history[-1]
                 else: old, new = weight_p1_history[-(window+1)], weight_p1_history[-1]
-                if abs(new - old) / old < current_threshold:
+                print(f"Current difference: {abs(new - old) / old}, threshold: {current_threshold}, condition: {(abs(new - old) / old) < current_threshold}")
+                if (abs(new - old) / old) < current_threshold:
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
-                        model.active_layers += 1
+                        model.active_layers *=2
+                        threshold[2] *= 0.5
                         print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
             
         def layer_strategy(s):
+            s = int(s)
+            # print(f"Layer strategy call with s={s} received")
             d = {
                 0: baseline,
                 1: exp,
@@ -832,8 +886,12 @@ def main():
                 # For learnable pruning, do nothing
                 5: lambda: None,
             }
-            if not s in d: pass
-            else: d[s]()
+            if not s in d:
+                # print("passing")
+                pass
+            else:
+                # print(f"calling the function{d[s]}")
+                d[s]()
         
         def weight_norms(model):
             cur_sum_p1 = 0
@@ -867,14 +925,20 @@ def main():
 
         for epoch in range(start_epoch, num_epochs):
             epoch_start_time = time.time()
-            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
+            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}; double at epoch: {args.double_at_epoch}; doubling now? {int(args.double_at_epoch) == epoch}")
             if hasattr(dataset_train, 'set_epoch'):
                 dataset_train.set_epoch(epoch)
             elif args.distributed and hasattr(loader_train.sampler, 'set_epoch'):
                 loader_train.sampler.set_epoch(epoch)
 
             # Here, add logic to update the model's active layers based on validation accuracy history
+            # print("Calling the layer strategy")
             layer_strategy(args.strategy)
+            
+            if epoch == int(args.double_at_epoch): 
+                model.need_initialization = model.active_layers
+                model.active_layers *= 2
+                print(f"Doubling at epoch: {epoch}")
 
             train_metrics = train_one_epoch(
                 epoch,
@@ -892,6 +956,10 @@ def main():
                 mixup_fn=mixup_fn,
             )
 
+            # Update this section to include train_metrics in any logging or saving action.
+            # print(f"Training metrics: Loss {train_metrics['loss']:.4f}, Acc@1 {train_metrics['acc1']:.4f}")
+            model.last_norm = train_metrics['avg_grad_norm']
+
             if args.distributed and args.dist_bn in ('broadcast', 'reduce'):
                 if utils.is_primary(args):
                     _logger.info("Distributing BatchNorm running means and vars")
@@ -904,6 +972,14 @@ def main():
                 args,
                 amp_autocast=amp_autocast,
             )
+            test_metrics = validate(
+                model,
+                loader_test,
+                validate_loss_fn,
+                args,
+                amp_autocast=amp_autocast,
+            )
+            print(f"Test acc1: {test_metrics['top1']}; Val acc1: {eval_metrics['top1']}; Train acc1: {train_metrics['acc1']}; Average gradient norm: {train_metrics['avg_grad_norm']}")
             current_top1_acc = eval_metrics['top1']
             val_acc_history.append(current_top1_acc)
             weight_norms(model)
@@ -937,6 +1013,7 @@ def main():
                 epoch=epoch,
                 train_metrics=train_metrics,
                 eval_metrics=eval_metrics,
+                test_metrics = test_metrics,
                 filename=os.path.join(output_dir, 'summary.csv'),
                 lr=sum(lrs) / len(lrs),
                 write_header=best_epoch is None,
@@ -968,6 +1045,43 @@ def main():
         _logger.info('*** Best metric: {0} (epoch {1})'.format(best_metric, best_epoch))
 
 
+def custom_accuracy_one_hot(output, target):
+    """
+    Computes the accuracy for outputs and targets given in a one-hot encoded format.
+    
+    Parameters:
+    - output (torch.Tensor): The raw output logits or probabilities from the model (shape: [batch_size, num_classes]).
+    - target (torch.Tensor): The one-hot encoded or soft targets (shape: [batch_size, num_classes]).
+    
+    Returns:
+    - float: The accuracy as a percentage.
+    """
+    if output.dim() != 2 or target.dim() != 2:
+        raise ValueError("Both output and target tensors must have shape [batch_size, num_classes]")
+    
+    # # Convert logits to probabilities if they aren't already
+    # if not torch.allclose(target.sum(dim=1), torch.ones_like(target[:, 0])):
+    #     # Assuming target is already probabilities if sums to 1
+    #     probabilities = torch.softmax(output, dim=1)
+    # else:
+    #     probabilities = output
+
+    # Determine predicted classes and true classes by finding the index of the maximum value in each row
+    print(f"Output shape: {output.shape}")
+    print(f"Target shape: {target.shape}")
+    predicted_classes = output.argmax(dim=1)
+    true_classes = target.argmax(dim=1)
+    print(f"True classes shape: {true_classes.shape}")
+    print(f"True classes: {true_classes}")
+
+    # Calculate accuracy by comparing the predicted classes to the true classes
+    correct_predictions = (predicted_classes == true_classes).sum().item()
+    total_predictions = target.size(0)
+
+    accuracy = (correct_predictions / total_predictions) * 100
+    print(f"Correct preds: {correct_predictions}; Total predictions: {total_predictions}; Accuracy: {accuracy}")
+    return accuracy
+
 def train_one_epoch(
         epoch,
         model,
@@ -995,6 +1109,8 @@ def train_one_epoch(
     update_time_m = utils.AverageMeter()
     data_time_m = utils.AverageMeter()
     losses_m = utils.AverageMeter()
+    top1_m = utils.AverageMeter()
+    grad_norm_m = utils.AverageMeter()
 
     model.train()
 
@@ -1031,10 +1147,17 @@ def train_one_epoch(
                 # print("\n\n\n")
                 # print("Output shape:", output.shape)
                 # print("Target shape:", target.shape)
+                # print(output[0])
+                # print(target[0])
+                print("forward!\n")
+                print(output[0])
+                print(target[0])
+                acc1 = custom_accuracy_one_hot(output, target)
+                print(acc1)
                 loss = loss_fn(output, target)
             if accum_steps > 1:
                 loss /= accum_steps
-            return loss
+            return (loss, acc1)
 
         def _backward(_loss):
             if loss_scaler is not None:
@@ -1057,13 +1180,24 @@ def train_one_epoch(
                             mode=args.clip_mode,
                         )
                     optimizer.step()
+            total_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), float('inf'))
+            total_params = sum(p.numel() for p in model.parameters() if p.grad is not None)
+            avg_grad_norm = total_norm / total_params if total_params > 0 else 0
+
+            # Retrieve the learning rate
+            lrl = [param_group['lr'] for param_group in optimizer.param_groups]
+            current_lr = sum(lrl) / len(lrl)  # average learning rate
+
+            # Calculate gradient norm multiplied by learning rate
+            grad_norm_lr = avg_grad_norm * current_lr
+            grad_norm_m.update(grad_norm_lr)  # Storing or logging the value
 
         if has_no_sync and not need_update:
             with model.no_sync():
-                loss = _forward()
+                loss, acc1 = _forward()
                 _backward(loss)
         else:
-            loss = _forward()
+            loss, acc1 = _forward()
             _backward(loss)
 
         if not args.distributed:
@@ -1091,8 +1225,21 @@ def train_one_epoch(
 
             if args.distributed:
                 reduced_loss = utils.reduce_tensor(loss.data, args.world_size)
+                reduced_acc1 = utils.reduce_tensor(acc1, args.world_size) if args.distributed else acc1
                 losses_m.update(reduced_loss.item() * accum_steps, input.size(0))
+                print(f"Current reduced_acc1: {reduced_acc1}")
+                # print(f"Current reduced_acc1.item(): {reduced_acc1.item()}")
+                top1_m.update(reduced_acc1, input.size(0))
                 update_sample_count *= args.world_size
+            else: 
+                print(f"Current acc1: {acc1}")
+                # print(f"Current acc1.item(): {acc1.item()}")
+                top1_m.update(acc1, input.size(0))
+            
+            print(f"Average top 1 accuracy: {top1_m.avg}")
+
+            
+            
 
             if utils.is_primary(args):
                 _logger.info(
@@ -1127,7 +1274,7 @@ def train_one_epoch(
     if hasattr(optimizer, 'sync_lookahead'):
         optimizer.sync_lookahead()
 
-    return OrderedDict([('loss', losses_m.avg)])
+    return OrderedDict([('loss', losses_m.avg), ('acc1', top1_m.avg), ('avg_grad_norm', grad_norm_m.avg)])
 
 
 def validate(
@@ -1197,7 +1344,7 @@ def validate(
                     f'Acc@5: {top5_m.val:>7.3f} ({top5_m.avg:>7.3f})'
                 )
 
-    metrics = OrderedDict([('loss', losses_m.avg), ('top1', top1_m.avg), ('top5', top5_m.avg)])
+    metrics = OrderedDict([('loss', losses_m.avg), ('top1', top1_m.avg)])
 
     return metrics
 

@@ -1,0 +1,1 @@
+slurmstepd: error: *** JOB 2031886 ON i27 CANCELLED AT 2024-04-15T23:06:00 ***

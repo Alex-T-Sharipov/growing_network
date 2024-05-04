@@ -1,0 +1,1919 @@
+torch.cuda.is_available()=True
+args=Namespace(data=None, data_dir='/home/sharipov/monet/data/CIFAR10', dataset='torch/CIFAR10', train_split='train', val_split='validation', dataset_download=False, class_map='', model='MONet_T_dynamic', pretrained=False, initial_checkpoint='', resume='', no_resume_opt=False, num_classes=10, gp=None, img_size=None, in_chans=None, input_size=[3, 32, 32], crop_pct=None, mean=None, std=None, interpolation='', batch_size=64, validation_batch_size=None, channels_last=False, fuser='', grad_accum_steps=1, grad_checkpointing=False, fast_norm=False, model_kwargs={}, head_init_scale=None, head_init_bias=None, torchscript=False, torchcompile=None, opt='adamw', opt_eps=None, opt_betas=None, momentum=0.9, weight_decay=0.01, clip_grad=None, clip_mode='norm', layer_decay=None, opt_kwargs={}, sched='cosine', sched_on_updates=False, lr=0.0001, lr_base=0.001, lr_base_size=256, lr_base_scale='', lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, lr_cycle_mul=1.0, lr_cycle_decay=0.5, lr_cycle_limit=1, lr_k_decay=1.0, warmup_lr=1e-05, min_lr=1e-05, epochs=300, epoch_repeats=0.0, start_epoch=None, decay_milestones=[90, 180, 270], decay_epochs=90, warmup_epochs=10, warmup_prefix=False, cooldown_epochs=0, patience_epochs=10, decay_rate=0.1, no_aug=False, scale=[0.08, 1.0], ratio=[0.75, 1.3333333333333333], hflip=0.5, vflip=0.0, color_jitter=0.4, aa=None, aug_repeats=0, aug_splits=0, jsd_loss=False, bce_loss=False, bce_target_thresh=None, reprob=0.0, remode='pixel', recount=1, resplit=False, mixup=0.5, cutmix=0.5, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', mixup_off_epoch=0, smoothing=0.1, train_interpolation='random', drop=0.0, drop_connect=None, drop_path=None, drop_block=None, bn_momentum=None, bn_eps=None, sync_bn=False, dist_bn='reduce', split_bn=False, model_ema=False, model_ema_force_cpu=False, model_ema_decay=0.9998, seed=42, worker_seeding='all', log_interval=50, recovery_interval=0, checkpoint_hist=10, workers=4, save_images=False, amp=False, amp_dtype='float16', amp_impl='native', no_ddp_bb=False, synchronize_step=False, pin_mem=False, no_prefetcher=False, output='', experiment='Upd_Exp14_CIFAR10_dynamic_strat_2_16_layer', eval_metric='top1', tta=0, local_rank=0, use_multi_epochs_loader=False, log_wandb=False, strategy='2')
+
+
+
+
+{}
+
+
+
+
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+Epoch 0; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 1; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 2; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 3; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 4; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 5; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 6; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 7; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 8; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 9; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 10; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 11; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 12; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 13; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 14; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 15; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 16; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 17; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 18; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 19; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Epoch 20; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.28203102367596355, threshold: 0.001215766545905694, condition: False
+Epoch 21; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.22906520816163445, threshold: 0.0010941898913151245, condition: False
+Epoch 22; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.19855761113389167, threshold: 0.0009847709021836122, condition: False
+Epoch 23; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.17217285282187164, threshold: 0.0008862938119652509, condition: False
+Epoch 24; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.154593902243773, threshold: 0.0007976644307687258, condition: False
+Epoch 25; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.1334032441598429, threshold: 0.0007178979876918532, condition: False
+Epoch 26; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.12173551367089178, threshold: 0.0006461081889226679, condition: False
+Epoch 27; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.11185667892552209, threshold: 0.0005814973700304011, condition: False
+Epoch 28; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.10485938923856163, threshold: 0.0005233476330273611, condition: False
+Epoch 29; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0909469476138918, threshold: 0.000471012869724625, condition: False
+Epoch 30; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.08555875102711583, threshold: 0.0004239115827521625, condition: False
+Epoch 31; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.07847519964237096, threshold: 0.00038152042447694626, condition: False
+Epoch 32; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.07540600913646318, threshold: 0.00034336838202925164, condition: False
+Epoch 33; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0774523923827811, threshold: 0.0003090315438263265, condition: False
+Epoch 34; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.07214738510301087, threshold: 0.00027812838944369386, condition: False
+Epoch 35; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0706720737036889, threshold: 0.0002503155504993245, condition: False
+Epoch 36; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.06561024159868847, threshold: 0.00022528399544939206, condition: False
+Epoch 37; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.06096947657549617, threshold: 0.00020275559590445286, condition: False
+Epoch 38; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.055605639205907754, threshold: 0.00018248003631400757, condition: False
+Epoch 39; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.054679746545538005, threshold: 0.00016423203268260683, condition: False
+Epoch 40; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.05022234837732999, threshold: 0.00014780882941434616, condition: False
+Epoch 41; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.051964201601507345, threshold: 0.00013302794647291155, condition: False
+Epoch 42; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04794341105580294, threshold: 0.00011972515182562039, condition: False
+Epoch 43; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04359126689440083, threshold: 0.00010775263664305835, condition: False
+Epoch 44; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.041572743061971236, threshold: 9.697737297875251e-05, condition: False
+Epoch 45; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04192101198793881, threshold: 8.727963568087727e-05, condition: False
+Epoch 46; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04104094938099785, threshold: 7.855167211278955e-05, condition: False
+Epoch 47; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.039981768459434915, threshold: 7.06965049015106e-05, condition: False
+Epoch 48; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04130174074208664, threshold: 6.362685441135955e-05, condition: False
+Epoch 49; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.04200068764589864, threshold: 5.7264168970223595e-05, condition: False
+Epoch 50; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.039568280509558434, threshold: 5.153775207320124e-05, condition: False
+Epoch 51; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.03698529543459931, threshold: 4.6383976865881114e-05, condition: False
+Epoch 52; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.035035714285714094, threshold: 4.1745579179293e-05, condition: False
+Epoch 53; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.033462605849284725, threshold: 3.75710212613637e-05, condition: False
+Epoch 54; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.033811111899524564, threshold: 3.381391913522733e-05, condition: False
+Epoch 55; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.03091691960189151, threshold: 3.0432527221704597e-05, condition: False
+Epoch 56; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.030644735684756494, threshold: 2.7389274499534138e-05, condition: False
+Epoch 57; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.028574934698385096, threshold: 2.4650347049580723e-05, condition: False
+Epoch 58; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.025529167466452632, threshold: 2.218531234462265e-05, condition: False
+Epoch 59; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.019936785801118337, threshold: 1.9966781110160387e-05, condition: False
+Epoch 60; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.018147153132853998, threshold: 1.797010299914435e-05, condition: False
+Epoch 61; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.015613665411586201, threshold: 1.6173092699229914e-05, condition: False
+Epoch 62; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01878817156067791, threshold: 1.4555783429306922e-05, condition: False
+Epoch 63; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.017454770798547087, threshold: 1.310020508637623e-05, condition: False
+Epoch 64; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01602663097566855, threshold: 1.1790184577738607e-05, condition: False
+Epoch 65; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01485792536802493, threshold: 1.0611166119964747e-05, condition: False
+Epoch 66; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.013586631846655636, threshold: 9.550049507968273e-06, condition: False
+Epoch 67; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.015049511700441599, threshold: 8.595044557171446e-06, condition: False
+Epoch 68; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01597753956100051, threshold: 7.735540101454301e-06, condition: False
+Epoch 69; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01942789034564955, threshold: 6.9619860913088715e-06, condition: False
+Epoch 70; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.021313540567226216, threshold: 6.265787482177985e-06, condition: False
+Epoch 71; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.021921023094452593, threshold: 5.639208733960187e-06, condition: False
+Epoch 72; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.019728709081979847, threshold: 5.075287860564168e-06, condition: False
+Epoch 73; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.020978902668042858, threshold: 4.5677590745077515e-06, condition: False
+Epoch 74; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01989461595622492, threshold: 4.110983167056976e-06, condition: False
+Epoch 75; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.020476318985291866, threshold: 3.6998848503512788e-06, condition: False
+Epoch 76; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.02061195965175201, threshold: 3.329896365316151e-06, condition: False
+Epoch 77; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.018805829807240323, threshold: 2.9969067287845362e-06, condition: False
+Epoch 78; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.018137969150379192, threshold: 2.6972160559060827e-06, condition: False
+Epoch 79; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.017287167409931414, threshold: 2.4274944503154745e-06, condition: False
+Epoch 80; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01616828349501603, threshold: 2.1847450052839273e-06, condition: False
+Epoch 81; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01522690585944649, threshold: 1.9662705047555346e-06, condition: False
+Epoch 82; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.013800318852132494, threshold: 1.7696434542799813e-06, condition: False
+Epoch 83; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.014018923890168586, threshold: 1.5926791088519833e-06, condition: False
+Epoch 84; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.015996025832091306, threshold: 1.433411197966785e-06, condition: False
+Epoch 85; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.015387921060461005, threshold: 1.2900700781701065e-06, condition: False
+Epoch 86; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01483327008431371, threshold: 1.161063070353096e-06, condition: False
+Epoch 87; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.013860504977256147, threshold: 1.0449567633177863e-06, condition: False
+Epoch 88; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.012452296354783607, threshold: 9.404610869860078e-07, condition: False
+Epoch 89; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.010376645979049531, threshold: 8.46414978287407e-07, condition: False
+Epoch 90; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01023554884850056, threshold: 7.617734804586663e-07, condition: False
+Epoch 91; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.011802117824476144, threshold: 6.855961324127997e-07, condition: False
+Epoch 92; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.011794191360754925, threshold: 6.170365191715197e-07, condition: False
+Epoch 93; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.009788701322046468, threshold: 5.553328672543678e-07, condition: False
+Epoch 94; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007953582371732179, threshold: 4.99799580528931e-07, condition: False
+Epoch 95; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006885550111503618, threshold: 4.498196224760379e-07, condition: False
+Epoch 96; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006015673267648991, threshold: 4.0483766022843414e-07, condition: False
+Epoch 97; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006193409951720551, threshold: 3.643538942055907e-07, condition: False
+Epoch 98; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0059302344473506925, threshold: 3.2791850478503163e-07, condition: False
+Epoch 99; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007328804966037254, threshold: 2.951266543065285e-07, condition: False
+Epoch 100; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007598882899266265, threshold: 2.6561398887587566e-07, condition: False
+Epoch 101; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00639924829083362, threshold: 2.390525899882881e-07, condition: False
+Epoch 102; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006152152443861305, threshold: 2.151473309894593e-07, condition: False
+Epoch 103; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006958829621957646, threshold: 1.936325978905134e-07, condition: False
+Epoch 104; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006742772136343198, threshold: 1.7426933810146205e-07, condition: False
+Epoch 105; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008277289187790774, threshold: 1.5684240429131584e-07, condition: False
+Epoch 106; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008371581873424162, threshold: 1.4115816386218426e-07, condition: False
+Epoch 107; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01006494555559165, threshold: 1.2704234747596583e-07, condition: False
+Epoch 108; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01201666828181048, threshold: 1.1433811272836925e-07, condition: False
+Epoch 109; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.011147139008533927, threshold: 1.0290430145553233e-07, condition: False
+Epoch 110; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.012956039706071969, threshold: 9.26138713099791e-08, condition: False
+Epoch 111; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.011187843080439793, threshold: 8.335248417898118e-08, condition: False
+Epoch 112; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.012116433617069326, threshold: 7.501723576108307e-08, condition: False
+Epoch 113; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.01166789881392432, threshold: 6.751551218497476e-08, condition: False
+Epoch 114; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.011194808949422408, threshold: 6.076396096647729e-08, condition: False
+Epoch 115; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.009299640841457246, threshold: 5.468756486982956e-08, condition: False
+Epoch 116; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.010642048914959795, threshold: 4.921880838284661e-08, condition: False
+Epoch 117; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00900497432862562, threshold: 4.4296927544561945e-08, condition: False
+Epoch 118; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006910530179705814, threshold: 3.986723479010575e-08, condition: False
+Epoch 119; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007610082961071947, threshold: 3.588051131109518e-08, condition: False
+Epoch 120; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004263442570792248, threshold: 3.2292460179985664e-08, condition: False
+Epoch 121; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0065110799796231226, threshold: 2.90632141619871e-08, condition: False
+Epoch 122; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0051987281399045815, threshold: 2.615689274578839e-08, condition: False
+Epoch 123; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004670521700451118, threshold: 2.354120347120955e-08, condition: False
+Epoch 124; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006623463261221906, threshold: 2.1187083124088596e-08, condition: False
+Epoch 125; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007672999936455552, threshold: 1.9068374811679737e-08, condition: False
+Epoch 126; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0062957911763772785, threshold: 1.7161537330511763e-08, condition: False
+Epoch 127; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007117494134804582, threshold: 1.5445383597460585e-08, condition: False
+Epoch 128; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0069423531090010955, threshold: 1.3900845237714528e-08, condition: False
+Epoch 129; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007647608341118231, threshold: 1.2510760713943076e-08, condition: False
+Epoch 130; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.009456976302116355, threshold: 1.1259684642548768e-08, condition: False
+Epoch 131; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008034796362198539, threshold: 1.0133716178293891e-08, condition: False
+Epoch 132; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008635551267654744, threshold: 9.120344560464503e-09, condition: False
+Epoch 133; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008586066221814717, threshold: 8.208310104418052e-09, condition: False
+Epoch 134; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0068007889546350675, threshold: 7.387479093976247e-09, condition: False
+Epoch 135; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006053822263562098, threshold: 6.648731184578623e-09, condition: False
+Epoch 136; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006477030966826794, threshold: 5.983858066120761e-09, condition: False
+Epoch 137; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006642217430311534, threshold: 5.385472259508685e-09, condition: False
+Epoch 138; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007697272111948942, threshold: 4.846925033557817e-09, condition: False
+Epoch 139; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007102451288497772, threshold: 4.362232530202035e-09, condition: False
+Epoch 140; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005696351510396115, threshold: 3.926009277181832e-09, condition: False
+Epoch 141; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006417397580531373, threshold: 3.5334083494636486e-09, condition: False
+Epoch 142; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0058175089771533755, threshold: 3.180067514517284e-09, condition: False
+Epoch 143; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005518538841420346, threshold: 2.8620607630655554e-09, condition: False
+Epoch 144; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005109237375795277, threshold: 2.575854686759e-09, condition: False
+Epoch 145; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005437593042388061, threshold: 2.3182692180831003e-09, condition: False
+Epoch 146; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004822597313124463, threshold: 2.0864422962747904e-09, condition: False
+Epoch 147; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0026581189899148104, threshold: 1.8777980666473114e-09, condition: False
+Epoch 148; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0018276109844107037, threshold: 1.6900182599825802e-09, condition: False
+Epoch 149; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 9.361542782250869e-05, threshold: 1.5210164339843222e-09, condition: False
+Epoch 150; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0007333666208964434, threshold: 1.36891479058589e-09, condition: False
+Epoch 151; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0011069190234165405, threshold: 1.232023311527301e-09, condition: False
+Epoch 152; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0025879271638812175, threshold: 1.1088209803745709e-09, condition: False
+Epoch 153; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0045215710120522015, threshold: 9.979388823371138e-10, condition: False
+Epoch 154; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004911744526913429, threshold: 8.981449941034024e-10, condition: False
+Epoch 155; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0062653907297152015, threshold: 8.083304946930622e-10, condition: False
+Epoch 156; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006669367656683349, threshold: 7.27497445223756e-10, condition: False
+Epoch 157; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00750097465886931, threshold: 6.547477007013804e-10, condition: False
+Epoch 158; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.008388555390972116, threshold: 5.892729306312424e-10, condition: False
+Epoch 159; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.009173453149864397, threshold: 5.303456375681182e-10, condition: False
+Epoch 160; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00820145006626641, threshold: 4.773110738113064e-10, condition: False
+Epoch 161; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007319390154641566, threshold: 4.2957996643017577e-10, condition: False
+Epoch 162; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006468667392318408, threshold: 3.866219697871582e-10, condition: False
+Epoch 163; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005370419234172066, threshold: 3.479597728084424e-10, condition: False
+Epoch 164; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0063928499387092014, threshold: 3.1316379552759816e-10, condition: False
+Epoch 165; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0045381327055325936, threshold: 2.818474159748384e-10, condition: False
+Epoch 166; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004829571839880861, threshold: 2.5366267437735453e-10, condition: False
+Epoch 167; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00602111259016206, threshold: 2.2829640693961908e-10, condition: False
+Epoch 168; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005705626768512359, threshold: 2.0546676624565718e-10, condition: False
+Epoch 169; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005642642921188431, threshold: 1.8492008962109147e-10, condition: False
+Epoch 170; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0076707752741218835, threshold: 1.6642808065898232e-10, condition: False
+Epoch 171; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.007544486186479106, threshold: 1.497852725930841e-10, condition: False
+Epoch 172; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006334394215616766, threshold: 1.348067453337757e-10, condition: False
+Epoch 173; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005912957559477094, threshold: 1.2132607080039814e-10, condition: False
+Epoch 174; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0037311706933504784, threshold: 1.0919346372035833e-10, condition: False
+Epoch 175; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.003253311130641015, threshold: 9.82741173483225e-11, condition: False
+Epoch 176; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0018331946883569, threshold: 8.844670561349026e-11, condition: False
+Epoch 177; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0002000153857987694, threshold: 7.960203505214123e-11, condition: False
+Epoch 178; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.001706589588266108, threshold: 7.164183154692712e-11, condition: True
+Epoch 179; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0012759219689166717, threshold: 6.447764839223441e-11, condition: True
+Epoch 180; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0029160335804285574, threshold: 5.802988355301097e-11, condition: True
+Epoch 181; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.002547145202621184, threshold: 5.2226895197709874e-11, condition: True
+Epoch 182; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0013510194055515853, threshold: 4.7004205677938887e-11, condition: True
+Epoch 183; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0015808214132237803, threshold: 4.2303785110145e-11, condition: True
+Epoch 184; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00047618316154863187, threshold: 3.80734065991305e-11, condition: False
+Epoch 185; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.001613696440646988, threshold: 3.426606593921745e-11, condition: False
+Epoch 186; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0032445066350931494, threshold: 3.083945934529571e-11, condition: False
+Epoch 187; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004107186807777442, threshold: 2.7755513410766138e-11, condition: False
+Epoch 188; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006329796245244755, threshold: 2.4979962069689525e-11, condition: False
+Epoch 189; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006341583548823912, threshold: 2.2481965862720573e-11, condition: False
+Epoch 190; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00557205966105861, threshold: 2.0233769276448516e-11, condition: False
+Epoch 191; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005091916006461089, threshold: 1.8210392348803664e-11, condition: False
+Epoch 192; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004458246218177224, threshold: 1.6389353113923297e-11, condition: False
+Epoch 193; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004350298986979867, threshold: 1.475041780253097e-11, condition: False
+Epoch 194; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0031628078363940505, threshold: 1.3275376022277872e-11, condition: False
+Epoch 195; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0031147867982140296, threshold: 1.1947838420050085e-11, condition: False
+Epoch 196; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0023143890625959545, threshold: 1.0753054578045076e-11, condition: False
+Epoch 197; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0021600919188051377, threshold: 9.677749120240569e-12, condition: False
+Epoch 198; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014232805852287618, threshold: 8.709974208216512e-12, condition: False
+Epoch 199; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0009788926277147897, threshold: 7.83897678739486e-12, condition: False
+Epoch 200; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0032144989208464773, threshold: 7.0550791086553745e-12, condition: False
+Epoch 201; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.003183543528835751, threshold: 6.349571197789837e-12, condition: False
+Epoch 202; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.003826257308151459, threshold: 5.714614078010853e-12, condition: False
+Epoch 203; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005219174727562048, threshold: 5.143152670209768e-12, condition: False
+Epoch 204; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005678165845296689, threshold: 4.628837403188791e-12, condition: False
+Epoch 205; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005781938325990973, threshold: 4.165953662869912e-12, condition: False
+Epoch 206; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005948467008180771, threshold: 3.749358296582921e-12, condition: False
+Epoch 207; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0059006970771675995, threshold: 3.3744224669246294e-12, condition: False
+Epoch 208; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.006067089478108348, threshold: 3.0369802202321665e-12, condition: False
+Epoch 209; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005714809608214802, threshold: 2.73328219820895e-12, condition: False
+Epoch 210; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004165458734493907, threshold: 2.459953978388055e-12, condition: False
+Epoch 211; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004088856340778506, threshold: 2.2139585805492498e-12, condition: False
+Epoch 212; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002942611453314598, threshold: 1.992562722494325e-12, condition: False
+Epoch 213; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014464728900530335, threshold: 1.7933064502448926e-12, condition: False
+Epoch 214; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0010044286170844557, threshold: 1.6139758052204034e-12, condition: False
+Epoch 215; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00030416400523134427, threshold: 1.452578224698363e-12, condition: True
+Epoch 216; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0009728809436944084, threshold: 1.3073204022285267e-12, condition: True
+Epoch 217; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00027354791647649725, threshold: 1.1765883620056742e-12, condition: True
+Epoch 218; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00078988941548215, threshold: 1.0589295258051068e-12, condition: True
+Epoch 219; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0006077364854597837, threshold: 9.530365732245961e-13, condition: False
+Epoch 220; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0009876618245916575, threshold: 8.577329159021366e-13, condition: False
+Epoch 221; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0021728560141007825, threshold: 7.719596243119229e-13, condition: False
+Epoch 222; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0036484699229262117, threshold: 6.947636618807307e-13, condition: False
+Epoch 223; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004226722617526871, threshold: 6.252872956926576e-13, condition: False
+Epoch 224; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0038312428734323, threshold: 5.627585661233919e-13, condition: False
+Epoch 225; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.005172361335077573, threshold: 5.064827095110527e-13, condition: False
+Epoch 226; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0053256238587950176, threshold: 4.558344385599474e-13, condition: False
+Epoch 227; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0036483035388541387, threshold: 4.102509947039526e-13, condition: False
+Epoch 228; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.004043782304651951, threshold: 3.6922589523355735e-13, condition: False
+Epoch 229; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0025813113061435473, threshold: 3.3230330571020164e-13, condition: False
+Epoch 230; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002944882128815647, threshold: 2.990729751391815e-13, condition: False
+Epoch 231; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0010158441361533329, threshold: 2.6916567762526334e-13, condition: False
+Epoch 232; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0007118947001711128, threshold: 2.42249109862737e-13, condition: False
+Epoch 233; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 4.542013626062567e-05, threshold: 2.1802419887646332e-13, condition: False
+Epoch 234; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0005603768155450334, threshold: 1.96221778988817e-13, condition: False
+Epoch 235; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00039349819898895557, threshold: 1.765996010899353e-13, condition: True
+Epoch 236; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0001210836991069406, threshold: 1.5893964098094179e-13, condition: True
+Epoch 237; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.001120804555919461, threshold: 1.4304567688284761e-13, condition: False
+Epoch 238; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0012566998758438692, threshold: 1.2874110919456285e-13, condition: False
+Epoch 239; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002135457684618728, threshold: 1.1586699827510656e-13, condition: False
+Epoch 240; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0011805481981505192, threshold: 1.042802984475959e-13, condition: False
+Epoch 241; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0023931416800460647, threshold: 9.385226860283632e-14, condition: False
+Epoch 242; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014833202155354935, threshold: 8.446704174255269e-14, condition: False
+Epoch 243; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014079602743250015, threshold: 7.602033756829743e-14, condition: False
+Epoch 244; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0018618309518043813, threshold: 6.841830381146769e-14, condition: False
+Epoch 245; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002467902131783111, threshold: 6.157647343032092e-14, condition: False
+Epoch 246; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002694438557718465, threshold: 5.541882608728883e-14, condition: False
+Epoch 247; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.002102938061665947, threshold: 4.987694347855995e-14, condition: False
+Epoch 248; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0009980492673413589, threshold: 4.4889249130703954e-14, condition: False
+Epoch 249; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.000317369160785274, threshold: 4.040032421763356e-14, condition: True
+Epoch 250; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 7.558693253082044e-05, threshold: 3.6360291795870206e-14, condition: False
+Epoch 251; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00021154427319425498, threshold: 3.272426261628319e-14, condition: False
+Epoch 252; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0002115890336425928, threshold: 2.945183635465487e-14, condition: False
+Epoch 253; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0012547999879059483, threshold: 2.650665271918938e-14, condition: False
+Epoch 254; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0009971746717633747, threshold: 2.3855987447270444e-14, condition: False
+Epoch 255; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00048330337859262766, threshold: 2.14703887025434e-14, condition: False
+Epoch 256; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 1.5096618357560005e-05, threshold: 1.932334983228906e-14, condition: False
+Epoch 257; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0004378217612512094, threshold: 1.7391014849060155e-14, condition: False
+Epoch 258; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.001752398217388015, threshold: 1.565191336415414e-14, condition: False
+Epoch 259; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.003114228699280663, threshold: 1.4086722027738725e-14, condition: False
+Epoch 260; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0032046437101311723, threshold: 1.2678049824964853e-14, condition: False
+Epoch 261; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014653896123517, threshold: 1.1410244842468367e-14, condition: False
+Epoch 262; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014808099123602143, threshold: 1.026922035822153e-14, condition: False
+Epoch 263; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00024158601216976142, threshold: 9.242298322399377e-15, condition: False
+Epoch 264; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00010565559295435679, threshold: 8.31806849015944e-15, condition: True
+Epoch 265; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0004981658439380317, threshold: 7.486261641143496e-15, condition: False
+Epoch 266; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0004679881040441976, threshold: 6.737635477029146e-15, condition: False
+Epoch 267; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0006187184981737634, threshold: 6.063871929326232e-15, condition: False
+Epoch 268; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.000180965450679167, threshold: 5.4574847363936084e-15, condition: False
+Epoch 269; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.000346625674413367, threshold: 4.9117362627542474e-15, condition: True
+Epoch 270; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0005123105204473077, threshold: 4.420562636478823e-15, condition: True
+Epoch 271; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0017951154757055976, threshold: 3.978506372830941e-15, condition: False
+Epoch 272; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0026403934940706026, threshold: 3.580655735547847e-15, condition: False
+Epoch 273; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0034115782323194065, threshold: 3.222590161993062e-15, condition: False
+Epoch 274; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0030492407088729607, threshold: 2.900331145793756e-15, condition: False
+Epoch 275; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0029120646991371243, threshold: 2.6102980312143806e-15, condition: False
+Epoch 276; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0033045630130370904, threshold: 2.3492682280929425e-15, condition: False
+Epoch 277; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0018399264029440952, threshold: 2.1143414052836484e-15, condition: False
+Epoch 278; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0007388085581171931, threshold: 1.9029072647552836e-15, condition: False
+Epoch 279; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0005879603805159199, threshold: 1.7126165382797553e-15, condition: False
+Epoch 280; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0006633299161793877, threshold: 1.5413548844517797e-15, condition: False
+Epoch 281; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0007077247402499179, threshold: 1.3872193960066017e-15, condition: True
+Epoch 282; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0009931831520022046, threshold: 1.2484974564059416e-15, condition: True
+Epoch 283; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0006468986475305977, threshold: 1.1236477107653474e-15, condition: True
+Epoch 284; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.00016554298097754152, threshold: 1.0112829396888127e-15, condition: False
+Epoch 285; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00034602596699228726, threshold: 9.101546457199314e-16, condition: True
+Epoch 286; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.00031583221789416305, threshold: 8.191391811479382e-16, condition: True
+Epoch 287; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0008731126465849662, threshold: 7.372252630331445e-16, condition: False
+Epoch 288; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0028927861146267595, threshold: 6.6350273672983e-16, condition: False
+Epoch 289; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0031791472050627205, threshold: 5.971524630568471e-16, condition: False
+Epoch 290; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0033445823791728936, threshold: 5.374372167511624e-16, condition: False
+Epoch 291; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.003691816222895357, threshold: 4.836934950760461e-16, condition: False
+Epoch 292; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0028770693057376066, threshold: 4.353241455684415e-16, condition: False
+Epoch 293; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0018215210453424659, threshold: 3.917917310115974e-16, condition: False
+Epoch 294; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0012639371642667386, threshold: 3.526125579104377e-16, condition: False
+Epoch 295; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0014447822291786358, threshold: 3.173513021193939e-16, condition: False
+Epoch 296; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.0009177072363471166, threshold: 2.856161719074545e-16, condition: False
+Epoch 297; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: 0.001022756328304749, threshold: 2.570545547167091e-16, condition: False
+Epoch 298; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0006309716964124991, threshold: 2.313490992450382e-16, condition: True
+Epoch 299; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=2 received
+calling the function<function main.<locals>.smooth at 0x7fce81c9d430>
+Smoothing strategy
+Current difference: -0.0007209263904117063, threshold: 2.0821418932053438e-16, condition: True

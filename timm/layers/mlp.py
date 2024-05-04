@@ -355,26 +355,52 @@ class PolyMlp(nn.Module):
             data.mul_(mask)
     
     def forward(self, x):  #
+        # print(f"X shape: {x.shape}")
         # Assuming x has dimension B * D
         if self.prune: self.apply_masks()
         if self.use_spatial:   
-            # 2 * D * D            
-            out1 = self.U1(x)     
-            # 2 * D * D / 8        
-            out2 = self.U2(x)     
+            # 2 * D * D
+            # mlp2: 2 * D * 3D
+            # Params: D * D   
+            # mlp2 params: D * 3D         
+            out1 = self.U1(x)   
+            # print(f"1. Out1 shape: {out1.shape}")
+            # 2 * D * D / 8    
+            # Params: D * D / 8    
+            # mlp2: 2 * D * 3D / 8
+            # mlp2 params: D * 3D / 8
+            out2 = self.U2(x)  
+            # print(f"1. Out2 shape: {out2.shape}")   
             # D
+            #mlp2: 3D
             out1 = self.spatial_shift(out1)
             # D / 8
+            #mlp3: 3D/8
             out2 = self.spatial_shift(out2)
             # 2 * D * D / 8
+            # Params: D * D / 8 
+            # mlp2: 2 * 3D * 3D / 8
+            # mlp2 params: 3D * 3D / 8
+            # print(f"2. Out2 shape: {out2.shape}")   
             out2 = self.U3(out2) 
+            # print(f"3. Out2 shape: {out2.shape}")   
             # 6D
+            # mlp2: 6 * 3D
+            # Params: 2
             out1 = self.norm1(out1)
-            # 6D
+            # 6D 
+            # mlp2: 6 * 3D 
+            # Parms: 2
             out2 = self.norm3(out2)
-            # D
+            # 3D
+            #mlp2: 3 * 3D
             out_so = out1 * out2
+            # print(f"Out_so shape: {out_so.shape}")   
             # Total: 14.125*D + 2.5*D^2
+            # Total: 2 * D * D + 2 * D * D / 8 + D + D / 8 + 2 * D * D / 8 +  6D + 6D +3D = 16.125*D + 2.5*D^2
+            
+            # Total params: 1.25 D^2 + 2
+            
         else:
             # FLOPS: 2 * D * D (2 * input dimension * output dimension)
             # Factor 2 is due to the fact that we do multiplications and additions
@@ -389,6 +415,8 @@ class PolyMlp(nn.Module):
             out2 = self.norm3(out2)
             # FLOPS: D
             out_so = out1 * out2
+            # Total mlp2: 2 * D * 3D + 2 * D * 3D / 8  + 2 * 3D * 3D / 8 + 6 * 3D + 6 * 3D +3 * 3D
+            # total params mlp2: D * 3D + D * 3D / 8 + 3D * 3D / 8 + 4 = 4.5 * D^2 + 4
         if self.use_alpha:
             out1 = out1 + self.alpha * out_so
             del out_so
@@ -398,6 +426,20 @@ class PolyMlp(nn.Module):
         if self.use_act:
             out1 = self.act(out1)
         # Flops: 2*D*D
+        #mlp2: 3D*D
+        # params: D*D
         out1 = self.C(out1)
-        # Total FLOPS: 13* D + 4.5 * D^2
+        # print(f"final: out1.shape")
+        # Total FLOPS:  16.125* D + 4.5 * D^2
+        # Here D = 192
+        # Plugging in we get: 179611
+
+        # Total mlp2: 2 * D * 3D + 2 * D * 3D / 8 + 2 * 3D * 3D / 8 + 6 * 3D + 6 * 3D +3 * 3D + 3D*D = 
+        # = 12 * D^2 + 45D
+        # Here D = 198
+        # Plugging in we get: 479358
+
+        # Total params: 2.25 D^2 + 4
+        # D=198 => 
+        # total params mlp2: 7.5 * D^2 + 4
         return out1

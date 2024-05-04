@@ -1,0 +1,41 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_dynamic model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_dynamic created, param count:11741226
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+/home/sharipov/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/781 (  0%)]  Loss: 2.30 (2.30)  Time: 1.569s,   40.78/s  (1.569s,   40.78/s)  LR: 1.000e-05  Data: 1.095 (1.095)
+Train: 0 [  50/781 (  6%)]  Loss: 2.30 (2.30)  Time: 0.025s, 2527.02/s  (0.057s, 1114.03/s)  LR: 1.000e-05  Data: 0.020 (0.042)
+Train: 0 [ 100/781 ( 13%)]  Loss: 2.25 (2.29)  Time: 0.005s, 12022.91/s  (0.044s, 1470.87/s)  LR: 1.000e-05  Data: 0.000 (0.033)
+Train: 0 [ 150/781 ( 19%)]  Loss: 2.18 (2.27)  Time: 0.023s, 2817.10/s  (0.039s, 1640.60/s)  LR: 1.000e-05  Data: 0.018 (0.030)
+Train: 0 [ 200/781 ( 26%)]  Loss: 2.19 (2.26)  Time: 0.005s, 12200.50/s  (0.037s, 1748.32/s)  LR: 1.000e-05  Data: 0.000 (0.029)
+Train: 0 [ 250/781 ( 32%)]  Loss: 2.20 (2.25)  Time: 0.040s, 1581.04/s  (0.035s, 1814.43/s)  LR: 1.000e-05  Data: 0.035 (0.028)
+Train: 0 [ 300/781 ( 38%)]  Loss: 2.18 (2.24)  Time: 0.005s, 12025.60/s  (0.034s, 1865.97/s)  LR: 1.000e-05  Data: 0.000 (0.028)
+Train: 0 [ 350/781 ( 45%)]  Loss: 2.27 (2.23)  Time: 0.020s, 3212.03/s  (0.034s, 1905.09/s)  LR: 1.000e-05  Data: 0.015 (0.027)
+Train: 0 [ 400/781 ( 51%)]  Loss: 2.19 (2.23)  Time: 0.005s, 12004.63/s  (0.033s, 1928.86/s)  LR: 1.000e-05  Data: 0.000 (0.027)
+Train: 0 [ 450/781 ( 58%)]  Loss: 2.19 (2.22)  Time: 0.010s, 6612.20/s  (0.033s, 1955.33/s)  LR: 1.000e-05  Data: 0.000 (0.027)
+Train: 0 [ 500/781 ( 64%)]  Loss: 2.21 (2.22)  Time: 0.005s, 12072.11/s  (0.033s, 1968.68/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 550/781 ( 71%)]  Loss: 2.26 (2.22)  Time: 0.015s, 4166.38/s  (0.032s, 1987.62/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 600/781 ( 77%)]  Loss: 2.20 (2.21)  Time: 0.005s, 12206.05/s  (0.032s, 1997.51/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 650/781 ( 83%)]  Loss: 2.12 (2.21)  Time: 0.011s, 5670.73/s  (0.032s, 2012.37/s)  LR: 1.000e-05  Data: 0.000 (0.025)
+Train: 0 [ 700/781 ( 90%)]  Loss: 2.16 (2.21)  Time: 0.005s, 11991.22/s  (0.032s, 2019.06/s)  LR: 1.000e-05  Data: 0.000 (0.025)
+Train: 0 [ 750/781 ( 96%)]  Loss: 2.23 (2.21)  Time: 0.010s, 6141.28/s  (0.031s, 2032.15/s)  LR: 1.000e-05  Data: 0.000 (0.025)
+Test: [   0/156]  Time: 1.279 (1.279)  Loss:   1.983 ( 1.983)  Acc@1:  23.438 ( 23.438)  Acc@5:  85.938 ( 85.938)
+Test: [  50/156]  Time: 0.010 (0.035)  Loss:   2.073 ( 2.036)  Acc@1:  23.438 ( 24.755)  Acc@5:  79.688 ( 80.790)
+Test: [ 100/156]  Time: 0.010 (0.022)  Loss:   2.018 ( 2.036)  Acc@1:  23.438 ( 24.737)  Acc@5:  79.688 ( 80.446)
+Test: [ 150/156]  Time: 0.002 (0.018)  Loss:   2.006 ( 2.033)  Acc@1:  26.562 ( 25.083)  Acc@5:  85.938 ( 80.650)
+Test: [ 156/156]  Time: 0.041 (0.018)  Loss:   1.963 ( 2.031)  Acc@1:  18.750 ( 24.990)  Acc@5:  81.250 ( 80.610)
+Current checkpoints:
+ ('./output/train/Upd_Exp13_CIFAR10_dynamic_strat_3_16_layer/checkpoint-0.pth.tar', 24.99)
+
+Train: 1 [   0/781 (  0%)]  Loss: 2.12 (2.12)  Time: 0.121s,  527.11/s  (0.121s,  527.11/s)  LR: 1.900e-05  Data: 0.114 (0.114)
+Train: 1 [  50/781 (  6%)]  Loss: 2.17 (2.15)  Time: 0.005s, 12023.45/s  (0.030s, 2106.36/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+slurmstepd: error: *** JOB 2032352 ON i65 CANCELLED AT 2024-04-16T11:52:46 ***

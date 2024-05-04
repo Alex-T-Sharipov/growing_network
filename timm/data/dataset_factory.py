@@ -3,8 +3,11 @@
 Hacked together by / Copyright 2021, Ross Wightman
 """
 import os
-
+from typing import Any, Callable, Optional, Tuple
+import numpy as np
 from torchvision.datasets import CIFAR100, CIFAR10, MNIST, KMNIST, FashionMNIST, ImageFolder
+import pickle
+
 try:
     from torchvision.datasets import Places365
     has_places365 = True
@@ -28,8 +31,94 @@ except ImportError:
 
 from .dataset import IterableImageDataset, ImageDataset
 
+class New_CIFAR10(CIFAR10):
+    base_folder = "cifar-10-batches-py"
+    url = "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+    filename = "cifar-10-python.tar.gz"
+    tgz_md5 = "c58f30108f718f92721af3b95e74349a"
+    train_list = [
+        ["data_batch_1", "c99cafc152244af753f735de768cd75f"],
+        ["data_batch_2", "d4bba439e000b95fd0a9bffe97cbabec"],
+        ["data_batch_3", "54ebc095f3ab1f0389bbae665268c751"],
+        ["data_batch_4", "634d18415352ddfa80567beed471001a"],
+        ["data_batch_5", "482c414d41f54cd18b22e5b47cb7c3cb"],
+    ]
+    test_list = [["test_batch", "40351d587109b95175f43aff81a1287e"]]
+    meta = {
+        "filename": "batches.meta",
+        "key": "label_names",
+        "md5": "5ff9c542aee3614f3951f8cda6e48888",
+    }
+
+    def __init__(
+        self,
+        root: str,
+        train: bool = True,
+        transform: Optional[Callable] = None,
+        target_transform: Optional[Callable] = None,
+        download: bool = False,
+        validation: bool = False,
+        seed: int = 42
+    ) -> None:
+        super().__init__(root, transform=transform, target_transform=target_transform)
+        self.train = train
+        self.validation = validation
+
+        if download:
+            self.download()
+
+        if not self._check_integrity():
+            raise RuntimeError("Dataset not found or corrupted. You can use download=True to download it")
+
+        if self.train:
+            downloaded_list = self.train_list
+        else:
+            downloaded_list = self.test_list
+
+        self.data: Any = []
+        self.targets = []
+
+        # Load the data
+        for file_name, checksum in downloaded_list:
+            file_path = os.path.join(self.root, self.base_folder, file_name)
+            with open(file_path, "rb") as f:
+                entry = pickle.load(f, encoding="latin1")
+                self.data.append(entry["data"])
+                if "labels" in entry:
+                    self.targets.extend(entry["labels"])
+                else:
+                    self.targets.extend(entry["fine_labels"])
+
+        self.data = np.vstack(self.data).reshape(-1, 3, 32, 32)
+        self.data = self.data.transpose((0, 2, 3, 1))  # convert to HWC format
+
+        # Shuffle and split data if training
+        if self.train:
+            np.random.seed(seed)
+            indices = np.random.permutation(len(self.data))
+            split = int(len(indices) * 0.8)  # 80% for training, 20% for validation
+            # print(f"len(data) = {len(self.data)}; len(indices) = {len(indices)}; split = {split}")
+            # print(f"len(indices[:split]) = {len(indices[:split])}; len(indices[split:]) = {len(indices[split:])}")
+            if self.validation:
+                indices = indices[split:]  # validation set
+                # print(f"Called with train=true, validation=true; len indices: {len(indices)}")
+                # print(indices[:10])
+            else:
+                indices = indices[:split]  # new training set
+                # print(f"Called with train=true, validation=false; len indices: {len(indices)}")
+                # print(indices[:10])
+
+            self.data = self.data[indices]
+            self.targets = np.array(self.targets)[indices].tolist()
+
+        self._load_meta()
+
+    def extra_repr(self) -> str:
+        split = "Train" if self.train else "Test"
+        return f"Split: {split}"
+
 _TORCH_BASIC_DS = dict(
-    cifar10=CIFAR10,
+    cifar10=New_CIFAR10,
     cifar100=CIFAR100,
     mnist=MNIST,
     kmnist=KMNIST,
@@ -67,6 +156,7 @@ def create_dataset(
         class_map=None,
         load_bytes=False,
         is_training=False,
+        validation=False,
         download=True,
         batch_size=None,
         seed=42,
@@ -109,7 +199,7 @@ def create_dataset(
         if name in _TORCH_BASIC_DS:
             ds_class = _TORCH_BASIC_DS[name]
             use_train = split in _TRAIN_SYNONYM
-            ds = ds_class(train=use_train, **torch_kwargs)
+            ds = ds_class(train=use_train, validation=validation,  **torch_kwargs)
         elif name == 'inaturalist' or name == 'inat':
             assert has_inaturalist, 'Please update to PyTorch 1.10, torchvision 0.11+ for Inaturalist'
             target_type = 'full'

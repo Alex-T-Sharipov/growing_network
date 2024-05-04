@@ -1,0 +1,1928 @@
+torch.cuda.is_available()=True
+args=Namespace(data=None, data_dir='/home/sharipov/monet/data/CIFAR10', dataset='torch/CIFAR10', train_split='train', val_split='validation', dataset_download=False, class_map='', model='MONet_T_dynamic', pretrained=False, initial_checkpoint='', resume='', no_resume_opt=False, num_classes=10, gp=None, img_size=None, in_chans=None, input_size=[3, 32, 32], crop_pct=None, mean=None, std=None, interpolation='', batch_size=64, validation_batch_size=None, channels_last=False, fuser='', grad_accum_steps=1, grad_checkpointing=False, fast_norm=False, model_kwargs={}, head_init_scale=None, head_init_bias=None, torchscript=False, torchcompile=None, opt='adamw', opt_eps=None, opt_betas=None, momentum=0.9, weight_decay=0.01, clip_grad=None, clip_mode='norm', layer_decay=None, opt_kwargs={}, sched='cosine', sched_on_updates=False, lr=0.0001, lr_base=0.001, lr_base_size=256, lr_base_scale='', lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, lr_cycle_mul=1.0, lr_cycle_decay=0.5, lr_cycle_limit=1, lr_k_decay=1.0, warmup_lr=1e-05, min_lr=1e-05, epochs=300, epoch_repeats=0.0, start_epoch=None, decay_milestones=[90, 180, 270], decay_epochs=90, warmup_epochs=10, warmup_prefix=False, cooldown_epochs=0, patience_epochs=10, decay_rate=0.1, no_aug=False, scale=[0.08, 1.0], ratio=[0.75, 1.3333333333333333], hflip=0.5, vflip=0.0, color_jitter=0.4, aa=None, aug_repeats=0, aug_splits=0, jsd_loss=False, bce_loss=False, bce_target_thresh=None, reprob=0.0, remode='pixel', recount=1, resplit=False, mixup=0.5, cutmix=0.5, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', mixup_off_epoch=0, smoothing=0.1, train_interpolation='random', drop=0.0, drop_connect=None, drop_path=None, drop_block=None, bn_momentum=None, bn_eps=None, sync_bn=False, dist_bn='reduce', split_bn=False, model_ema=False, model_ema_force_cpu=False, model_ema_decay=0.9998, seed=42, worker_seeding='all', log_interval=50, recovery_interval=0, checkpoint_hist=10, workers=4, save_images=False, amp=False, amp_dtype='float16', amp_impl='native', no_ddp_bb=False, synchronize_step=False, pin_mem=False, no_prefetcher=False, output='', experiment='Upd_Exp14_CIFAR10_dynamic_strat_0_16_layer', eval_metric='top1', tta=0, local_rank=0, use_multi_epochs_loader=False, log_wandb=False, strategy='0')
+
+
+
+
+{}
+
+
+
+
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+Epoch 0; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 1; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 2; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 3; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 4; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 5; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 6; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 7; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 8; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 9; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 10; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Epoch 11; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.8151093439363818, threshold: 0.01, condition: False
+Epoch 12; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.42613463295766074, threshold: 0.01, condition: False
+Epoch 13; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.3314685314685315, threshold: 0.01, condition: False
+Epoch 14; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.2827437213070483, threshold: 0.01, condition: False
+Epoch 15; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.29017857142857156, threshold: 0.01, condition: False
+Epoch 16; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.21666255854079366, threshold: 0.01, condition: False
+Epoch 17; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.2018101761252446, threshold: 0.01, condition: False
+Epoch 18; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.1671790021281627, threshold: 0.01, condition: False
+Epoch 19; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.186675919500347, threshold: 0.01, condition: False
+Epoch 20; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.15331964407939766, threshold: 0.01, condition: False
+Epoch 21; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.11610076670317644, threshold: 0.01, condition: False
+Epoch 22; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.10828705681332765, threshold: 0.01, condition: False
+Epoch 23; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.07247899159663856, threshold: 0.01, condition: False
+Epoch 24; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.11389473684210519, threshold: 0.01, condition: False
+Epoch 25; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.06391207001831875, threshold: 0.01, condition: False
+Epoch 26; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.07799837925445707, threshold: 0.01, condition: False
+Epoch 27; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.08752289843272944, threshold: 0.01, condition: False
+Epoch 28; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.08995137763371146, threshold: 0.01, condition: False
+Epoch 29; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.048148148148148266, threshold: 0.01, condition: False
+Epoch 30; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.09357072205736902, threshold: 0.01, condition: False
+Epoch 31; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.04631992149165848, threshold: 0.01, condition: False
+Epoch 32; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.06783580651377907, threshold: 0.01, condition: False
+Epoch 33; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0763956904995104, threshold: 0.01, condition: False
+Epoch 34; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.04403704403704414, threshold: 0.01, condition: False
+Epoch 35; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.054333269561890114, threshold: 0.01, condition: False
+Epoch 36; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.041909415523397796, threshold: 0.01, condition: False
+Epoch 37; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.05577390978850827, threshold: 0.01, condition: False
+Epoch 38; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.036059479553903435, threshold: 0.01, condition: False
+Epoch 39; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.051887669704296056, threshold: 0.01, condition: False
+Epoch 40; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.03780752532561498, threshold: 0.01, condition: False
+Epoch 41; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.060213843556556006, threshold: 0.01, condition: False
+Epoch 42; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.029778018408229665, threshold: 0.01, condition: False
+Epoch 43; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.042766151046405715, threshold: 0.01, condition: False
+Epoch 44; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.02932657494569148, threshold: 0.01, condition: False
+Epoch 45; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.04627109417528574, threshold: 0.01, condition: False
+Epoch 46; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.03769841269841276, threshold: 0.01, condition: False
+Epoch 47; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.032618330083318624, threshold: 0.01, condition: False
+Epoch 48; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.041442411194833065, threshold: 0.01, condition: False
+Epoch 49; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0442008486562942, threshold: 0.01, condition: False
+Epoch 50; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.019696705595258893, threshold: 0.01, condition: False
+Epoch 51; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.041401273885350254, threshold: 0.01, condition: False
+Epoch 52; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012618296529968433, threshold: 0.01, condition: False
+Epoch 53; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.016230366492146594, threshold: 0.01, condition: False
+Epoch 54; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.025852972212451617, threshold: 0.01, condition: False
+Epoch 55; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0338189386056192, threshold: 0.01, condition: False
+Epoch 56; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.027116287154528112, threshold: 0.01, condition: False
+Epoch 57; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.007896995708154522, threshold: 0.01, condition: True
+Epoch 58; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01636520241171409, threshold: 0.01, condition: False
+Epoch 59; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.013545546901456217, threshold: 0.01, condition: True
+Epoch 60; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00837606837606841, threshold: 0.01, condition: True
+Epoch 61; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01002378525314311, threshold: 0.01, condition: False
+Epoch 62; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.04084458290065766, threshold: 0.01, condition: False
+Epoch 63; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.013223424351708795, threshold: 0.01, condition: False
+Epoch 64; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.02040116578090185, threshold: 0.01, condition: False
+Epoch 65; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.007884583123636955, threshold: 0.01, condition: True
+Epoch 66; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.011000169233372796, threshold: 0.01, condition: False
+Epoch 67; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.029296542326690492, threshold: 0.01, condition: False
+Epoch 68; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.02338983050847462, threshold: 0.01, condition: False
+Epoch 69; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.03982148987298319, threshold: 0.01, condition: False
+Epoch 70; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01746058654009156, threshold: 0.01, condition: False
+Epoch 71; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012447434819175691, threshold: 0.01, condition: False
+Epoch 72; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012637179913535052, threshold: 0.01, condition: False
+Epoch 73; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0191525423728814, threshold: 0.01, condition: False
+Epoch 74; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.020329301075268712, threshold: 0.01, condition: False
+Epoch 75; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01731025299600531, threshold: 0.01, condition: False
+Epoch 76; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.025443588885169, threshold: 0.01, condition: False
+Epoch 77; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01009432401125268, threshold: 0.01, condition: False
+Epoch 78; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.022027161311692585, threshold: 0.01, condition: False
+Epoch 79; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.015681743149554356, threshold: 0.01, condition: False
+Epoch 80; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.010996334555148226, threshold: 0.01, condition: False
+Epoch 81; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006147200531649851, threshold: 0.01, condition: True
+Epoch 82; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012972085385878476, threshold: 0.01, condition: False
+Epoch 83; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.025112256776983168, threshold: 0.01, condition: False
+Epoch 84; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.019594928371480403, threshold: 0.01, condition: False
+Epoch 85; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008507853403141414, threshold: 0.01, condition: True
+Epoch 86; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0026118184786157964, threshold: 0.01, condition: True
+Epoch 87; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0011467889908256927, threshold: 0.01, condition: True
+Epoch 88; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00405120725976341, threshold: 0.01, condition: True
+Epoch 89; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004063058670567203, threshold: 0.01, condition: True
+Epoch 90; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0004943968358602693, threshold: 0.01, condition: True
+Epoch 91; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0255944517833553, threshold: 0.01, condition: False
+Epoch 92; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01296806613713737, threshold: 0.01, condition: False
+Epoch 93; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005191434133679434, threshold: 0.01, condition: True
+Epoch 94; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0043604651162790055, threshold: 0.01, condition: True
+Epoch 95; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0024334847501622093, threshold: 0.01, condition: True
+Epoch 96; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.009931618365353296, threshold: 0.01, condition: True
+Epoch 97; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00834560628375058, threshold: 0.01, condition: True
+Epoch 98; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0019367333763718115, threshold: 0.01, condition: True
+Epoch 99; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.013272903852379414, threshold: 0.01, condition: False
+Epoch 100; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01945589447650453, threshold: 0.01, condition: False
+Epoch 101; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.009177266140718085, threshold: 0.01, condition: True
+Epoch 102; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0016002560409665773, threshold: 0.01, condition: True
+Epoch 103; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.014848289218850898, threshold: 0.01, condition: False
+Epoch 104; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0077182826821032965, threshold: 0.01, condition: True
+Epoch 105; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.019906133678588834, threshold: 0.01, condition: False
+Epoch 106; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.009027889730775467, threshold: 0.01, condition: True
+Epoch 107; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.024667315806556366, threshold: 0.01, condition: False
+Epoch 108; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.022390463917525784, threshold: 0.01, condition: False
+Epoch 109; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005111821086261985, threshold: 0.01, condition: True
+Epoch 110; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.02717127607957302, threshold: 0.01, condition: False
+Epoch 111; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0015954052329291866, threshold: 0.01, condition: True
+Epoch 112; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.009426425946636783, threshold: 0.01, condition: True
+Epoch 113; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00047709923664112643, threshold: 0.01, condition: True
+Epoch 114; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0027126216690601837, threshold: 0.01, condition: True
+Epoch 115; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.001745477626150532, threshold: 0.01, condition: True
+Epoch 116; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.013420674229110021, threshold: 0.01, condition: False
+Epoch 117; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.004117833386126038, threshold: 0.01, condition: True
+Epoch 118; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00519930675909876, threshold: 0.01, condition: True
+Epoch 119; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0011125238397965715, threshold: 0.01, condition: True
+Epoch 120; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0029916548575027197, threshold: 0.01, condition: True
+Epoch 121; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008948545861297575, threshold: 0.01, condition: True
+Epoch 122; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.003323836657170004, threshold: 0.01, condition: True
+Epoch 123; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0073120330631060385, threshold: 0.01, condition: True
+Epoch 124; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.027039999999999963, threshold: 0.01, condition: False
+Epoch 125; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.010968049594659114, threshold: 0.01, condition: False
+Epoch 126; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0009459246413369427, threshold: 0.01, condition: True
+Epoch 127; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.017652671755725182, threshold: 0.01, condition: False
+Epoch 128; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.007210031347962284, threshold: 0.01, condition: True
+Epoch 129; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.014923003651373197, threshold: 0.01, condition: False
+Epoch 130; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008370183196462431, threshold: 0.01, condition: True
+Epoch 131; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00538485904339557, threshold: 0.01, condition: True
+Epoch 132; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005875813879625291, threshold: 0.01, condition: True
+Epoch 133; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0015780337699225868, threshold: 0.01, condition: True
+Epoch 134; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006387287739523237, threshold: 0.01, condition: True
+Epoch 135; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0023584905660377136, threshold: 0.01, condition: True
+Epoch 136; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006457709875570902, threshold: 0.01, condition: True
+Epoch 137; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.013752148773245858, threshold: 0.01, condition: False
+Epoch 138; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.014840543100726203, threshold: 0.01, condition: False
+Epoch 139; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.015954950727358096, threshold: 0.01, condition: False
+Epoch 140; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006108065779169827, threshold: 0.01, condition: True
+Epoch 141; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.010396975425330872, threshold: 0.01, condition: False
+Epoch 142; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012630249447426542, threshold: 0.01, condition: False
+Epoch 143; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0015805278963172801, threshold: 0.01, condition: True
+Epoch 144; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.006811145510835879, threshold: 0.01, condition: True
+Epoch 145; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004235294117646996, threshold: 0.01, condition: True
+Epoch 146; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0025039123630673506, threshold: 0.01, condition: True
+Epoch 147; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00647448743641131, threshold: 0.01, condition: True
+Epoch 148; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0014001244555072092, threshold: 0.01, condition: True
+Epoch 149; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.008775981524249537, threshold: 0.01, condition: True
+Epoch 150; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00015566625155674218, threshold: 0.01, condition: True
+Epoch 151; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012004989086373496, threshold: 0.01, condition: False
+Epoch 152; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0032740879326472365, threshold: 0.01, condition: True
+Epoch 153; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.017516174846141812, threshold: 0.01, condition: False
+Epoch 154; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0021820448877805576, threshold: 0.01, condition: True
+Epoch 155; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012964698531708814, threshold: 0.01, condition: False
+Epoch 156; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005775835154542687, threshold: 0.01, condition: True
+Epoch 157; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0017067494181535986, threshold: 0.01, condition: True
+Epoch 158; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005608350210313124, threshold: 0.01, condition: True
+Epoch 159; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0034172103137620207, threshold: 0.01, condition: True
+Epoch 160; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.002645914396887186, threshold: 0.01, condition: True
+Epoch 161; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.008935449083346146, threshold: 0.01, condition: True
+Epoch 162; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.011033411033411157, threshold: 0.01, condition: False
+Epoch 163; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008839950372208331, threshold: 0.01, condition: True
+Epoch 164; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.014370509215870068, threshold: 0.01, condition: False
+Epoch 165; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0013878180416345939, threshold: 0.01, condition: True
+Epoch 166; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00496663045165285, threshold: 0.01, condition: True
+Epoch 167; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005731102850062028, threshold: 0.01, condition: True
+Epoch 168; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.013632842757552435, threshold: 0.01, condition: False
+Epoch 169; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0007739938080494916, threshold: 0.01, condition: True
+Epoch 170; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.014513108614232316, threshold: 0.01, condition: False
+Epoch 171; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.015078501476760436, threshold: 0.01, condition: False
+Epoch 172; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0027666769136183034, threshold: 0.01, condition: True
+Epoch 173; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.003074558032282903, threshold: 0.01, condition: True
+Epoch 174; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00046196489066832673, threshold: 0.01, condition: True
+Epoch 175; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.006005543578688028, threshold: 0.01, condition: True
+Epoch 176; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0060231660231660315, threshold: 0.01, condition: True
+Epoch 177; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.009394732789157763, threshold: 0.01, condition: True
+Epoch 178; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.004737887819043287, threshold: 0.01, condition: True
+Epoch 179; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00030983733539885396, threshold: 0.01, condition: True
+Epoch 180; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0019996923550222342, threshold: 0.01, condition: True
+Epoch 181; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0022970903522203903, threshold: 0.01, condition: True
+Epoch 182; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0012330456226880132, threshold: 0.01, condition: True
+Epoch 183; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.007401696222050949, threshold: 0.01, condition: True
+Epoch 184; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008165151748574968, threshold: 0.01, condition: True
+Epoch 185; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0092951200619676, threshold: 0.01, condition: True
+Epoch 186; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0038378876266502914, threshold: 0.01, condition: True
+Epoch 187; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.015080845771144484, threshold: 0.01, condition: False
+Epoch 188; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.011517199017199017, threshold: 0.01, condition: False
+Epoch 189; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012397334573066746, threshold: 0.01, condition: False
+Epoch 190; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.004605465151980306, threshold: 0.01, condition: True
+Epoch 191; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003990790483499477, threshold: 0.01, condition: True
+Epoch 192; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012500000000000035, threshold: 0.01, condition: False
+Epoch 193; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00015306903413447293, threshold: 0.01, condition: True
+Epoch 194; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008251833740831391, threshold: 0.01, condition: True
+Epoch 195; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.008135072908672311, threshold: 0.01, condition: True
+Epoch 196; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005658357547025609, threshold: 0.01, condition: True
+Epoch 197; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0016847909327615167, threshold: 0.01, condition: True
+Epoch 198; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0013663276149992927, threshold: 0.01, condition: True
+Epoch 199; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00045920710240320126, threshold: 0.01, condition: True
+Epoch 200; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.01033312769895129, threshold: 0.01, condition: False
+Epoch 201; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00107017275645937, threshold: 0.01, condition: True
+Epoch 202; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0033531473860691796, threshold: 0.01, condition: True
+Epoch 203; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.010407101316192111, threshold: 0.01, condition: False
+Epoch 204; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004698393452561417, threshold: 0.01, condition: True
+Epoch 205; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0036540803897684966, threshold: 0.01, condition: True
+Epoch 206; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.001824817518248028, threshold: 0.01, condition: True
+Epoch 207; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00519877675840962, threshold: 0.01, condition: True
+Epoch 208; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0010641532380663938, threshold: 0.01, condition: True
+Epoch 209; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00810893512851899, threshold: 0.01, condition: True
+Epoch 210; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0016791329568004796, threshold: 0.01, condition: True
+Epoch 211; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0074832009773976, threshold: 0.01, condition: True
+Epoch 212; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.001529285823520329, threshold: 0.01, condition: True
+Epoch 213; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0015146925174190932, threshold: 0.01, condition: True
+Epoch 214; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0019610801025797204, threshold: 0.01, condition: True
+Epoch 215; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0007584951456310248, threshold: 0.01, condition: True
+Epoch 216; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0037947783849423197, threshold: 0.01, condition: True
+Epoch 217; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0030422878004259636, threshold: 0.01, condition: True
+Epoch 218; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00045655151422898993, threshold: 0.01, condition: True
+Epoch 219; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0012141447867657959, threshold: 0.01, condition: True
+Epoch 220; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006248095092959411, threshold: 0.01, condition: True
+Epoch 221; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00560860997423078, threshold: 0.01, condition: True
+Epoch 222; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.009009009009009061, threshold: 0.01, condition: True
+Epoch 223; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0009074410163339726, threshold: 0.01, condition: True
+Epoch 224; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.008162031438935792, threshold: 0.01, condition: True
+Epoch 225; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.000910885076666195, threshold: 0.01, condition: True
+Epoch 226; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003656864238915269, threshold: 0.01, condition: True
+Epoch 227; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0012132241431604231, threshold: 0.01, condition: True
+Epoch 228; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.007460414129110761, threshold: 0.01, condition: True
+Epoch 229; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.002425344853721337, threshold: 0.01, condition: True
+Epoch 230; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0012115704982583416, threshold: 0.01, condition: True
+Epoch 231; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0076876695809467155, threshold: 0.01, condition: True
+Epoch 232; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003934624697336639, threshold: 0.01, condition: True
+Epoch 233; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0001513775355737983, threshold: 0.01, condition: True
+Epoch 234; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0035050289545870764, threshold: 0.01, condition: True
+Epoch 235; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003191004406625038, threshold: 0.01, condition: True
+Epoch 236; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0019735843327766123, threshold: 0.01, condition: True
+Epoch 237; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0009088155104514129, threshold: 0.01, condition: True
+Epoch 238; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0021157624301042853, threshold: 0.01, condition: True
+Epoch 239; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0013609556933313687, threshold: 0.01, condition: True
+Epoch 240; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.002729340409400949, threshold: 0.01, condition: True
+Epoch 241; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005316724897463292, threshold: 0.01, condition: True
+Epoch 242; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0024118179077479134, threshold: 0.01, condition: True
+Epoch 243; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.002876608629825855, threshold: 0.01, condition: True
+Epoch 244; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.012081358005811381, threshold: 0.01, condition: False
+Epoch 245; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004695546803998823, threshold: 0.01, condition: True
+Epoch 246; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0060606060606061465, threshold: 0.01, condition: True
+Epoch 247; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0021224984839296633, threshold: 0.01, condition: True
+Epoch 248; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003786157807057398, threshold: 0.01, condition: True
+Epoch 249; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0034732709151314403, threshold: 0.01, condition: True
+Epoch 250; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0018146075911084918, threshold: 0.01, condition: True
+Epoch 251; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0007555152614082374, threshold: 0.01, condition: True
+Epoch 252; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00543970988213961, threshold: 0.01, condition: True
+Epoch 253; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0022644927536232744, threshold: 0.01, condition: True
+Epoch 254; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00196433967966146, threshold: 0.01, condition: True
+Epoch 255; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0007538067239559349, threshold: 0.01, condition: True
+Epoch 256; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0, threshold: 0.01, condition: True
+Epoch 257; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0030257186081694837, threshold: 0.01, condition: True
+Epoch 258; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004677127338563704, threshold: 0.01, condition: True
+Epoch 259; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.007273829368086134, threshold: 0.01, condition: True
+Epoch 260; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00045283018867926247, threshold: 0.01, condition: True
+Epoch 261; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00015098897780448293, threshold: 0.01, condition: True
+Epoch 262; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0024045686804930987, threshold: 0.01, condition: True
+Epoch 263; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.004820003012501994, threshold: 0.01, condition: True
+Epoch 264; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005127431759915599, threshold: 0.01, condition: True
+Epoch 265; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0001508750754376149, threshold: 0.01, condition: True
+Epoch 266; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.003915662650602486, threshold: 0.01, condition: True
+Epoch 267; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.003921568627450843, threshold: 0.01, condition: True
+Epoch 268; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.006157080642739099, threshold: 0.01, condition: True
+Epoch 269; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.004663758086354781, threshold: 0.01, condition: True
+Epoch 270; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0016611295681063037, threshold: 0.01, condition: True
+Epoch 271; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.001660628019323663, threshold: 0.01, condition: True
+Epoch 272; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0004519433564326776, threshold: 0.01, condition: True
+Epoch 273; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.005297411835931717, threshold: 0.01, condition: True
+Epoch 274; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0070517629407351665, threshold: 0.01, condition: True
+Epoch 275; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0013580805794477654, threshold: 0.01, condition: True
+Epoch 276; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.004233444209253117, threshold: 0.01, condition: True
+Epoch 277; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.006662628709872769, threshold: 0.01, condition: True
+Epoch 278; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00196433967966146, threshold: 0.01, condition: True
+Epoch 279; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.003174123337364087, threshold: 0.01, condition: True
+Epoch 280; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0, threshold: 0.01, condition: True
+Epoch 281; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0015071590052749709, threshold: 0.01, condition: True
+Epoch 282; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0006023189278721886, threshold: 0.01, condition: True
+Epoch 283; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0015055706112617965, threshold: 0.01, condition: True
+Epoch 284; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00740404956180107, threshold: 0.01, condition: True
+Epoch 285; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0031645569620252223, threshold: 0.01, condition: True
+Epoch 286; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0030111412225233792, threshold: 0.01, condition: True
+Epoch 287; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00015042117930212268, threshold: 0.01, condition: True
+Epoch 288; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0028653295128939485, threshold: 0.01, condition: True
+Epoch 289; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0015067048365224394, threshold: 0.01, condition: True
+Epoch 290; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.002864465551032681, threshold: 0.01, condition: True
+Epoch 291; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.00392452830188687, threshold: 0.01, condition: True
+Epoch 292; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0025613982220883185, threshold: 0.01, condition: True
+Epoch 293; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0016586248492161287, threshold: 0.01, condition: True
+Epoch 294; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0023998800059996488, threshold: 0.01, condition: True
+Epoch 295; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.0025537028691600947, threshold: 0.01, condition: True
+Epoch 296; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.000600420294206038, threshold: 0.01, condition: True
+Epoch 297; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0028584323755077136, threshold: 0.01, condition: True
+Epoch 298; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: 0.0009022556390977785, threshold: 0.01, condition: True
+Epoch 299; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=0 received
+calling the function<function main.<locals>.baseline at 0x7f56d030ba60>
+baseline strategy
+Current difference: -0.00015044380923732686, threshold: 0.01, condition: True

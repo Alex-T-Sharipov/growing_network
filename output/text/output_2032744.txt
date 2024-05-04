@@ -1,0 +1,1214 @@
+torch.cuda.is_available()=True
+args=Namespace(data=None, data_dir='/home/sharipov/monet/data/CIFAR10', dataset='torch/CIFAR10', train_split='train', val_split='validation', dataset_download=False, class_map='', model='MONet_T_dynamic', pretrained=False, initial_checkpoint='', resume='', no_resume_opt=False, num_classes=10, gp=None, img_size=None, in_chans=None, input_size=[3, 32, 32], crop_pct=None, mean=None, std=None, interpolation='', batch_size=64, validation_batch_size=None, channels_last=False, fuser='', grad_accum_steps=1, grad_checkpointing=False, fast_norm=False, model_kwargs={}, head_init_scale=None, head_init_bias=None, torchscript=False, torchcompile=None, opt='adamw', opt_eps=None, opt_betas=None, momentum=0.9, weight_decay=0.01, clip_grad=None, clip_mode='norm', layer_decay=None, opt_kwargs={}, sched='cosine', sched_on_updates=False, lr=0.0001, lr_base=0.001, lr_base_size=256, lr_base_scale='', lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, lr_cycle_mul=1.0, lr_cycle_decay=0.5, lr_cycle_limit=1, lr_k_decay=1.0, warmup_lr=1e-05, min_lr=1e-05, epochs=300, epoch_repeats=0.0, start_epoch=None, decay_milestones=[90, 180, 270], decay_epochs=90, warmup_epochs=10, warmup_prefix=False, cooldown_epochs=0, patience_epochs=10, decay_rate=0.1, no_aug=False, scale=[0.08, 1.0], ratio=[0.75, 1.3333333333333333], hflip=0.5, vflip=0.0, color_jitter=0.4, aa=None, aug_repeats=0, aug_splits=0, jsd_loss=False, bce_loss=False, bce_target_thresh=None, reprob=0.0, remode='pixel', recount=1, resplit=False, mixup=0.5, cutmix=0.5, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', mixup_off_epoch=0, smoothing=0.1, train_interpolation='random', drop=0.0, drop_connect=None, drop_path=None, drop_block=None, bn_momentum=None, bn_eps=None, sync_bn=False, dist_bn='reduce', split_bn=False, model_ema=False, model_ema_force_cpu=False, model_ema_decay=0.9998, seed=42, worker_seeding='all', log_interval=50, recovery_interval=0, checkpoint_hist=10, workers=4, save_images=False, amp=False, amp_dtype='float16', amp_impl='native', no_ddp_bb=False, synchronize_step=False, pin_mem=False, no_prefetcher=False, output='', experiment='Upd_Exp18_CIFAR10_dynamic_strat_4_16_layer', eval_metric='top1', tta=0, local_rank=0, use_multi_epochs_loader=False, log_wandb=False, strategy='4')
+
+
+
+
+{}
+
+
+
+
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+Epoch 0; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f163603b700>
+The Frobenius based strategy!!
+Epoch 1; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Epoch 2; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Epoch 3; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Epoch 4; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Epoch 5; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Epoch 6; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Epoch 7; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Epoch 8; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Epoch 9; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Epoch 10; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Epoch 11; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.000621301936917007, threshold: 3.138105960900001e-07, condition: False
+Epoch 12; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0005907831364311278, threshold: 2.824295364810001e-07, condition: False
+Epoch 13; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0005808655405417085, threshold: 2.5418658283290006e-07, condition: False
+Epoch 14; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.0005773852462880313, threshold: 2.2876792454961005e-07, condition: False
+Epoch 15; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0005736652528867126, threshold: 2.0589113209464905e-07, condition: False
+Epoch 16; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0005563793238252401, threshold: 1.8530201888518414e-07, condition: False
+Epoch 17; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0005451585748232901, threshold: 1.6677181699666574e-07, condition: False
+Epoch 18; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.0005172842647880316, threshold: 1.5009463529699918e-07, condition: False
+Epoch 19; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0005063102580606937, threshold: 1.3508517176729925e-07, condition: False
+Epoch 20; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00048082220018841326, threshold: 1.2157665459056934e-07, condition: False
+Epoch 21; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0004661629209294915, threshold: 1.0941898913151241e-07, condition: False
+Epoch 22; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00045923993457108736, threshold: 9.847709021836117e-08, condition: False
+Epoch 23; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00043495025602169335, threshold: 8.862938119652506e-08, condition: False
+Epoch 24; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0004180416581220925, threshold: 7.976644307687256e-08, condition: False
+Epoch 25; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00040624701068736613, threshold: 7.17897987691853e-08, condition: False
+Epoch 26; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00040218746289610863, threshold: 6.461081889226678e-08, condition: False
+Epoch 27; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00038159333053044975, threshold: 5.81497370030401e-08, condition: False
+Epoch 28; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003796768141910434, threshold: 5.233476330273609e-08, condition: False
+Epoch 29; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003721684915944934, threshold: 4.7101286972462484e-08, condition: False
+Epoch 30; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.0003744139976333827, threshold: 4.2391158275216234e-08, condition: False
+Epoch 31; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00035810883855447173, threshold: 3.815204244769461e-08, condition: False
+Epoch 32; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00035547709558159113, threshold: 3.433683820292515e-08, condition: False
+Epoch 33; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00035249299253337085, threshold: 3.090315438263264e-08, condition: False
+Epoch 34; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00035093692713417113, threshold: 2.7812838944369378e-08, condition: False
+Epoch 35; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003519932506605983, threshold: 2.503155504993244e-08, condition: False
+Epoch 36; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00034900876926258206, threshold: 2.2528399544939196e-08, condition: False
+Epoch 37; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003459062136244029, threshold: 2.0275559590445277e-08, condition: False
+Epoch 38; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00034732057247310877, threshold: 1.824800363140075e-08, condition: False
+Epoch 39; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003420774592086673, threshold: 1.6423203268260674e-08, condition: False
+Epoch 40; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00033707229886204004, threshold: 1.4780882941434608e-08, condition: False
+Epoch 41; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00033480458660051227, threshold: 1.3302794647291147e-08, condition: False
+Epoch 42; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00033039302797988057, threshold: 1.1972515182562034e-08, condition: False
+Epoch 43; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003313336055725813, threshold: 1.077526366430583e-08, condition: False
+Epoch 44; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003377414832357317, threshold: 9.697737297875247e-09, condition: False
+Epoch 45; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003270329616498202, threshold: 8.727963568087723e-09, condition: False
+Epoch 46; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003267845022492111, threshold: 7.85516721127895e-09, condition: False
+Epoch 47; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00032214002567343414, threshold: 7.069650490151056e-09, condition: False
+Epoch 48; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032153428765013814, threshold: 6.36268544113595e-09, condition: False
+Epoch 49; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003208107373211533, threshold: 5.726416897022355e-09, condition: False
+Epoch 50; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00031889887759462, threshold: 5.15377520732012e-09, condition: False
+Epoch 51; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032780144829303026, threshold: 4.638397686588108e-09, condition: False
+Epoch 52; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003142449422739446, threshold: 4.174557917929297e-09, condition: False
+Epoch 53; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003192247240804136, threshold: 3.7571021261363675e-09, condition: False
+Epoch 54; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003095908323302865, threshold: 3.3813919135227307e-09, condition: False
+Epoch 55; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.000320273480610922, threshold: 3.0432527221704577e-09, condition: False
+Epoch 56; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00031717438832856715, threshold: 2.738927449953412e-09, condition: False
+Epoch 57; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003226302214898169, threshold: 2.465034704958071e-09, condition: False
+Epoch 58; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00032558839302510023, threshold: 2.218531234462264e-09, condition: False
+Epoch 59; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00032545908470638096, threshold: 1.9966781110160378e-09, condition: False
+Epoch 60; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032342952908948064, threshold: 1.797010299914434e-09, condition: False
+Epoch 61; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00031866729841567576, threshold: 1.6173092699229906e-09, condition: False
+Epoch 62; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003262607497163117, threshold: 1.4555783429306917e-09, condition: False
+Epoch 63; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003248236025683582, threshold: 1.3100205086376226e-09, condition: False
+Epoch 64; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003288532898295671, threshold: 1.1790184577738604e-09, condition: False
+Epoch 65; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003221898223273456, threshold: 1.0611166119964744e-09, condition: False
+Epoch 66; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032039894722402096, threshold: 9.55004950796827e-10, condition: False
+Epoch 67; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00031848865910433233, threshold: 8.595044557171444e-10, condition: False
+Epoch 68; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003131328267045319, threshold: 7.7355401014543e-10, condition: False
+Epoch 69; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.000319772312650457, threshold: 6.96198609130887e-10, condition: False
+Epoch 70; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003179816994816065, threshold: 6.265787482177983e-10, condition: False
+Epoch 71; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.000324265070958063, threshold: 5.639208733960184e-10, condition: False
+Epoch 72; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032211747020483017, threshold: 5.075287860564166e-10, condition: False
+Epoch 73; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00031628849683329463, threshold: 4.5677590745077496e-10, condition: False
+Epoch 74; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003258958167862147, threshold: 4.110983167056975e-10, condition: False
+Epoch 75; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00032172989449463785, threshold: 3.699884850351278e-10, condition: False
+Epoch 76; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003182781510986388, threshold: 3.32989636531615e-10, condition: False
+Epoch 77; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003198118065483868, threshold: 2.996906728784535e-10, condition: False
+Epoch 78; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00031469675013795495, threshold: 2.697216055906082e-10, condition: False
+Epoch 79; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00030447597964666784, threshold: 2.427494450315474e-10, condition: False
+Epoch 80; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003069601661991328, threshold: 2.1847450052839267e-10, condition: False
+Epoch 81; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00030338807846419513, threshold: 1.966270504755534e-10, condition: False
+Epoch 82; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00030456591048277915, threshold: 1.7696434542799808e-10, condition: False
+Epoch 83; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003013523237314075, threshold: 1.592679108851983e-10, condition: False
+Epoch 84; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.000297542690532282, threshold: 1.4334111979667846e-10, condition: False
+Epoch 85; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00029136266675777733, threshold: 1.2900700781701062e-10, condition: False
+Epoch 86; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00030203661299310625, threshold: 1.1610630703530956e-10, condition: False
+Epoch 87; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.000305943307466805, threshold: 1.044956763317786e-10, condition: False
+Epoch 88; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0003042733296751976, threshold: 9.404610869860074e-11, condition: False
+Epoch 89; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003017726121470332, threshold: 8.464149782874067e-11, condition: False
+Epoch 90; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0003021193842869252, threshold: 7.61773480458666e-11, condition: False
+Epoch 91; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00030507598421536386, threshold: 6.855961324127995e-11, condition: False
+Epoch 92; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00030162540497258306, threshold: 6.170365191715196e-11, condition: False
+Epoch 93; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00030244808294810355, threshold: 5.553328672543677e-11, condition: False
+Epoch 94; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00029365738737396896, threshold: 4.9979958052893095e-11, condition: False
+Epoch 95; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.0003044476034119725, threshold: 4.4981962247603783e-11, condition: False
+Epoch 96; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00029897934291511774, threshold: 4.048376602284341e-11, condition: False
+Epoch 97; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00028971489518880844, threshold: 3.643538942055907e-11, condition: False
+Epoch 98; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.000291249540168792, threshold: 3.279185047850316e-11, condition: False
+Epoch 99; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.0002933773212134838, threshold: 2.951266543065285e-11, condition: False
+Epoch 100; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00029384277877397835, threshold: 2.6561398887587563e-11, condition: False
+Epoch 101; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0002907480229623616, threshold: 2.3905258998828807e-11, condition: False
+Epoch 102; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.0002916889206971973, threshold: 2.1514733098945927e-11, condition: False
+Epoch 103; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.00028895281138829887, threshold: 1.9363259789051334e-11, condition: False
+Epoch 104; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.000287759059574455, threshold: 1.74269338101462e-11, condition: False
+Epoch 105; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00027743031387217343, threshold: 1.568424042913158e-11, condition: False
+Epoch 106; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.00027991284150630236, threshold: 1.411581638621842e-11, condition: False
+Epoch 107; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.00027836361550725996, threshold: 1.2704234747596579e-11, condition: False
+Epoch 108; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.00027112121460959315, threshold: 1.1433811272836921e-11, condition: False
+Epoch 109; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.00026708125369623303, threshold: 1.0290430145553229e-11, condition: False
+Epoch 110; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00025995727628469467, threshold: 9.261387130997907e-12, condition: False
+Epoch 111; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00026232056552544236, threshold: 8.335248417898116e-12, condition: False
+Epoch 112; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40c10>
+The Frobenius based strategy!!
+Current difference: 0.00025662087136879563, threshold: 7.501723576108305e-12, condition: False
+Epoch 113; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00025839341105893254, threshold: 6.751551218497474e-12, condition: False
+Epoch 114; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00025791258667595685, threshold: 6.0763960966477266e-12, condition: False
+Epoch 115; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.00025992243899963796, threshold: 5.468756486982954e-12, condition: False
+Epoch 116; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.0002531553618609905, threshold: 4.921880838284659e-12, condition: False
+Epoch 117; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00025279339752160013, threshold: 4.429692754456193e-12, condition: False
+Epoch 118; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00026061368407681584, threshold: 3.986723479010574e-12, condition: False
+Epoch 119; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.000260251690633595, threshold: 3.588051131109517e-12, condition: False
+Epoch 120; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.0002611938980408013, threshold: 3.229246017998565e-12, condition: False
+Epoch 121; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.0002469577011652291, threshold: 2.9063214161987087e-12, condition: False
+Epoch 122; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.00024813757045194507, threshold: 2.615689274578838e-12, condition: False
+Epoch 123; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40c10>
+The Frobenius based strategy!!
+Current difference: 0.0002582081069704145, threshold: 2.354120347120954e-12, condition: False
+Epoch 124; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00025061453925445676, threshold: 2.118708312408859e-12, condition: False
+Epoch 125; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0002555872197262943, threshold: 1.906837481167973e-12, condition: False
+Epoch 126; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.0002497720706742257, threshold: 1.7161537330511757e-12, condition: False
+Epoch 127; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.00024893617955967784, threshold: 1.5445383597460581e-12, condition: False
+Epoch 128; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.00024335783382412046, threshold: 1.3900845237714523e-12, condition: False
+Epoch 129; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.00024299642245750874, threshold: 1.251076071394307e-12, condition: False
+Epoch 130; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00023848611454013735, threshold: 1.1259684642548764e-12, condition: False
+Epoch 131; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00023717731528449804, threshold: 1.0133716178293889e-12, condition: False
+Epoch 132; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.0002410829474683851, threshold: 9.1203445604645e-13, condition: False
+Epoch 133; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.00022886645456310362, threshold: 8.20831010441805e-13, condition: False
+Epoch 134; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00022969218844082206, threshold: 7.387479093976245e-13, condition: False
+Epoch 135; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.00022316684771794826, threshold: 6.648731184578621e-13, condition: False
+Epoch 136; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.00022837711730971932, threshold: 5.983858066120759e-13, condition: False
+Epoch 137; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00022351276129484177, threshold: 5.385472259508683e-13, condition: False
+Epoch 138; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.00022220404935069382, threshold: 4.846925033557815e-13, condition: False
+Epoch 139; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00022599102521780878, threshold: 4.3622325302020337e-13, condition: False
+Epoch 140; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.00022634188644587994, threshold: 3.9260092771818304e-13, condition: False
+Epoch 141; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00022230841568671167, threshold: 3.533408349463647e-13, condition: False
+Epoch 142; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.00021791773906443268, threshold: 3.1800675145172825e-13, condition: False
+Epoch 143; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00021210627164691687, threshold: 2.862060763065554e-13, condition: False
+Epoch 144; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.00021613122953567654, threshold: 2.5758546867589986e-13, condition: False
+Epoch 145; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0002109125634888187, threshold: 2.318269218083099e-13, condition: False
+Epoch 146; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.0002028502058237791, threshold: 2.0864422962747892e-13, condition: False
+Epoch 147; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.0002028464077739045, threshold: 1.8777980666473103e-13, condition: False
+Epoch 148; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00020094632054679096, threshold: 1.6900182599825794e-13, condition: False
+Epoch 149; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.00019762341980822384, threshold: 1.5210164339843215e-13, condition: False
+Epoch 150; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.000197619287064299, threshold: 1.3689147905858894e-13, condition: False
+Epoch 151; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40c10>
+The Frobenius based strategy!!
+Current difference: 0.0001988009607885033, threshold: 1.2320233115273005e-13, condition: False
+Epoch 152; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00019393888942431659, threshold: 1.1088209803745704e-13, condition: False
+Epoch 153; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.00019571243319660425, threshold: 9.979388823371133e-14, condition: False
+Epoch 154; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40940>
+The Frobenius based strategy!!
+Current difference: 0.00019286492897663265, threshold: 8.98144994103402e-14, condition: False
+Epoch 155; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00019096593314316124, threshold: 8.083304946930618e-14, condition: False
+Epoch 156; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.00019581973901949823, threshold: 7.274974452237556e-14, condition: False
+Epoch 157; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.0001906037941807881, threshold: 6.547477007013801e-14, condition: False
+Epoch 158; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.0001898892951430753, threshold: 5.892729306312422e-14, condition: False
+Epoch 159; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00018846328021027148, threshold: 5.30345637568118e-14, condition: False
+Epoch 160; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.00017483718693256378, threshold: 4.7731107381130616e-14, condition: False
+Epoch 161; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40c10>
+The Frobenius based strategy!!
+Current difference: 0.00017282059707213193, threshold: 4.295799664301755e-14, condition: False
+Epoch 162; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.00017435717745684087, threshold: 3.86621969787158e-14, condition: False
+Epoch 163; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40670>
+The Frobenius based strategy!!
+Current difference: 0.00017257699801120907, threshold: 3.479597728084422e-14, condition: False
+Epoch 164; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00016902037896215916, threshold: 3.13163795527598e-14, condition: False
+Epoch 165; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f405e0>
+The Frobenius based strategy!!
+Current difference: 0.00016747784684412181, threshold: 2.818474159748382e-14, condition: False
+Epoch 166; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40b80>
+The Frobenius based strategy!!
+Current difference: 0.00016948771371971816, threshold: 2.5366267437735436e-14, condition: False
+Epoch 167; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40a60>
+The Frobenius based strategy!!
+Current difference: 0.00016901166236493737, threshold: 2.2829640693961892e-14, condition: False
+Epoch 168; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.0001673503575148061, threshold: 2.0546676624565703e-14, condition: False
+Epoch 169; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40820>
+The Frobenius based strategy!!
+Current difference: 0.0001607143203727901, threshold: 1.8492008962109133e-14, condition: False
+Epoch 170; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f408b0>
+The Frobenius based strategy!!
+Current difference: 0.00016924028750509024, threshold: 1.664280806589822e-14, condition: False
+Epoch 171; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.00016805349150672555, threshold: 1.49785272593084e-14, condition: False
+Epoch 172; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40c10>
+The Frobenius based strategy!!
+Current difference: 0.00016094435704872012, threshold: 1.348067453337756e-14, condition: False
+Epoch 173; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40550>
+The Frobenius based strategy!!
+Current difference: 0.000158691342221573, threshold: 1.2132607080039805e-14, condition: False
+Epoch 174; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.000155017725774087, threshold: 1.0919346372035824e-14, condition: False
+Epoch 175; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.00015394960064440966, threshold: 9.827411734832243e-15, condition: False
+Epoch 176; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00014565658057108521, threshold: 8.844670561349019e-15, condition: False
+Epoch 177; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f409d0>
+The Frobenius based strategy!!
+Current difference: 0.00014908880984876305, threshold: 7.960203505214116e-15, condition: False
+Epoch 178; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40700>
+The Frobenius based strategy!!
+Current difference: 0.0001460074126953259, threshold: 7.164183154692705e-15, condition: False
+Epoch 179; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40430>
+The Frobenius based strategy!!
+Current difference: 0.00013890021364204586, threshold: 6.447764839223435e-15, condition: False
+Epoch 180; current number of active layers: 1; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=4 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f1631f40af0>
+The Frobenius based strategy!!
+Current difference: 0.0001398453168803826, threshold: 5.802988355301091e-15, condition: False

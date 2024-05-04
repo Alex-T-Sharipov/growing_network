@@ -1,0 +1,95 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_dynamic model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_dynamic created, param count:11741226
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+AMP not enabled. Training in float32.
+/home/sharipov/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/781 (  0%)]  Loss: 2.30 (2.30)  Time: 1.425s,   44.91/s  (1.425s,   44.91/s)  LR: 1.000e-05  Data: 0.963 (0.963)
+Train: 0 [  50/781 (  6%)]  Loss: 2.30 (2.30)  Time: 0.015s, 4227.00/s  (0.054s, 1175.67/s)  LR: 1.000e-05  Data: 0.010 (0.039)
+Train: 0 [ 100/781 ( 13%)]  Loss: 2.25 (2.29)  Time: 0.005s, 12077.54/s  (0.042s, 1523.63/s)  LR: 1.000e-05  Data: 0.000 (0.032)
+Train: 0 [ 150/781 ( 19%)]  Loss: 2.18 (2.27)  Time: 0.027s, 2399.25/s  (0.038s, 1686.39/s)  LR: 1.000e-05  Data: 0.022 (0.029)
+Train: 0 [ 200/781 ( 26%)]  Loss: 2.19 (2.26)  Time: 0.005s, 12007.31/s  (0.036s, 1790.73/s)  LR: 1.000e-05  Data: 0.000 (0.028)
+Train: 0 [ 250/781 ( 32%)]  Loss: 2.20 (2.25)  Time: 0.052s, 1232.87/s  (0.035s, 1848.35/s)  LR: 1.000e-05  Data: 0.047 (0.028)
+Train: 0 [ 300/781 ( 38%)]  Loss: 2.17 (2.24)  Time: 0.005s, 12231.63/s  (0.034s, 1902.09/s)  LR: 1.000e-05  Data: 0.000 (0.027)
+Train: 0 [ 350/781 ( 45%)]  Loss: 2.27 (2.23)  Time: 0.036s, 1772.66/s  (0.033s, 1931.79/s)  LR: 1.000e-05  Data: 0.031 (0.027)
+Train: 0 [ 400/781 ( 51%)]  Loss: 2.19 (2.23)  Time: 0.005s, 12048.81/s  (0.033s, 1960.45/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 450/781 ( 58%)]  Loss: 2.19 (2.22)  Time: 0.039s, 1634.57/s  (0.032s, 1981.10/s)  LR: 1.000e-05  Data: 0.034 (0.026)
+Train: 0 [ 500/781 ( 64%)]  Loss: 2.21 (2.22)  Time: 0.005s, 12057.47/s  (0.032s, 1998.14/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 550/781 ( 71%)]  Loss: 2.26 (2.22)  Time: 0.048s, 1342.14/s  (0.032s, 2013.17/s)  LR: 1.000e-05  Data: 0.042 (0.026)
+Train: 0 [ 600/781 ( 77%)]  Loss: 2.20 (2.21)  Time: 0.005s, 12067.23/s  (0.032s, 2024.35/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 650/781 ( 83%)]  Loss: 2.12 (2.21)  Time: 0.033s, 1947.94/s  (0.031s, 2037.08/s)  LR: 1.000e-05  Data: 0.028 (0.026)
+Train: 0 [ 700/781 ( 90%)]  Loss: 2.16 (2.21)  Time: 0.005s, 12070.48/s  (0.031s, 2045.23/s)  LR: 1.000e-05  Data: 0.000 (0.026)
+Train: 0 [ 750/781 ( 96%)]  Loss: 2.23 (2.21)  Time: 0.033s, 1968.46/s  (0.031s, 2052.93/s)  LR: 1.000e-05  Data: 0.028 (0.025)
+Test: [   0/156]  Time: 1.166 (1.166)  Loss:   1.984 ( 1.984)  Acc@1:  23.438 ( 23.438)  Acc@5:  85.938 ( 85.938)
+Test: [  50/156]  Time: 0.010 (0.032)  Loss:   2.072 ( 2.036)  Acc@1:  25.000 ( 24.632)  Acc@5:  79.688 ( 80.882)
+Test: [ 100/156]  Time: 0.010 (0.021)  Loss:   2.020 ( 2.036)  Acc@1:  21.875 ( 24.783)  Acc@5:  79.688 ( 80.585)
+Test: [ 150/156]  Time: 0.002 (0.017)  Loss:   2.005 ( 2.033)  Acc@1:  26.562 ( 25.124)  Acc@5:  85.938 ( 80.733)
+Test: [ 156/156]  Time: 0.040 (0.017)  Loss:   1.964 ( 2.031)  Acc@1:  25.000 ( 25.060)  Acc@5:  87.500 ( 80.720)
+Current checkpoints:
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-0.pth.tar', 25.06)
+
+Train: 1 [   0/781 (  0%)]  Loss: 2.12 (2.12)  Time: 0.110s,  580.59/s  (0.110s,  580.59/s)  LR: 1.900e-05  Data: 0.103 (0.103)
+Train: 1 [  50/781 (  6%)]  Loss: 2.17 (2.15)  Time: 0.005s, 12118.44/s  (0.030s, 2118.45/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 100/781 ( 13%)]  Loss: 2.24 (2.16)  Time: 0.015s, 4209.23/s  (0.030s, 2116.86/s)  LR: 1.900e-05  Data: 0.010 (0.024)
+Train: 1 [ 150/781 ( 19%)]  Loss: 2.15 (2.16)  Time: 0.005s, 12170.63/s  (0.030s, 2146.13/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 200/781 ( 26%)]  Loss: 2.09 (2.16)  Time: 0.044s, 1467.57/s  (0.030s, 2134.54/s)  LR: 1.900e-05  Data: 0.039 (0.025)
+Train: 1 [ 250/781 ( 32%)]  Loss: 2.08 (2.16)  Time: 0.005s, 12058.01/s  (0.030s, 2156.94/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 300/781 ( 38%)]  Loss: 2.17 (2.15)  Time: 0.044s, 1439.27/s  (0.030s, 2150.80/s)  LR: 1.900e-05  Data: 0.039 (0.025)
+Train: 1 [ 350/781 ( 45%)]  Loss: 2.22 (2.15)  Time: 0.005s, 12073.20/s  (0.030s, 2158.66/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 400/781 ( 51%)]  Loss: 2.19 (2.15)  Time: 0.023s, 2827.42/s  (0.030s, 2159.19/s)  LR: 1.900e-05  Data: 0.018 (0.024)
+Train: 1 [ 450/781 ( 58%)]  Loss: 2.12 (2.15)  Time: 0.005s, 12142.55/s  (0.030s, 2159.43/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 500/781 ( 64%)]  Loss: 2.04 (2.15)  Time: 0.031s, 2045.47/s  (0.030s, 2159.37/s)  LR: 1.900e-05  Data: 0.026 (0.024)
+Train: 1 [ 550/781 ( 71%)]  Loss: 2.05 (2.14)  Time: 0.005s, 12085.15/s  (0.030s, 2164.68/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 600/781 ( 77%)]  Loss: 2.13 (2.14)  Time: 0.015s, 4229.39/s  (0.030s, 2165.09/s)  LR: 1.900e-05  Data: 0.010 (0.024)
+Train: 1 [ 650/781 ( 83%)]  Loss: 2.27 (2.14)  Time: 0.005s, 12056.39/s  (0.030s, 2166.98/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 700/781 ( 90%)]  Loss: 2.24 (2.14)  Time: 0.005s, 12188.87/s  (0.030s, 2167.04/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Train: 1 [ 750/781 ( 96%)]  Loss: 2.22 (2.14)  Time: 0.005s, 12282.00/s  (0.030s, 2168.46/s)  LR: 1.900e-05  Data: 0.000 (0.024)
+Test: [   0/156]  Time: 0.061 (0.061)  Loss:   1.852 ( 1.852)  Acc@1:  34.375 ( 34.375)  Acc@5:  92.188 ( 92.188)
+Test: [  50/156]  Time: 0.010 (0.011)  Loss:   1.942 ( 1.907)  Acc@1:  25.000 ( 32.782)  Acc@5:  82.812 ( 84.191)
+Test: [ 100/156]  Time: 0.010 (0.010)  Loss:   1.943 ( 1.909)  Acc@1:  26.562 ( 32.441)  Acc@5:  81.250 ( 84.236)
+Test: [ 150/156]  Time: 0.002 (0.010)  Loss:   1.896 ( 1.905)  Acc@1:  40.625 ( 32.823)  Acc@5:  81.250 ( 84.199)
+Test: [ 156/156]  Time: 0.001 (0.010)  Loss:   1.795 ( 1.904)  Acc@1:  18.750 ( 32.740)  Acc@5:  93.750 ( 84.260)
+Current checkpoints:
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-1.pth.tar', 32.74)
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-0.pth.tar', 25.06)
+
+Train: 2 [   0/781 (  0%)]  Loss: 2.06 (2.06)  Time: 0.119s,  539.99/s  (0.119s,  539.99/s)  LR: 2.800e-05  Data: 0.112 (0.112)
+Train: 2 [  50/781 (  6%)]  Loss: 2.17 (2.11)  Time: 0.005s, 12161.26/s  (0.030s, 2115.66/s)  LR: 2.800e-05  Data: 0.000 (0.025)
+Train: 2 [ 100/781 ( 13%)]  Loss: 2.17 (2.11)  Time: 0.016s, 3934.04/s  (0.030s, 2102.09/s)  LR: 2.800e-05  Data: 0.011 (0.025)
+Train: 2 [ 150/781 ( 19%)]  Loss: 2.22 (2.11)  Time: 0.018s, 3480.89/s  (0.030s, 2146.96/s)  LR: 2.800e-05  Data: 0.013 (0.025)
+Train: 2 [ 200/781 ( 26%)]  Loss: 2.15 (2.11)  Time: 0.005s, 12134.32/s  (0.030s, 2132.06/s)  LR: 2.800e-05  Data: 0.000 (0.025)
+Train: 2 [ 250/781 ( 32%)]  Loss: 2.19 (2.12)  Time: 0.010s, 6584.63/s  (0.030s, 2149.21/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 300/781 ( 38%)]  Loss: 2.08 (2.11)  Time: 0.005s, 12212.16/s  (0.030s, 2145.47/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 350/781 ( 45%)]  Loss: 2.21 (2.11)  Time: 0.010s, 6135.11/s  (0.030s, 2154.94/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 400/781 ( 51%)]  Loss: 2.12 (2.11)  Time: 0.005s, 12083.52/s  (0.030s, 2150.76/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 450/781 ( 58%)]  Loss: 2.09 (2.11)  Time: 0.011s, 5921.94/s  (0.030s, 2159.44/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 500/781 ( 64%)]  Loss: 2.16 (2.10)  Time: 0.005s, 12023.45/s  (0.030s, 2153.58/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 550/781 ( 71%)]  Loss: 2.14 (2.10)  Time: 0.011s, 5642.01/s  (0.030s, 2161.96/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 600/781 ( 77%)]  Loss: 2.10 (2.10)  Time: 0.005s, 12270.21/s  (0.030s, 2159.77/s)  LR: 2.800e-05  Data: 0.000 (0.024)
+Train: 2 [ 650/781 ( 83%)]  Loss: 2.20 (2.10)  Time: 0.010s, 6343.14/s  (0.030s, 2165.88/s)  LR: 2.800e-05  Data: 0.000 (0.023)
+Train: 2 [ 700/781 ( 90%)]  Loss: 2.17 (2.10)  Time: 0.005s, 12255.09/s  (0.030s, 2163.59/s)  LR: 2.800e-05  Data: 0.000 (0.023)
+Train: 2 [ 750/781 ( 96%)]  Loss: 2.06 (2.10)  Time: 0.010s, 6452.31/s  (0.030s, 2168.21/s)  LR: 2.800e-05  Data: 0.000 (0.023)
+Test: [   0/156]  Time: 0.061 (0.061)  Loss:   1.779 ( 1.779)  Acc@1:  39.062 ( 39.062)  Acc@5:  87.500 ( 87.500)
+Test: [  50/156]  Time: 0.009 (0.011)  Loss:   1.843 ( 1.830)  Acc@1:  37.500 ( 35.692)  Acc@5:  90.625 ( 86.765)
+Test: [ 100/156]  Time: 0.009 (0.010)  Loss:   1.879 ( 1.832)  Acc@1:  26.562 ( 35.458)  Acc@5:  87.500 ( 86.649)
+Test: [ 150/156]  Time: 0.002 (0.010)  Loss:   1.847 ( 1.828)  Acc@1:  35.938 ( 35.782)  Acc@5:  84.375 ( 86.538)
+Test: [ 156/156]  Time: 0.001 (0.009)  Loss:   1.750 ( 1.827)  Acc@1:  37.500 ( 35.690)  Acc@5:  93.750 ( 86.600)
+Current checkpoints:
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-2.pth.tar', 35.69)
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-1.pth.tar', 32.74)
+ ('./output/train/Upd_Exp18_CIFAR10_dynamic_strat_2_16_layer/checkpoint-0.pth.tar', 25.06)
+
+Train: 3 [   0/781 (  0%)]  Loss: 2.21 (2.21)  Time: 0.116s,  551.55/s  (0.116s,  551.55/s)  LR: 3.700e-05  Data: 0.110 (0.110)
+Train: 3 [  50/781 (  6%)]  Loss: 2.20 (2.07)  Time: 0.005s, 12209.94/s  (0.030s, 2128.11/s)  LR: 3.700e-05  Data: 0.000 (0.024)
+Train: 3 [ 100/781 ( 13%)]  Loss: 2.24 (2.09)  Time: 0.027s, 2350.88/s  (0.030s, 2118.82/s)  LR: 3.700e-05  Data: 0.022 (0.025)
+Train: 3 [ 150/781 ( 19%)]  Loss: 2.13 (2.09)  Time: 0.005s, 12131.58/s  (0.030s, 2163.47/s)  LR: 3.700e-05  Data: 0.000 (0.024)
+Train: 3 [ 200/781 ( 26%)]  Loss: 2.14 (2.08)  Time: 0.017s, 3844.24/s  (0.030s, 2151.03/s)  LR: 3.700e-05  Data: 0.012 (0.025)
+slurmstepd: error: *** JOB 2032749 ON i43 CANCELLED AT 2024-04-16T21:15:26 ***

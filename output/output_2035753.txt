@@ -1,0 +1,387 @@
+torch.cuda.is_available()=True
+args=Namespace(data=None, data_dir='/home/sharipov/monet/data/CIFAR10', dataset='torch/CIFAR10', train_split='train', val_split='validation', dataset_download=False, class_map='', model='MONet_T_prune_16', pretrained=False, initial_checkpoint='', resume='/home/sharipov/monet/output/train/Upd_Exp21_CIFAR10_prune_16_layer/last.pth.tar', no_resume_opt=False, num_classes=10, gp=None, img_size=None, in_chans=None, input_size=[3, 32, 32], crop_pct=None, mean=None, std=None, interpolation='', batch_size=64, validation_batch_size=None, channels_last=False, fuser='', grad_accum_steps=1, grad_checkpointing=False, fast_norm=False, model_kwargs={}, head_init_scale=None, head_init_bias=None, torchscript=False, torchcompile=None, opt='adamw', opt_eps=None, opt_betas=None, momentum=0.9, weight_decay=0.01, clip_grad=None, clip_mode='norm', layer_decay=None, opt_kwargs={}, sched='cosine', sched_on_updates=False, lr=0.0001, lr_base=0.001, lr_base_size=256, lr_base_scale='', lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, lr_cycle_mul=1.0, lr_cycle_decay=0.5, lr_cycle_limit=1, lr_k_decay=1.0, warmup_lr=1e-05, min_lr=1e-05, epochs=300, epoch_repeats=0.0, start_epoch=None, decay_milestones=[90, 180, 270], decay_epochs=90, warmup_epochs=10, warmup_prefix=False, cooldown_epochs=0, patience_epochs=10, decay_rate=0.1, no_aug=False, scale=[0.08, 1.0], ratio=[0.75, 1.3333333333333333], hflip=0.5, vflip=0.0, color_jitter=0.4, aa=None, aug_repeats=0, aug_splits=0, jsd_loss=False, bce_loss=False, bce_target_thresh=None, reprob=0.0, remode='pixel', recount=1, resplit=False, mixup=0.5, cutmix=0.5, cutmix_minmax=None, mixup_prob=1.0, mixup_switch_prob=0.5, mixup_mode='batch', mixup_off_epoch=0, smoothing=0.1, train_interpolation='random', drop=0.0, drop_connect=None, drop_path=None, drop_block=None, bn_momentum=None, bn_eps=None, sync_bn=False, dist_bn='reduce', split_bn=False, model_ema=False, model_ema_force_cpu=False, model_ema_decay=0.9998, seed=42, worker_seeding='all', log_interval=50, recovery_interval=0, checkpoint_hist=1, workers=4, save_images=False, amp=False, amp_dtype='float16', amp_impl='native', no_ddp_bb=False, synchronize_step=False, pin_mem=False, no_prefetcher=False, output='', experiment='Upd_Exp22_CIFAR10_prune_16_layer', eval_metric='top1', tta=0, local_rank=0, use_multi_epochs_loader=False, log_wandb=False, strategy=5)
+
+
+
+
+{}
+
+
+
+
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+init kaiming normal
+Epoch 238; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8642160>
+Epoch 239; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 240; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 241; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 242; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 243; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 244; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 245; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 246; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 247; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 248; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 249; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 250; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 251; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 252; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 253; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 254; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 255; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 256; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 257; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 258; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 259; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 260; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 261; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 262; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 263; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 264; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 265; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 266; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 267; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 268; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 269; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 270; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 271; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 272; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 273; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 274; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 275; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 276; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 277; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 278; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 279; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 280; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 281; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 282; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 283; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 284; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 285; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 286; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 287; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 288; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 289; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 290; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 291; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 292; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 293; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 294; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 295; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 296; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 297; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
+Epoch 298; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633d30>
+Epoch 299; current number of active layers: 16; total number of active layers: 16
+Calling the layer strategy
+Layer strategy call with s=5 received
+calling the function<function main.<locals>.layer_strategy.<locals>.<lambda> at 0x7f59d8633e50>
