@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+/home/sharipov/monet/output/text/
+text/
 
 # C extensions
 *.so

@@ -55,14 +55,16 @@ class PolyBlock(nn.Module):
             n_degree = 2, # second order interaction
             use_act = False,
             prune=False,
+            initialization_choice = 4,
+            monet = None
     ):
         super().__init__()
         self.embed_dim = embed_dim
         self.expansion_factor = expansion_factor
         self.norm = norm_layer(self.embed_dim)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
-        self.mlp1 = mlp_layer(self.embed_dim, self.embed_dim, self.embed_dim, act_layer=act_layer,drop=drop,use_spatial=True,use_act=use_act, prune=prune)
-        self.mlp2= mlp_layer(self.embed_dim, self.embed_dim*self.expansion_factor, self.embed_dim,act_layer=act_layer, drop=drop,use_spatial=False,use_act=use_act, prune=prune)
+        self.mlp1 = mlp_layer(self.embed_dim, self.embed_dim, self.embed_dim, act_layer=act_layer,drop=drop,use_spatial=True,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet)
+        self.mlp2= mlp_layer(self.embed_dim, self.embed_dim*self.expansion_factor, self.embed_dim,act_layer=act_layer, drop=drop,use_spatial=False,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet)
     
     def forward(self, x):
         # Assuming X has shape B * D, B = batch size, D = dimension
@@ -112,12 +114,12 @@ class PolyBlock(nn.Module):
 
 
 class basic_blocks(nn.Module):
-    def __init__(self,index,layers,embed_dim, expansion_factor = 4, dropout = 0., drop_path = 0.,norm_layer=partial(nn.LayerNorm, eps=1e-6),act_layer = nn.GELU,use_act = False, prune=False):
+    def __init__(self,index,layers,embed_dim, expansion_factor = 4, dropout = 0., drop_path = 0.,norm_layer=partial(nn.LayerNorm, eps=1e-6),act_layer = nn.GELU,use_act = False, prune=False, initialization_choice = 4, monet = None):
         super().__init__()
 
         self.model = nn.Sequential(
             *[nn.Sequential(
-                PolyBlock(embed_dim = embed_dim, expansion_factor = expansion_factor, drop = dropout, drop_path = drop_path,use_act = use_act,act_layer=act_layer,norm_layer=norm_layer, prune=prune),
+                PolyBlock(embed_dim = embed_dim, expansion_factor = expansion_factor, drop = dropout, drop_path = drop_path,use_act = use_act,act_layer=act_layer,norm_layer=norm_layer, prune=prune, initialization_choice=initialization_choice, monet = monet),
             ) for _ in range(layers[index])]
         )
     
@@ -146,42 +148,49 @@ class Downsample(nn.Module):
 
 def baseline_init(layer):
     # print(layer)
-    if isinstance(layer, torch.nn.Linear):
-        print("Encountered a linear layer")
-        if hasattr(layer, 'weight'):
-            print("Applying uniform xavier")
-            torch.nn.init.xavier_uniform_(layer.weight)
-        if hasattr(layer, 'bias') and layer.bias is not None:
-            print("Applying bias")
-            torch.nn.init.zeros_(layer.bias)
+    with torch.no_grad():
+        if isinstance(layer, torch.nn.Linear):
+            # print("Encountered a linear layer")
+            if hasattr(layer, 'weight'):
+                # print("Applying uniform xavier")
+                torch.nn.init.xavier_uniform_(layer.weight)
+            if hasattr(layer, 'bias') and layer.bias is not None:
+                # print("Applying bias")
+                torch.nn.init.zeros_(layer.bias)
 
 def grad_norm_normal_init(m, mean_abs_value=1.0):
     """Initialize Linear layer weights to have a specific mean absolute value."""
     # print(m)
-    if isinstance(m, torch.nn.Linear):  # Check if the module is a Linear layer
-        print("Encountered a linear layer")
-        # Calculate standard deviation based on desired mean absolute value
-        std_dev = mean_abs_value * math.sqrt(math.pi / 2)
-        # Initialize weights with a normal distribution centered at 0
-        torch.nn.init.normal_(m.weight, mean=0.0, std=std_dev)
-        if m.bias is not None:
-            print("Applying bias")
-            # Initialize biases to zero
-            torch.nn.init.constant_(m.bias, 0)
+    with torch.no_grad():
+        if isinstance(m, torch.nn.Linear):  # Check if the module is a Linear layer
+            # print("Encountered a linear layer")
+            # Calculate standard deviation based on desired mean absolute value
+            std_dev = mean_abs_value * math.sqrt(math.pi / 2)
+            # Initialize weights with a normal distribution centered at 0
+            torch.nn.init.normal_(m.weight, mean=0.0, std=std_dev)
+            if m.bias is not None:
+                # print("Applying bias")
+                # Initialize biases to zero
+                torch.nn.init.constant_(m.bias, 0)
 
 def grad_norm_uniform_init(m, mean_abs_value=1.0):
     """Initialize Linear layer weights to have a specific mean absolute value using a uniform distribution."""
-    if isinstance(m, torch.nn.Linear):
-        print("Encountered a linear layer")
-        # Calculate the range for the uniform distribution
-        a = -2 * mean_abs_value
-        b = 2 * mean_abs_value
-        # Initialize weights with a uniform distribution
-        torch.nn.init.uniform_(m.weight, a=a, b=b)
-        if m.bias is not None:
-            print("Applying bias")
-            # Initialize biases to zero
-            torch.nn.init.constant_(m.bias, 0)
+    with torch.no_grad():
+        if isinstance(m, torch.nn.Linear):
+            # print("Encountered a linear layer")
+            # Calculate the range for the uniform distribution
+            a = -2 * mean_abs_value
+            b = 2 * mean_abs_value
+            # Initialize weights with a uniform distribution
+            torch.nn.init.uniform_(m.weight, a=a, b=b)
+            if m.bias is not None:
+                # print("Applying bias")
+                # Initialize biases to zero
+                torch.nn.init.constant_(m.bias, 0)
+
+def set_weights(m):
+    if isinstance(m, PolyMlp):
+        m.expand = True
 
 def recursive_apply(module, init_fn, **kwargs):
     """Recursively apply initialization function to all submodules."""
@@ -196,14 +205,31 @@ def copy_weights(src_module, dest_module):
     """
     for src_submodule, dest_submodule in zip(src_module.children(), dest_module.children()):
         if isinstance(src_submodule, nn.Linear) and isinstance(dest_submodule, nn.Linear):
-            print("Encountered a linear layer")
-            if src_submodule.weight.size() == dest_submodule.weight.size():
-                dest_submodule.weight.data.copy_(src_submodule.weight.data)
-                dest_submodule.bias.data.copy_(src_submodule.bias.data)
-                print(f"Copied weights and biases from {src_submodule} to {dest_submodule}")
+            # print("Encountered a linear layer")
+            with torch.no_grad():
+                if src_submodule.weight.size() == dest_submodule.weight.size():
+                    dest_submodule.weight.data.copy_(src_submodule.weight.data)
+                    dest_submodule.bias.data.copy_(src_submodule.bias.data)
+                # print(f"Copied weights and biases from {src_submodule} to {dest_submodule}")
         else:
             # Recursive call to handle nested modules
             copy_weights(src_submodule, dest_submodule)
+
+def custom_initialize(layer, previous_layer, initialization_choice, last_norm):
+    d = {
+        0: lambda: recursive_apply(layer, baseline_init),
+        1: lambda: recursive_apply(layer, grad_norm_normal_init, mean_abs_value=last_norm),
+        2: lambda: recursive_apply(layer, grad_norm_uniform_init, mean_abs_value=last_norm),
+        3: lambda: copy_weights(layer, previous_layer),
+        4: lambda: None
+    }
+    # print(f"{type(self.initialization_choice)}, {self.initialization_choice}")
+    if not initialization_choice in d:
+        # print("passing")
+        pass
+    else:
+        # print(f"calling the function{self.initialization_choice}")
+        d[initialization_choice]()
 
 class MONet(nn.Module):
     def __init__(
@@ -233,6 +259,8 @@ class MONet(nn.Module):
         prune=False,
         need_initialization = 0,
         initialization_choice = 4,
+        initialization_choice_width = 4,
+        expand = False,
     ):
         # self, layers, img_size=224, patch_size=4, in_chans=3, num_classes=1000,
         # embed_dims=None, transitions=None, segment_dim=None, mlp_ratios=None,  drop_rate=0., attn_drop_rate=0., drop_path_rate=0.,
@@ -241,6 +269,7 @@ class MONet(nn.Module):
         elif layers: self.active_layers = sum(layers)
         else: self.active_layers = float("inf")
         self.initialization_choice = initialization_choice
+        self.initialization_choice_width = initialization_choice_width
         self.num_classes = num_classes
         self.image_size = image_size
         self.global_pool = global_pool
@@ -251,6 +280,7 @@ class MONet(nn.Module):
         self.embed_dim = embed_dim
         self.need_initialization = need_initialization 
         self.last_norm = 0
+        self.expand = expand
         image_size = pair(self.image_size)
         oldps = [1, 1]
         for ps in patch_size:
@@ -264,7 +294,7 @@ class MONet(nn.Module):
         network = []
         assert len(layers) == len(embed_dim) == len(expansion_factor)
         for i in range(len(layers)):
-            stage = block_layer(i,self.layers,embed_dim[i], expansion_factor[i], dropout = drop_rate,drop_path =drop_path_rate,norm_layer=norm_layer,act_layer=act_layer,use_act =use_act, prune=prune)
+            stage = block_layer(i,self.layers,embed_dim[i], expansion_factor[i], dropout = drop_rate,drop_path =drop_path_rate,norm_layer=norm_layer,act_layer=act_layer,use_act =use_act, prune=prune, initialization_choice = initialization_choice_width)
             network.append(stage)
             if i >= len(self.layers)-1:
                 break
@@ -284,22 +314,19 @@ class MONet(nn.Module):
 
 
 
-    def custom_initialize(self, layer, previous_layer):
-        d = {
-            0: lambda: recursive_apply(layer, baseline_init),
-            1: lambda: recursive_apply(layer, grad_norm_normal_init),
-            2: lambda: recursive_apply(layer, grad_norm_uniform_init),
-            3: lambda: copy_weights(layer, previous_layer),
-            4: lambda: None
-        }
-        print(f"{type(self.initialization_choice)}, {self.initialization_choice}")
-        if not self.initialization_choice in d:
-            print("passing")
-            pass
-        else:
-            print(f"calling the function{self.initialization_choice}")
-            d[self.initialization_choice]()
+    def update_last_norm(self, last_norm):
+        """ Update last_norm across all relevant modules in the network. """
+        self.last_norm = last_norm  # Update the parent's last_norm
+        def recursive_update(module):
+            """ Recursively update last_norm in PolyMlp instances. """
+            for child in module.children():
+                if isinstance(child, PolyMlp):
+                    print(f"Setting the last norm of polymlp to: {last_norm}")
+                    child.last_norm = last_norm  # Directly set last_norm if child is PolyMlp
+                elif hasattr(child, 'children') and callable(child.children):
+                    recursive_update(child)  # Recursive call if the child has further children
 
+        recursive_update(self)  # Start the recursive update from the parent module
 
     def forward(self, x):
         # print(f"1. input dimension: {x.shape}")
@@ -311,15 +338,18 @@ class MONet(nn.Module):
         #     x2 = self.fs3(x)
         #     x1 = x1 + self.alpha1 * x2
         # embedding = self.network(x1)
-        print(f"Need initialization: {self.need_initialization}")
+        # print(f"Need initialization: {self.need_initialization}")
         for i, layer in enumerate(self.network[0].model):
             # print(i, layer)
-            print(f"active layers: {self.active_layers};  act layers minus need init: {self.active_layers - self.need_initialization}")
+            # print(f"active layers: {self.active_layers};  act layers minus need init: {self.active_layers - self.need_initialization}")
+
+            if self.expand: recursive_apply(layer, set_weights)
+
             if i < self.active_layers and i >= self.active_layers - self.need_initialization:
                 # initialize the weights of this layer
                 previous_layer = self.network[0].model[i - 1]
-                self.custom_initialize(layer, previous_layer)
-                print(f"Initialized weights for layer {i}")
+                custom_initialize(layer, previous_layer, self.initialization_choice, self.last_norm)
+                # print(f"Initialized weights for layer {i}")
 
             if i < self.active_layers:
                 # print(layer)
@@ -331,7 +361,8 @@ class MONet(nn.Module):
         
         self.need_initialization = 0
         out = self.head(x1)
-        print(f"Reset the need_initialization to {self.need_initialization}")
+        self.expand = False
+        # print(f"Reset the need_initialization to {self.need_initialization}")
         return out
 
     def forward_features(self, x):

@@ -358,14 +358,18 @@ torchrun --nproc_per_node=1 train.py \
 --mixup 0.5 \
 --cutmix 0.5 \
 --weight-decay 0.01 \
---experiment Upd_Exp25_CIFAR10_monet_one \
+--experiment Upd_Exp26_CIFAR10_monet_one \
 --num-classes 10 \
+--double_at_epoch 0 \
+--initialization_choice 4 \
+--initialization_choice_width 1 \
 --input-size 3 32 32 
+
 
 sbatch ./distributed_train.sh 1 \
 --dataset torch/CIFAR10 \
 --data-dir /home/sharipov/monet/data/CIFAR10 \
---model MONet_T_16_double \
+--model MONet_T_dynamic \
 --opt adamw \
 --lr 1e-4 \
 --batch-size 64 \
@@ -379,12 +383,60 @@ sbatch ./distributed_train.sh 1 \
 --mixup 0.5 \
 --cutmix 0.5 \
 --weight-decay 0.01 \
---experiment Upd_Exp33_CIFAR10_monet_double_init_4 \
+--experiment Upd_Exp38_CIFAR10_monet_dynamic_init_4 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--initialization_choice 4 \
+--initialization_choice_width 4 \
+--strategy 4 
+
+sbatch ./distributed_train.sh 1 \
+--dataset torch/CIFAR10 \
+--data-dir /home/sharipov/monet/data/CIFAR10 \
+--model MONet_T_16 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 64 \
+--epochs 300 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp35_CIFAR10_monet_16_double_width_init_2 \
 --num-classes 10 \
 --input-size 3 32 32 \
 --strategy 5 \
 --double_at_epoch 150 \
---initialization_choice 4
+--initialization_choice 2
+
+sbatch ./distributed_train.sh 1 \
+--dataset torch/CIFAR10 \
+--data-dir /home/sharipov/monet/data/CIFAR10 \
+--model MONet_T_16 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 64 \
+--epochs 300 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp35_CIFAR10_monet_16_double_width_init_2 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--strategy 5 \
+--double_at_epoch 150 \
+--initialization_choice 2
 
 torchrun --nproc_per_node=1 train.py \
 --dataset torch/CIFAR10 \
@@ -408,7 +460,7 @@ torchrun --nproc_per_node=1 train.py \
 --input-size 3 32 32 \
 --strategy 5 \
 --double_at_epoch 0 \
---initialization_choice 0
+--initialization_choice 5 
 
 sbatch ./distributed_train.sh 1 \
 --dataset torch/CIFAR10 \

@@ -356,8 +356,10 @@ group.add_argument('--log-wandb', action='store_true', default=False,
                    help='log training and validation metrics to wandb')
 group.add_argument('--strategy', default=5, type=str, 
                    help='Strategy to use for adjusting layers during training')
-group.add_argument('--initialization_choice', default=5, type=str, 
+group.add_argument('--initialization_choice', default=4, type=str, 
                    help='intitialization choice')
+group.add_argument('--initialization_choice_width', default=4, type=str, 
+                   help='intitialization choice width')
 group.add_argument('--double_at_epoch', default=-1, type=str, 
                    help='double the number of layers at a certain epoch.')
 
@@ -432,6 +434,7 @@ def main():
     elif args.input_size is not None:
         in_chans = args.input_size[0]
 
+    print(f"Initialization choices: width: {int(args.initialization_choice_width)}; depth: {int(args.initialization_choice)}")
 
     model = create_model(
         args.model,
@@ -447,6 +450,7 @@ def main():
         scriptable=args.torchscript,
         checkpoint_path=args.initial_checkpoint,
         initialization_choice = int(args.initialization_choice),
+        initialization_choice_width = int(args.initialization_choice_width),
         **args.model_kwargs,
     )
     if args.head_init_scale is not None:
@@ -814,51 +818,51 @@ def main():
         threshold = [0.04, 0.07, 0.0003]
 
         def baseline(window=10):
-            print("baseline strategy")
+            # print("baseline strategy")
             current_threshold = threshold[0]
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
-                print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])<current_threshold}")
+                # print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])<current_threshold}")
                 if ((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
                     # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
                         model.active_layers *=2
                         threshold[0] *= 0.5
-                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+                        # print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
 
         def exp(window=10):
-            print("exponential strategy")
+            # print("exponential strategy")
             current_threshold = threshold[1]
             threshold[1] *= 0.99
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= window+1:  # Ensure we have at least 11 epochs to compare the last 10
-                print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold}")
+                # print(f"Current difference: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)])}, threshold: {current_threshold}, condition: {((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold}")
                 if ((val_acc_history[-1] - val_acc_history[-(window+1)]) / val_acc_history[-(window+1)]) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
                     # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
                         model.active_layers *=2
-                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+                        # print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
         
         def avg(l): return sum(l) / len(l)
 
         def smooth(window=10):
-            print("Smoothing strategy")
+            # print("Smoothing strategy")
             current_threshold = threshold[0]
             # Here, add logic to update the model's active layers based on validation accuracy history
             if len(val_acc_history) >= 2*window:  # Ensure we have at least 11 epochs to compare the last 10
-                print(f"Current difference: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)]))}, threshold: {current_threshold}, condition: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)])) < current_threshold}")
+                # print(f"Current difference: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)]))}, threshold: {current_threshold}, condition: {((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)])) < current_threshold}")
                 if ((avg(val_acc_history[-window:]) - avg(val_acc_history[-2*window:(-window)])) / avg(val_acc_history[-2*window:(-window)])) < current_threshold:
                     # Check if model has attribute `active_layers` and update it
                     # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
                         model.active_layers *=2
                         threshold[0] *= 0.5
-                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+                        # print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
         
         def weight_change(window=10, norm_type="Frobenius"):
-            print("The Frobenius based strategy!!")
+            # print("The Frobenius based strategy!!")
             # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}")
             current_threshold = threshold[2]
             # Problem: deep network, the sum doesn't reflect individuals
@@ -867,12 +871,12 @@ def main():
             if len(weight_f_history) >= window+1:
                 if norm_type=="Frobenius": old, new = weight_f_history[-(window+1)], weight_f_history[-1]
                 else: old, new = weight_p1_history[-(window+1)], weight_p1_history[-1]
-                print(f"Current difference: {abs(new - old) / old}, threshold: {current_threshold}, condition: {(abs(new - old) / old) < current_threshold}")
+                # print(f"Current difference: {abs(new - old) / old}, threshold: {current_threshold}, condition: {(abs(new - old) / old) < current_threshold}")
                 if (abs(new - old) / old) < current_threshold:
                     if hasattr(model, 'active_layers') and model.active_layers < sum(model.layers):
                         model.active_layers *=2
                         threshold[2] *= 0.5
-                        print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
+                        # print(f"Epoch {epoch}: Increasing active layers to {model.active_layers}")
             
         def layer_strategy(s):
             s = int(s)
@@ -925,7 +929,7 @@ def main():
 
         for epoch in range(start_epoch, num_epochs):
             epoch_start_time = time.time()
-            print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}; double at epoch: {args.double_at_epoch}; doubling now? {int(args.double_at_epoch) == epoch}")
+            # print(f"Epoch {epoch}; current number of active layers: {model.active_layers}; total number of active layers: {sum(model.layers)}; double at epoch: {args.double_at_epoch}; doubling now? {int(args.double_at_epoch) == epoch}")
             if hasattr(dataset_train, 'set_epoch'):
                 dataset_train.set_epoch(epoch)
             elif args.distributed and hasattr(loader_train.sampler, 'set_epoch'):
@@ -936,8 +940,9 @@ def main():
             layer_strategy(args.strategy)
             
             if epoch == int(args.double_at_epoch): 
-                model.need_initialization = model.active_layers
-                model.active_layers *= 2
+                # model.need_initialization = model.active_layers
+                # model.active_layers *= 2
+                model.expand = True
                 print(f"Doubling at epoch: {epoch}")
 
             train_metrics = train_one_epoch(
@@ -958,7 +963,7 @@ def main():
 
             # Update this section to include train_metrics in any logging or saving action.
             # print(f"Training metrics: Loss {train_metrics['loss']:.4f}, Acc@1 {train_metrics['acc1']:.4f}")
-            model.last_norm = train_metrics['avg_grad_norm']
+            model.update_last_norm(train_metrics['avg_grad_norm'])
 
             if args.distributed and args.dist_bn in ('broadcast', 'reduce'):
                 if utils.is_primary(args):
@@ -979,7 +984,7 @@ def main():
                 args,
                 amp_autocast=amp_autocast,
             )
-            print(f"Test acc1: {test_metrics['top1']}; Val acc1: {eval_metrics['top1']}; Train acc1: {train_metrics['acc1']}; Average gradient norm: {train_metrics['avg_grad_norm']}")
+            # print(f"Test acc1: {test_metrics['top1']}; Val acc1: {eval_metrics['top1']}; Train acc1: {train_metrics['acc1']}; Average gradient norm: {train_metrics['avg_grad_norm']}")
             current_top1_acc = eval_metrics['top1']
             val_acc_history.append(current_top1_acc)
             weight_norms(model)
@@ -1067,19 +1072,19 @@ def custom_accuracy_one_hot(output, target):
     #     probabilities = output
 
     # Determine predicted classes and true classes by finding the index of the maximum value in each row
-    print(f"Output shape: {output.shape}")
-    print(f"Target shape: {target.shape}")
+    # print(f"Output shape: {output.shape}")
+    # print(f"Target shape: {target.shape}")
     predicted_classes = output.argmax(dim=1)
     true_classes = target.argmax(dim=1)
-    print(f"True classes shape: {true_classes.shape}")
-    print(f"True classes: {true_classes}")
+    # print(f"True classes shape: {true_classes.shape}")
+    # print(f"True classes: {true_classes}")
 
     # Calculate accuracy by comparing the predicted classes to the true classes
     correct_predictions = (predicted_classes == true_classes).sum().item()
     total_predictions = target.size(0)
 
     accuracy = (correct_predictions / total_predictions) * 100
-    print(f"Correct preds: {correct_predictions}; Total predictions: {total_predictions}; Accuracy: {accuracy}")
+    # print(f"Correct preds: {correct_predictions}; Total predictions: {total_predictions}; Accuracy: {accuracy}")
     return accuracy
 
 def train_one_epoch(
@@ -1149,11 +1154,11 @@ def train_one_epoch(
                 # print("Target shape:", target.shape)
                 # print(output[0])
                 # print(target[0])
-                print("forward!\n")
-                print(output[0])
-                print(target[0])
+                # print("forward!\n")
+                # print(output[0])
+                # print(target[0])
                 acc1 = custom_accuracy_one_hot(output, target)
-                print(acc1)
+                # print(acc1)
                 loss = loss_fn(output, target)
             if accum_steps > 1:
                 loss /= accum_steps
@@ -1227,16 +1232,16 @@ def train_one_epoch(
                 reduced_loss = utils.reduce_tensor(loss.data, args.world_size)
                 reduced_acc1 = utils.reduce_tensor(acc1, args.world_size) if args.distributed else acc1
                 losses_m.update(reduced_loss.item() * accum_steps, input.size(0))
-                print(f"Current reduced_acc1: {reduced_acc1}")
+                # print(f"Current reduced_acc1: {reduced_acc1}")
                 # print(f"Current reduced_acc1.item(): {reduced_acc1.item()}")
                 top1_m.update(reduced_acc1, input.size(0))
                 update_sample_count *= args.world_size
             else: 
-                print(f"Current acc1: {acc1}")
+                # print(f"Current acc1: {acc1}")
                 # print(f"Current acc1.item(): {acc1.item()}")
                 top1_m.update(acc1, input.size(0))
             
-            print(f"Average top 1 accuracy: {top1_m.avg}")
+            # print(f"Average top 1 accuracy: {top1_m.avg}")
 
             
             
