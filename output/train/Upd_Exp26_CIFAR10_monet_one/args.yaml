@@ -30,7 +30,7 @@ decay_milestones:
 - 270
 decay_rate: 0.1
 dist_bn: reduce
-double_at_epoch: '0'
+double_at_epoch: '1'
 drop: 0.0
 drop_block: null
 drop_connect: null
@@ -44,6 +44,7 @@ fuser: ''
 gp: null
 grad_accum_steps: 1
 grad_checkpointing: false
+grow_width: '1'
 head_init_bias: null
 head_init_scale: null
 hflip: 0.5

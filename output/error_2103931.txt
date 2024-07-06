@@ -1,0 +1,41 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_16 model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_16 created, param count:17492010
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+Using native Torch AMP. Training in mixed precision.
+/home/sharipov/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/111 (  0%)]  Loss: 2.30 (2.30)  Time: 3.164s,  141.57/s  (3.164s,  141.57/s)  LR: 1.000e-05  Data: 1.587 (1.587)
+Train: 0 [  50/111 ( 45%)]  Loss: 2.24 (2.26)  Time: 0.254s, 1766.76/s  (0.316s, 1416.74/s)  LR: 1.000e-05  Data: 0.018 (0.048)
+Train: 0 [ 100/111 ( 91%)]  Loss: 2.13 (2.23)  Time: 0.261s, 1716.10/s  (0.288s, 1552.92/s)  LR: 1.000e-05  Data: 0.024 (0.033)
+Test: [   0/111]  Time: 1.150 (1.150)  Loss:   2.035 ( 2.035)  Acc@1:  23.661 ( 23.661)  Acc@5:  81.696 ( 81.696)
+Test: [  50/111]  Time: 0.082 (0.103)  Loss:   2.042 ( 2.037)  Acc@1:  22.545 ( 25.416)  Acc@5:  78.571 ( 80.944)
+Test: [ 100/111]  Time: 0.082 (0.091)  Loss:   2.049 ( 2.038)  Acc@1:  24.777 ( 25.027)  Acc@5:  82.812 ( 80.916)
+Test: [ 111/111]  Time: 0.083 (0.089)  Loss:   2.033 ( 2.037)  Acc@1:  26.471 ( 25.114)  Acc@5:  83.824 ( 80.954)
+Test: [   0/22]  Time: 1.594 (1.594)  Loss:   2.035 ( 2.035)  Acc@1:  24.107 ( 24.107)  Acc@5:  81.696 ( 81.696)
+Test: [  22/22]  Time: 0.046 (0.141)  Loss:   2.010 ( 2.034)  Acc@1:  22.222 ( 25.400)  Acc@5:  79.861 ( 81.190)
+Current checkpoints:
+ ('./output/train/Upd_Exp52_CIFAR10_16_train_acc/checkpoint-0.pth.tar', 25.114001108398437)
+
+Train: 1 [   0/111 (  0%)]  Loss: 2.23 (2.23)  Time: 1.042s,  429.97/s  (1.042s,  429.97/s)  LR: 1.900e-05  Data: 0.653 (0.653)
+Train: 1 [  50/111 ( 45%)]  Loss: 1.97 (2.15)  Time: 0.249s, 1801.09/s  (0.287s, 1560.50/s)  LR: 1.900e-05  Data: 0.019 (0.031)
+Train: 1 [ 100/111 ( 91%)]  Loss: 2.02 (2.14)  Time: 0.259s, 1729.06/s  (0.273s, 1638.25/s)  LR: 1.900e-05  Data: 0.026 (0.025)
+Test: [   0/111]  Time: 0.263 (0.263)  Loss:   1.869 ( 1.869)  Acc@1:  30.580 ( 30.580)  Acc@5:  86.607 ( 86.607)
+Test: [  50/111]  Time: 0.077 (0.086)  Loss:   1.898 ( 1.882)  Acc@1:  34.821 ( 32.440)  Acc@5:  83.929 ( 85.347)
+Test: [ 100/111]  Time: 0.077 (0.083)  Loss:   1.887 ( 1.883)  Acc@1:  30.580 ( 32.541)  Acc@5:  85.714 ( 85.102)
+Test: [ 111/111]  Time: 0.039 (0.081)  Loss:   1.849 ( 1.882)  Acc@1:  37.868 ( 32.642)  Acc@5:  89.338 ( 85.136)
+Test: [   0/22]  Time: 0.271 (0.271)  Loss:   1.887 ( 1.887)  Acc@1:  31.696 ( 31.696)  Acc@5:  85.938 ( 85.938)
+Test: [  22/22]  Time: 0.023 (0.085)  Loss:   1.829 ( 1.878)  Acc@1:  30.556 ( 32.390)  Acc@5:  86.111 ( 85.200)
+Current checkpoints:
+ ('./output/train/Upd_Exp52_CIFAR10_16_train_acc/checkpoint-1.pth.tar', 32.642001473388675)
+
+Train: 2 [   0/111 (  0%)]  Loss: 2.21 (2.21)  Time: 0.956s,  468.82/s  (0.956s,  468.82/s)  LR: 2.800e-05  Data: 0.680 (0.680)
+Train: 2 [  50/111 ( 45%)]  Loss: 2.15 (2.10)  Time: 0.257s, 1740.83/s  (0.284s, 1579.65/s)  LR: 2.800e-05  Data: 0.024 (0.033)
+slurmstepd: error: *** JOB 2103931 ON i19 CANCELLED AT 2024-06-07T21:21:49 ***

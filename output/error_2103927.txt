@@ -1,0 +1,61 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T_16 model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Model MONet_T_16 created, param count:17492010
+Data processing configuration for current model + dataset:
+	input_size: (3, 32, 32)
+	interpolation: bicubic
+	mean: (0.485, 0.456, 0.406)
+	std: (0.229, 0.224, 0.225)
+	crop_pct: 0.875
+	crop_mode: center
+Using native Torch AMP. Training in mixed precision.
+/home/sharipov/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Scheduled epochs: 300. LR stepped per epoch.
+Train: 0 [   0/111 (  0%)]  Loss: 2.30 (2.30)  Time: 3.408s,  131.45/s  (3.408s,  131.45/s)  LR: 1.000e-05  Data: 1.798 (1.798)
+Train: 0 [  50/111 ( 45%)]  Loss: 2.24 (2.26)  Time: 0.249s, 1800.83/s  (0.320s, 1401.56/s)  LR: 1.000e-05  Data: 0.012 (0.053)
+Train: 0 [ 100/111 ( 91%)]  Loss: 2.13 (2.23)  Time: 0.255s, 1757.96/s  (0.290s, 1546.58/s)  LR: 1.000e-05  Data: 0.012 (0.037)
+Test: [   0/111]  Time: 1.218 (1.218)  Loss:   2.035 ( 2.035)  Acc@1:  22.991 ( 22.991)  Acc@5:  81.920 ( 81.920)
+Test: [  50/111]  Time: 0.072 (0.103)  Loss:   2.041 ( 2.035)  Acc@1:  24.107 ( 25.464)  Acc@5:  79.241 ( 80.961)
+Test: [ 100/111]  Time: 0.087 (0.092)  Loss:   2.048 ( 2.037)  Acc@1:  24.107 ( 25.139)  Acc@5:  83.036 ( 80.965)
+Test: [ 111/111]  Time: 0.083 (0.090)  Loss:   2.032 ( 2.036)  Acc@1:  27.941 ( 25.250)  Acc@5:  84.191 ( 80.988)
+Test: [   0/22]  Time: 1.332 (1.332)  Loss:   2.035 ( 2.035)  Acc@1:  25.000 ( 25.000)  Acc@5:  81.473 ( 81.473)
+Test: [  22/22]  Time: 0.047 (0.131)  Loss:   2.006 ( 2.033)  Acc@1:  21.528 ( 25.550)  Acc@5:  78.472 ( 81.100)
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1515, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 1201, in main
+    best_metric, best_epoch = saver.save_checkpoint(epoch, metric=save_metric)
+  File "/home/sharipov/monet/timm/utils/checkpoint_saver.py", line 78, in save_checkpoint
+    os.link(last_save_path, save_path)
+FileExistsError: [Errno 17] File exists: './output/train/Upd_Exp50_CIFAR10_16_train_acc/last.pth.tar' -> './output/train/Upd_Exp50_CIFAR10_16_train_acc/checkpoint-0.pth.tar'
+[2024-06-07 21:16:51,867] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 294320) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/home/sharipov/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-07_21:16:51
+  host      : i19.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 294320)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,2 @@
+epoch,train_loss,train_acc1,train_avg_grad_norm,eval_loss,eval_top1,test_loss,test_top1,lr,Active layers,Total Training Time (s),Epoch Time (s),FLOPs,Layers,Spectral norm,Frobenius norm
+0,2.2222753730980127,"tensor(15.1042, device='cuda:0')","tensor(inf, device='cuda:0')",2.0370031898498535,25.18800113708496,2.0339307579040526,25.400001232910157,1e-05,16,44.27634000778198,44.27633762359619,1034969088.0,16,4101.154296875,484909.625

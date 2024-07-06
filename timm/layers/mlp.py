@@ -10,6 +10,8 @@ from einops.layers.torch import Reduce
 from .grn import GlobalResponseNorm
 from .helpers import to_2tuple
 import math
+import torch
+import torch.nn.functional as F
 
 class Spatial_Shift(nn.Module):
     def __init__(self):
@@ -283,7 +285,7 @@ import torch.nn as nn
 import math
 
 def custom_initialize(layer, initialization_choice, mask=None, last_norm=None):
-    print(f"Initializing with choice {initialization_choice}, Mask applied: {'Yes' if mask is not None else 'No'}")
+    # print(f"Initializing with choice {initialization_choice}, Mask applied: {'Yes' if mask is not None else 'No'}")
     init_options = {
         0: lambda: recursive_apply(layer, baseline_init, mask=mask),
         1: lambda: recursive_apply(layer, grad_norm_normal_init, mask=mask, last_norm=last_norm),
@@ -295,41 +297,41 @@ def custom_initialize(layer, initialization_choice, mask=None, last_norm=None):
     init_options.get(initialization_choice, lambda: None)()
 
 def custom_init_weight(new_active, weight, init_fn):
-    print("Applying custom initialization to newly activated weights")
+    # print("Applying custom initialization to newly activated weights")
     temp_weight = torch.empty_like(weight)
     init_fn(temp_weight)
     # Only update weights where new_active is True
     with torch.no_grad():
         weight[new_active] = temp_weight[new_active]
-    print(f"Weights updated at {new_active.sum()} positions")
+    # print(f"Weights updated at {new_active.sum()} positions")
 
 def recursive_apply(module, init_fn, mask=None, **kwargs):
     for child in module.children():
         recursive_apply(child, init_fn, mask=mask, **kwargs)  # Apply recursively
     if isinstance(module, nn.Linear):
-        print(f"Applying initialization function to module: {module}")
+        # print(f"Applying initialization function to module: {module}")
         init_fn(module, mask, **kwargs)  # Apply to current module if it's a Linear layer
 
 def baseline_init(layer, mask):
     if hasattr(layer, 'weight'):
-        print(f"Applying Xavier Uniform initialization to layer: {layer}")
+        # print(f"Applying Xavier Uniform initialization to layer: {layer}")
         custom_init_weight(mask, layer.weight, lambda w: torch.nn.init.xavier_uniform_(w))
 
 def grad_norm_normal_init(layer, mask, last_norm=None):
     if hasattr(layer, 'weight'):
         if last_norm: mean_abs_value = last_norm
-        else: mean_abs_value = 1e-1
+        else: mean_abs_value = 3e-11
         std_dev = mean_abs_value * math.sqrt(math.pi / 2)
-        print(f"Applying Normal initialization with std_dev {std_dev} to layer: {layer}; last_norm is none: {last_norm is None}; mean abs val: {mean_abs_value}")
+        # print(f"Applying Normal initialization with std_dev {std_dev} to layer: {layer}; last_norm is none: {last_norm is None}; mean abs val: {mean_abs_value}")
         custom_init_weight(mask, layer.weight, lambda w: torch.nn.init.normal_(w, mean=0.0, std=std_dev))
 
 def grad_norm_uniform_init(layer, mask, last_norm=None):
     if hasattr(layer, 'weight'):
         if last_norm: mean_abs_value = last_norm
-        else: mean_abs_value = 1e-1
+        else: mean_abs_value = 3e-11
         a = -2 * mean_abs_value
         b = 2 * mean_abs_value
-        print(f"Applying Uniform initialization between {a} and {b} to layer: {layer}; last_norm is none: {last_norm is None}; mean abs val: {mean_abs_value}")
+        # print(f"Applying Uniform initialization between {a} and {b} to layer: {layer}; last_norm is none: {last_norm is None}; mean abs val: {mean_abs_value}")
         custom_init_weight(mask, layer.weight, lambda w: torch.nn.init.uniform_(w, a=a, b=b))
 
 def copy_weights(module, mask):
@@ -339,14 +341,17 @@ def copy_weights(module, mask):
                 source_indices = (mask == 0).nonzero(as_tuple=True)
                 target_indices = (mask == 1).nonzero(as_tuple=True)
                 if len(source_indices[0]) == len(target_indices[0]):
-                    print(f"Copying weights from non-masked to masked positions in module: {module}")
+                    # print(f"Copying weights from non-masked to masked positions in module: {module}")
                     module.weight.data[target_indices] = module.weight.data[source_indices]
                 else:
                     raise ValueError("Mismatch in the count of newly activated and previously active weights.")
             else:
                 raise ValueError("Mismatch in dimensions of weights and mask.")
-        print("Weight copy complete.")
+        # print("Weight copy complete.")
 
+class CReLU(nn.Module):
+    def forward(self, x):
+        return torch.cat((F.relu(x), F.relu(-x)), dim=-1)
 
 class PolyMlp(nn.Module):
     """ MLP as used in PolyNet  CP decomposition
@@ -370,7 +375,8 @@ class PolyMlp(nn.Module):
             grow_width = False,
             expand = False,
             initialization_choice=4,
-            monet = None
+            monet = None,
+            crelu = False
     ):
         super().__init__()
         self.in_features = in_features
@@ -391,15 +397,25 @@ class PolyMlp(nn.Module):
         self.initialization_choice = initialization_choice
         self.monet = monet
         self.last_norm = None
-
+        self.activation_type = None
         self.n_degree = n_degree
         self.hidden_features = hidden_features
+        if crelu: 
+            self.act_layer = CReLU()
+            self.activation_type = "crelu"
+            self.hidden_features = self.hidden_features // 2
+            print("Using crelu!!")
         self.U1 = linear_layer(self.in_features, self.hidden_features, bias=bias)
         self.U2 = linear_layer(self.in_features, self.hidden_features//8, bias=bias)
-        self.U3 = linear_layer(self.hidden_features//8, self.hidden_features, bias=bias)
-        self.C = linear_layer(self.hidden_features, self.out_features, bias=True) 
+        if crelu:
+            self.U3 = linear_layer(2 * self.hidden_features//8, self.hidden_features, bias=bias)
+            self.C = linear_layer(hidden_features * 2, self.out_features, bias=True)  # Output dimension doubled after CReLU
+        else:
+            self.U3 = linear_layer(self.hidden_features//8, self.hidden_features, bias=bias)
+            self.C = linear_layer(hidden_features, self.out_features, bias=True)
         self.drop2 = nn.Dropout(drop_probs[0])
         
+
         # These masks are for replicating the pruning paper
         # Masks initialized to ones
         # Turned off gradient since these are updated through a heuristic and not through the gradient descent
@@ -409,10 +425,10 @@ class PolyMlp(nn.Module):
         self.mask_C = nn.Parameter(torch.ones_like(self.C.weight), requires_grad=False)
 
         # These masks are for growing in width
-        self.mask_U1_w = nn.Parameter(self._generate_mask(self.U1.weight.shape), requires_grad=False)
-        self.mask_U2_w = nn.Parameter(self._generate_mask(self.U2.weight.shape), requires_grad=False)
-        self.mask_U3_w = nn.Parameter(self._generate_mask(self.U3.weight.shape), requires_grad=False)
-        self.mask_C_w = nn.Parameter(self._generate_mask(self.C.weight.shape), requires_grad=False)
+        self.mask_U1_w = nn.Parameter(self._generate_mask(self.U1), requires_grad=False)
+        self.mask_U2_w = nn.Parameter(self._generate_mask(self.U2), requires_grad=False)
+        self.mask_U3_w = nn.Parameter(self._generate_mask(self.U3), requires_grad=False)
+        self.mask_C_w = nn.Parameter(self._generate_mask(self.C), requires_grad=False)
 
         self.mask_U1_w_old = None
         self.mask_U2_w_old = None
@@ -428,13 +444,16 @@ class PolyMlp(nn.Module):
         self.init_weights()
 
 
-    def _generate_mask(self, shape):
-        rows, columns = shape
+    def _generate_mask(self, layer):
+        # print(f"Layer: \n {layer}")
+        # print(f"Current shape: {layer.weight.shape}")
+        rows, columns = layer.weight.shape
 
         # Create a one-dimensional mask for rows: 1s mean keep, 0s mean drop
         row_mask = torch.ones(rows)
 
         # Zero out half of the rows
+        # Corresponds to zeroing out half of the output dimension
         num_zero_rows = rows // 2
         zero_indices = torch.randperm(rows)[:num_zero_rows]  # Randomly select rows to zero out
         row_mask[zero_indices] = 0
@@ -477,34 +496,43 @@ class PolyMlp(nn.Module):
         # Assuming x has dimension B * D
         if self.prune: self.apply_masks()
         if self.expand: 
-            for mask, old_mask, layer in [
-                    (self.mask_U1_w, self.mask_U1_w, self.U1),
-                    (self.mask_U2_w, self.mask_U2_w, self.U2),
-                    (self.mask_U3_w, self.mask_U3_w, self.U3),
-                    (self.mask_C_w, self.mask_C_w, self.C)
+            for mask, layer in [
+                    (self.mask_U1_w, self.U1),
+                    (self.mask_U2_w, self.U2),
+                    (self.mask_U3_w, self.U3),
+                    (self.mask_C_w, self.C)
                 ]:
                 old_mask = mask.clone()
                 mask.data.fill_(1.0)
-                new_active = (mask.data > 0) & (mask.data != old_mask)
+                new_active = mask.data != old_mask
                 custom_initialize(layer, self.initialization_choice, new_active, self.last_norm)
                 # custom_init_weight(new_active, layer.weight, nn.init.kaiming_normal_)
             self.expand = False
 
-        if self.grow_width: self.apply_masks_w()
+        if self.grow_width: 
+            # print("Applying mask!")
+            # print(self.mask_C_w)
+            self.apply_masks_w()
 
         if self.use_spatial:   
             # 2 * D * D
             # mlp2: 2 * D * 3D
             # Params: D * D   
             # mlp2 params: D * 3D         
-            out1 = self.U1(x)   
+            out1 = self.U1(x)
             # print(f"1. Out1 shape: {out1.shape}")
+            if self.activation_type and self.activation_type == "crelu":
+                out1 = self.act_layer(out1)  
+            # print(f"2. Out1 shape: {out1.shape}")
             # 2 * D * D / 8    
             # Params: D * D / 8    
             # mlp2: 2 * D * 3D / 8
             # mlp2 params: D * 3D / 8
             out2 = self.U2(x)  
             # print(f"1. Out2 shape: {out2.shape}")   
+            if self.activation_type and self.activation_type == "crelu":
+                out2 = self.act_layer(out2)  
+            # print(f"2. Out2 shape: {out2.shape}")   
             # D
             #mlp2: 3D
             out1 = self.spatial_shift(out1)
@@ -516,7 +544,13 @@ class PolyMlp(nn.Module):
             # mlp2: 2 * 3D * 3D / 8
             # mlp2 params: 3D * 3D / 8
             # print(f"2. Out2 shape: {out2.shape}")   
+            # input_dim = self.U3.in_features
+            # output_dim = self.U3.out_features
+            # print(f"Input Dimension: {input_dim}")
+            # print(f"Output Dimension: {output_dim}")
             out2 = self.U3(out2) 
+            if self.activation_type and self.activation_type == "crelu":
+                out2 = self.act_layer(out2)  
             # print(f"3. Out2 shape: {out2.shape}")   
             # 6D
             # mlp2: 6 * 3D
@@ -538,11 +572,17 @@ class PolyMlp(nn.Module):
         else:
             # FLOPS: 2 * D * D (2 * input dimension * output dimension)
             # Factor 2 is due to the fact that we do multiplications and additions
-            out1 = self.U1(x)          
+            out1 = self.U1(x) 
+            if self.activation_type and self.activation_type == "crelu":
+                out1 = self.act_layer(out1)           
             # FLOPS: 2 * D * D / 8 
             out2 = self.U2(x)
+            if self.activation_type and self.activation_type == "crelu":
+                out2 = self.act_layer(out2)  
             # FLOPS: 2 * D / 8 * D 
             out2 = self.U3(out2)
+            if self.activation_type and self.activation_type == "crelu":
+                out2 = self.act_layer(out2)  
             # FLOPS: 6D
             out1 = self.norm1(out1)
             # FLOPS: 6D
@@ -562,6 +602,13 @@ class PolyMlp(nn.Module):
         # Flops: 2*D*D
         #mlp2: 3D*D
         # params: D*D
+        if self.activation_type and self.activation_type == "crelu":
+            out1 = self.act_layer(out1)  
+        # input_dim = self.C.in_features
+        # output_dim = self.C.out_features
+        # print(f"C: Input Dimension: {input_dim}")
+        # print(f"C: Output Dimension: {output_dim}")
+        # print(out1.shape)
         out1 = self.C(out1)
         # print(f"final: out1.shape")
         # Total FLOPS:  16.125* D + 4.5 * D^2

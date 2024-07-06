@@ -1,0 +1,4 @@
+epoch,train_loss,train_acc1,train_avg_grad_norm,eval_loss,eval_top1,test_loss,test_top1,lr,Active layers,Total Training Time (s),Epoch Time (s),FLOPs,Layers,Spectral norm,Frobenius norm
+0,2.222235477722443,"tensor(14.9554, device='cuda:0')","tensor(inf, device='cuda:0')",2.036792755432129,25.196001197509766,2.0338885524749757,25.360001086425783,1e-05,16,47.25296330451965,47.252960205078125,1034969088.0,16,4101.15576171875,484909.4375
+epoch,train_loss,train_acc1,train_avg_grad_norm,eval_loss,eval_top1,test_loss,test_top1,lr,Active layers,Total Training Time (s),Epoch Time (s),FLOPs,Layers,Spectral norm,Frobenius norm
+0,2.222090676024153,"tensor(15.0298, device='cuda:0')","tensor(inf, device='cuda:0')",2.0361841411590578,25.250001135253907,2.032929956817627,25.55000118408203,1e-05,16,44.574252128601074,44.57424998283386,1034969088.0,16,4101.15673828125,484909.5

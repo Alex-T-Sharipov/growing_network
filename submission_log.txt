@@ -1,0 +1,422 @@
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--dataset torch/CIFAR10 \
+--data-dir /home/sharipov/monet/data/CIFAR10 \
+--model MONet_T_16_double \
+--experiment Upd_Exp63_CIFAR10_8plus8_looks_linear_init \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 150 \
+--grow_mode 2 \
+--initialization_choice 5 \
+--batch-size 448 \
+--crelu 1 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1687.88 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 765.53 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,687.9     │ 765.55      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119606
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_16_double \
+--experiment Upd_Exp64_image_8plus8_init_0 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 2 \
+--initialization_choice 0 \
+--batch-size 448 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 620.38 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 620.4       │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119608
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_16_double \
+--experiment Upd_Exp64_image_8plus8_init_1 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 2 \
+--initialization_choice 1 \
+--batch-size 448 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 799.40 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 799.4       │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119609
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_16_double \
+--experiment Upd_Exp64_image_8plus8_init_2 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 2 \
+--initialization_choice 2 \
+--batch-size 448 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 779.24 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 779.25      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119610
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_16_double \
+--experiment Upd_Exp64_image_8plus8_init_3 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 2 \
+--initialization_choice 3 \
+--batch-size 448 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 765.53 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 765.55      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119611
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_16_double \
+--experiment Upd_Exp64_image_8plus8_init_5 \
+--num-classes 10 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 2 \
+--initialization_choice 5 \
+--batch-size 448 \
+--opt adamw \
+--lr 1e-4 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 745.37 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 745.4       │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119612
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_0_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 0 \
+--use_residuals 1 ^C
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_0_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 0 \
+--use_residuals 1 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 765.53 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 765.55      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119614
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_3_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 3 \
+--use_residuals 1 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 745.37 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 745.4       │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119615
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_6_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 6 \
+--use_residuals 1 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 765.53 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 765.55      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119616
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_9_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 9 \
+--use_residuals 1 
+sbatch: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 515.54 CHF
+sbatch: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ account : master             │ 0           │ 1,690.25    │ 515.55      │
+sbatch: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+Submitted batch job 2119617
+[sharipov@izar1 monet]$ sbatch ./distributed_train.sh 1 \
+--data-dir /home/sharipov/monet/data/imagenet100 \
+--model MONet_T_12 \
+--opt adamw \
+--lr 1e-4 \
+--batch-size 448 \
+--epochs 450 \
+--sched cosine \
+--warmup-epochs 10 \
+--min-lr 1e-5 \
+--warmup-lr 1e-5 \
+--lr-base 1e-3 \
+--smoothing 0.1 \
+--mixup 0.5 \
+--cutmix 0.5 \
+--weight-decay 0.01 \
+--experiment Upd_Exp65_no_amp_imagenet_gradient_12_plus_4_insert_12_actual_residual \
+--num-classes 100 \
+--input-size 3 32 32 \
+--double_at_epoch 100 \
+--grow_mode 3 \
+--new_layers 4 \
+--new_layers_index 12 \
+--use_residuals 1 
+sbatch: error: [ESTIMATION] The estimated cost of this job is CHF 2.45
+sbatch: error: [CAPPING]    All users of the account master have consumed 1690.22 CHF
+sbatch: error: [CAPPING]    In addition, based on queued and running jobs all users of the account master will consume up to 765.53 CHF
+sbatch: error: [CAPPING]    Your username sharipov has consumed 19.13 CHF
+sbatch: error: [CAPPING]    In addition, based on queued and running jobs your username sharipov will consume up to 0.00 CHF
+sbatch: error: ╭──────────────────────────────┬─────────────┬─────────────┬─────────────╮
+sbatch: error: │ [in CHF]                     │ Capping     │ Consumed    │ Queued      │
+sbatch: error: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: error: │ account : master             │ 0           │ 1,690.25    │ 765.55      │
+sbatch: error: ├──────────────────────────────┼─────────────┼─────────────┼─────────────┤
+sbatch: error: │ username : sharipov          │ 0           │ 19.15       │ 0.0         │
+sbatch: error: ╰──────────────────────────────┴─────────────┴─────────────┴─────────────╯
+sbatch: error: QOSMaxSubmitJobPerUserLimit
+sbatch: error: Batch job submission failed: Job violates accounting/QOS policy (job submit limit, user's size and/or time limits)

@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 from einops.layers.torch import Reduce
 from einops import rearrange
+import math 
 
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.layers import PatchEmbed, Mlp, GluMlp, GatedMlp, DropPath, lecun_normal_, to_2tuple
@@ -56,17 +57,21 @@ class PolyBlock(nn.Module):
             use_act = False,
             prune=False,
             initialization_choice = 4,
-            monet = None
+            monet = None,
+            grow_width=False,
+            use_skip_connections=False,
+            crelu=False
     ):
         super().__init__()
         self.embed_dim = embed_dim
+        self.use_skip_connections = use_skip_connections
         self.expansion_factor = expansion_factor
         self.norm = norm_layer(self.embed_dim)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
-        self.mlp1 = mlp_layer(self.embed_dim, self.embed_dim, self.embed_dim, act_layer=act_layer,drop=drop,use_spatial=True,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet)
-        self.mlp2= mlp_layer(self.embed_dim, self.embed_dim*self.expansion_factor, self.embed_dim,act_layer=act_layer, drop=drop,use_spatial=False,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet)
+        self.mlp1 = mlp_layer(self.embed_dim, self.embed_dim, self.embed_dim, act_layer=act_layer,drop=drop,use_spatial=True,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet, grow_width=grow_width, crelu=crelu)
+        self.mlp2= mlp_layer(self.embed_dim, self.embed_dim*self.expansion_factor, self.embed_dim,act_layer=act_layer, drop=drop,use_spatial=False,use_act=use_act, prune=prune, initialization_choice=initialization_choice, monet = monet, grow_width=grow_width, crelu=crelu)
     
-    def forward(self, x):
+    def forward(self, x, residual=None):
         # Assuming X has shape B * D, B = batch size, D = dimension
         # Normalization
         # Calculating the mean: D-1 additions, 1 division = D in total
@@ -77,6 +82,12 @@ class PolyBlock(nn.Module):
 
         # Total params: 2
         # print(f"Input to polyblock: {x.shape}")
+        if self.use_skip_connections and residual is not None:
+            x = x + residual
+        #     print("Using the residual")
+        # else: print(f"Skipping the residual")
+
+        x = x.to(self.norm.weight.device)
         z = self.norm(x)
         # print(f"2. Z size: {z.size()}")
 
@@ -114,18 +125,25 @@ class PolyBlock(nn.Module):
 
 
 class basic_blocks(nn.Module):
-    def __init__(self,index,layers,embed_dim, expansion_factor = 4, dropout = 0., drop_path = 0.,norm_layer=partial(nn.LayerNorm, eps=1e-6),act_layer = nn.GELU,use_act = False, prune=False, initialization_choice = 4, monet = None):
+    def __init__(self,index,layers,embed_dim, expansion_factor = 4, dropout = 0., drop_path = 0.,norm_layer=partial(nn.LayerNorm, eps=1e-6),act_layer = nn.GELU,use_act = False, prune=False, initialization_choice = 4, monet = None, grow_width=False, crelu=False):
         super().__init__()
 
         self.model = nn.Sequential(
             *[nn.Sequential(
-                PolyBlock(embed_dim = embed_dim, expansion_factor = expansion_factor, drop = dropout, drop_path = drop_path,use_act = use_act,act_layer=act_layer,norm_layer=norm_layer, prune=prune, initialization_choice=initialization_choice, monet = monet),
+                PolyBlock(embed_dim = embed_dim, expansion_factor = expansion_factor, drop = dropout, drop_path = drop_path,use_act = use_act,act_layer=act_layer,norm_layer=norm_layer, prune=prune, initialization_choice=initialization_choice, monet = monet, grow_width=grow_width, crelu=crelu),
             ) for _ in range(layers[index])]
         )
     
     def forward(self, x):
         x = rearrange(x, 'b c h w -> b h w c')
-        x = self.model(x)
+        residual = None
+        print("inside basic blocks")
+        for i, layer in enumerate(self.model):
+            print(i)
+            print(layer)
+            print(residual)
+            x = layer(x, residual)
+            residual = x
         x = rearrange(x, 'b h w c -> b c h w')
         return x
 
@@ -158,13 +176,31 @@ def baseline_init(layer):
                 # print("Applying bias")
                 torch.nn.init.zeros_(layer.bias)
 
-def grad_norm_normal_init(m, mean_abs_value=1.0):
+def looks_linear_init(m):
+    """Looks Linear initialization for Linear layers."""
+    with torch.no_grad():
+        if isinstance(m, torch.nn.Linear):
+            fan_in, fan_out = m.weight.size()
+            # Initialize W using xavier_uniform_
+            W1 = torch.empty(fan_in // 2, fan_out)
+            torch.nn.init.xavier_uniform_(W1)
+            W2 = torch.empty(fan_in // 2, fan_out)
+            torch.nn.init.xavier_uniform_(W2)
+            # Set the weight matrix with mirrored structure
+            m.weight[:fan_in // 2, :] = W1
+            m.weight[fan_in // 2:, :] = -W2
+            if m.bias is not None:
+                m.bias.zero_()
+
+
+def grad_norm_normal_init(m, mean_abs_value):
     """Initialize Linear layer weights to have a specific mean absolute value."""
     # print(m)
     with torch.no_grad():
         if isinstance(m, torch.nn.Linear):  # Check if the module is a Linear layer
             # print("Encountered a linear layer")
             # Calculate standard deviation based on desired mean absolute value
+            if not mean_abs_value or math.isinf(mean_abs_value): mean_abs_value = 3e-11
             std_dev = mean_abs_value * math.sqrt(math.pi / 2)
             # Initialize weights with a normal distribution centered at 0
             torch.nn.init.normal_(m.weight, mean=0.0, std=std_dev)
@@ -173,12 +209,13 @@ def grad_norm_normal_init(m, mean_abs_value=1.0):
                 # Initialize biases to zero
                 torch.nn.init.constant_(m.bias, 0)
 
-def grad_norm_uniform_init(m, mean_abs_value=1.0):
+def grad_norm_uniform_init(m, mean_abs_value):
     """Initialize Linear layer weights to have a specific mean absolute value using a uniform distribution."""
     with torch.no_grad():
         if isinstance(m, torch.nn.Linear):
             # print("Encountered a linear layer")
             # Calculate the range for the uniform distribution
+            if not mean_abs_value or math.isinf(mean_abs_value): mean_abs_value = 3e-11
             a = -2 * mean_abs_value
             b = 2 * mean_abs_value
             # Initialize weights with a uniform distribution
@@ -216,12 +253,15 @@ def copy_weights(src_module, dest_module):
             copy_weights(src_submodule, dest_submodule)
 
 def custom_initialize(layer, previous_layer, initialization_choice, last_norm):
+    # print(f"Current last norm: {last_norm}")
+    if initialization_choice == 5: print("Using looks linear initialization!")
     d = {
         0: lambda: recursive_apply(layer, baseline_init),
         1: lambda: recursive_apply(layer, grad_norm_normal_init, mean_abs_value=last_norm),
         2: lambda: recursive_apply(layer, grad_norm_uniform_init, mean_abs_value=last_norm),
         3: lambda: copy_weights(layer, previous_layer),
-        4: lambda: None
+        4: lambda: None,
+        5: lambda: recursive_apply(layer, looks_linear_init),
     }
     # print(f"{type(self.initialization_choice)}, {self.initialization_choice}")
     if not initialization_choice in d:
@@ -230,6 +270,146 @@ def custom_initialize(layer, previous_layer, initialization_choice, last_norm):
     else:
         # print(f"calling the function{self.initialization_choice}")
         d[initialization_choice]()
+
+class MONet_Original(nn.Module):
+    def __init__(
+        self,
+        image_size=224,
+        num_classes=1000,
+        in_chans=3,
+        patch_size= 2,
+        mlp_ratio = [0.5, 4.0],
+        block_layer =basic_blocks,
+        mlp_layer = PolyMlp,
+        # norm_layer=Affine,
+        norm_layer=partial(nn.LayerNorm, eps=1e-6),
+        act_layer=None,
+        drop_rate=0.,
+        drop_path_rate=0.,
+        nlhb=False,
+        global_pool='avg',
+        transitions = None,
+        embed_dim=[192, 384],
+        layers = None,
+        expansion_factor = [3, 3],
+        feature_fusion_layer = None,
+        use_act = False,
+        use_multi_level = False,
+        crelu = False
+    ):
+        # self, layers, img_size=224, patch_size=4, in_chans=3, num_classes=1000,
+        # embed_dims=None, transitions=None, segment_dim=None, mlp_ratios=None,  drop_rate=0., attn_drop_rate=0., drop_path_rate=0.,
+        # norm_layer=nn.LayerNorm, mlp_fn=CycleMLP, fork_feat=False
+        self.num_classes = num_classes
+        self.image_size = image_size
+        self.global_pool = global_pool
+        self.num_features = self.embed_dim = embed_dim[-1]  # num_features for consistency with other models
+        self.use_multi_level = use_multi_level
+        self.grad_checkpointing = False
+        self.layers = layers
+        self.embed_dim = embed_dim
+        self.expansion_factor = expansion_factor
+        self.drop_rate = drop_rate
+        self.drop_path_rate =drop_path_rate
+        self.norm_layer=norm_layer
+        self.act_layer=act_layer
+        self.use_act =use_act
+        self.crelu = crelu
+        image_size = pair(self.image_size)
+        oldps = [1, 1]
+        for ps in patch_size:
+            ps = pair(ps)
+            oldps[0] = oldps[0] * ps[0]
+            oldps[1] = oldps[1] * ps[1]
+        super().__init__()
+    
+        self.fs = nn.Conv2d(in_chans, embed_dim[0], kernel_size=patch_size[0], stride=patch_size[0])
+        self.fs2 = nn.Conv2d(embed_dim[0], embed_dim[0], kernel_size=2, stride=2)
+        network = []
+        assert len(layers) == len(embed_dim) == len(expansion_factor)
+        for i in range(len(layers)):
+            stage = block_layer(i,self.layers,embed_dim[i], expansion_factor[i], dropout = drop_rate,drop_path =drop_path_rate,norm_layer=norm_layer,act_layer=act_layer,use_act =use_act, crelu=crelu)
+            network.append(stage)
+            if i >= len(self.layers)-1:
+                break
+            if transitions[i] or embed_dim[i] != embed_dim[i+1]:
+                patch_size = 2 if transitions[i] else 1
+                network.append(Downsample(embed_dim[i], embed_dim[i+1], patch_size))
+        self.network = nn.Sequential(*network)
+        self.head = nn.Sequential(
+            Reduce('b c h w -> b c', 'mean'),
+            nn.Linear(embed_dim[-1], self.num_classes)
+        )
+        self.init_weights(nlhb=nlhb)
+        
+    def forward(self, x):
+        x1 = self.fs(x)
+        x1 = self.fs2(x1)
+        if self.use_multi_level:
+            x2 = self.fs3(x)
+            x1 = x1 + self.alpha1 * x2
+        embedding = self.network(x1)
+        out = self.head(embedding)
+        return out
+    
+    def forward_features(self, x):
+        x1 = self.fs(x)
+        x1 = self.fs2(x1)
+        if self.use_multi_level:
+            x2 = self.fs3(x)
+            x1 = x1 + self.alpha1 * x2
+        embedding = self.network(x1)
+        return embedding
+
+    @torch.jit.ignore
+    def init_weights(self, nlhb=False):
+        head_bias = -math.log(self.num_classes) if nlhb else 0.
+        named_apply(partial(_init_weights, head_bias=head_bias), module=self)  # num_blocks-first
+
+    @torch.jit.ignore
+    def get_classifier(self):
+        return self.head
+
+    def reset_classifier(self, num_classes, global_pool=None):
+        self.num_classes = num_classes
+        if global_pool is not None:
+            assert global_pool in ('', 'avg')
+            self.global_pool = global_pool
+        self.head = nn.Linear(self.embed_dim, num_classes) if num_classes > 0 else nn.Identity()
+
+
+
+def _init_weights(module: nn.Module, name: str, head_bias: float = 0., flax=False):
+    """ Mixer weight initialization (trying to match Flax defaults)
+    """
+    if isinstance(module, nn.Linear):
+        if name.startswith('head'):
+            nn.init.zeros_(module.weight)
+            nn.init.constant_(module.bias, head_bias)
+        else:
+            if flax:
+                # Flax defaults
+                lecun_normal_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
+            else:
+                # like MLP init in vit (my original init)
+                torch.nn.init.kaiming_normal_(module.weight,a=0.001)
+                print('init kaiming normal')
+                # nn.init.normal_(module.weight, std=0.01)
+                if module.bias is not None:
+                        nn.init.zeros_(module.bias)
+    elif isinstance(module, nn.Conv2d):
+        lecun_normal_(module.weight)
+        if module.bias is not None:
+            nn.init.zeros_(module.bias)
+    elif isinstance(module, (nn.LayerNorm, nn.BatchNorm2d, nn.GroupNorm)):
+        nn.init.ones_(module.weight)
+        nn.init.zeros_(module.bias)
+    elif hasattr(module, 'init_weights'):
+        # NOTE if a parent module contains init_weights method, it can override the init of the
+        # child modules as this will be called in num_blocks-first order.
+        module.init_weights()
 
 class MONet(nn.Module):
     def __init__(
@@ -261,6 +441,8 @@ class MONet(nn.Module):
         initialization_choice = 4,
         initialization_choice_width = 4,
         expand = False,
+        grow_width = False,
+        crelu = False
     ):
         # self, layers, img_size=224, patch_size=4, in_chans=3, num_classes=1000,
         # embed_dims=None, transitions=None, segment_dim=None, mlp_ratios=None,  drop_rate=0., attn_drop_rate=0., drop_path_rate=0.,
@@ -279,8 +461,17 @@ class MONet(nn.Module):
         self.layers = layers
         self.embed_dim = embed_dim
         self.need_initialization = need_initialization 
-        self.last_norm = 0
+        self.last_norm = None
         self.expand = expand
+        self.expansion_factor = expansion_factor
+        self.drop_rate = drop_rate
+        self.drop_path_rate =drop_path_rate
+        self.norm_layer=norm_layer
+        self.act_layer=act_layer
+        self.use_act =use_act
+        self.grow_width = grow_width
+        self.prune = prune
+        self.crelu = crelu
         image_size = pair(self.image_size)
         oldps = [1, 1]
         for ps in patch_size:
@@ -294,7 +485,7 @@ class MONet(nn.Module):
         network = []
         assert len(layers) == len(embed_dim) == len(expansion_factor)
         for i in range(len(layers)):
-            stage = block_layer(i,self.layers,embed_dim[i], expansion_factor[i], dropout = drop_rate,drop_path =drop_path_rate,norm_layer=norm_layer,act_layer=act_layer,use_act =use_act, prune=prune, initialization_choice = initialization_choice_width)
+            stage = block_layer(i,self.layers,embed_dim[i], expansion_factor[i], dropout = drop_rate,drop_path =drop_path_rate,norm_layer=norm_layer,act_layer=act_layer,use_act =use_act, prune=prune, initialization_choice = initialization_choice_width, grow_width=grow_width, crelu=crelu)
             network.append(stage)
             if i >= len(self.layers)-1:
                 break
@@ -321,7 +512,7 @@ class MONet(nn.Module):
             """ Recursively update last_norm in PolyMlp instances. """
             for child in module.children():
                 if isinstance(child, PolyMlp):
-                    print(f"Setting the last norm of polymlp to: {last_norm}")
+                    # print(f"Setting the last norm of polymlp to: {last_norm}")
                     child.last_norm = last_norm  # Directly set last_norm if child is PolyMlp
                 elif hasattr(child, 'children') and callable(child.children):
                     recursive_update(child)  # Recursive call if the child has further children
@@ -339,7 +530,10 @@ class MONet(nn.Module):
         #     x1 = x1 + self.alpha1 * x2
         # embedding = self.network(x1)
         # print(f"Need initialization: {self.need_initialization}")
+        # print("Entering MONet!\n")
+        current_residual = None
         for i, layer in enumerate(self.network[0].model):
+            
             # print(i, layer)
             # print(f"active layers: {self.active_layers};  act layers minus need init: {self.active_layers - self.need_initialization}")
 
@@ -349,13 +543,17 @@ class MONet(nn.Module):
                 # initialize the weights of this layer
                 previous_layer = self.network[0].model[i - 1]
                 custom_initialize(layer, previous_layer, self.initialization_choice, self.last_norm)
-                # print(f"Initialized weights for layer {i}")
-
+                # print(f"Initialized weights for layer {i} with initialization choice {self.initialization_choice}")
             if i < self.active_layers:
                 # print(layer)
                 x1 = rearrange(x1, 'b c h w -> b h w c')
-                # print(f"after rearranging: {x1.shape}")
-                x1 = layer(x1)
+                og_x1 = x1
+                # print(f"after rearranging: {x1.sShape}"
+                # print(layer)
+                if isinstance(layer, PolyBlock): x1 = layer(x1, current_residual)
+                else: x1 = layer[0](x1, current_residual)
+                current_residual = og_x1
+                
                 x1 = rearrange(x1, 'b h w c -> b c h w')
                 # print(f"{i+2}. input dimension: {x1.shape}")
         
@@ -363,6 +561,7 @@ class MONet(nn.Module):
         out = self.head(x1)
         self.expand = False
         # print(f"Reset the need_initialization to {self.need_initialization}")
+        # print("Exiting MONet!\n")
         return out
 
     def forward_features(self, x):
@@ -660,6 +859,15 @@ def _create_improved_MONet(variant, pretrained=False, **kwargs):
         **kwargs)
     return model
 
+def _create_improved_MONet_original(variant, pretrained=False, **kwargs):
+    if kwargs.get('features_only', None):
+        raise RuntimeError('features_only not implemented for MLP-Mixer models.')
+
+    model = build_model_with_cfg(
+        MONet_Original, variant, pretrained,
+        **kwargs)
+    return model
+
 # def _create_improved_MONet_dyn(variant, pretrained=False, **kwargs):
 #     if kwargs.get('features_only', None):
 #         raise RuntimeError('features_only not implemented for MLP-Mixer models.')
@@ -686,7 +894,7 @@ def MONet_T(pretrained=False, **kwargs):
         )
     
     model_args = dict_args
-    model = _create_improved_MONet('MONet_T', pretrained=pretrained, **model_args)
+    model = _create_improved_MONet_original('MONet_T', pretrained=pretrained, **model_args)
     return model
 
 @register_model
@@ -902,6 +1110,25 @@ def MONet_T_16(pretrained=False, **kwargs):
     
     model_args = dict_args
     model = _create_improved_MONet('MONet_T_16', pretrained=pretrained, **model_args)
+    return model
+
+@register_model
+def MONet_T_12(pretrained=False, **kwargs):
+    transitions = [False]
+    layers = [12]  # real patch size [8,16,32,64]
+    embed_dims = [192]
+    expansion_factor = [3]
+    dict_args = dict(
+        patch_size=[2], 
+        layers=layers,
+        transitions=transitions,
+        embed_dim=embed_dims,
+        expansion_factor = expansion_factor,
+        **kwargs
+        )
+    
+    model_args = dict_args
+    model = _create_improved_MONet('MONet_T_12', pretrained=pretrained, **model_args)
     return model
 
 @register_model

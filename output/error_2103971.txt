@@ -1,0 +1,46 @@
+Training with a single process on 1 device (cuda:0).
+WARNING: No pretrained configuration specified for MONet_T model. Using a default. Please add a config to the model pretrained_cfg registry or pass explicitly.
+Traceback (most recent call last):
+  File "/home/sharipov/monet/train.py", line 1515, in <module>
+    main()
+  File "/home/sharipov/monet/train.py", line 450, in main
+    model = create_model(
+  File "/home/sharipov/monet/timm/models/_factory.py", line 117, in create_model
+    model = create_fn(
+  File "/home/sharipov/monet/timm/models/monet.py", line 869, in MONet_T
+    model = _create_improved_MONet_original('MONet_T', pretrained=pretrained, **model_args)
+  File "/home/sharipov/monet/timm/models/monet.py", line 838, in _create_improved_MONet_original
+    model = build_model_with_cfg(
+  File "/home/sharipov/monet/timm/models/_builder.py", line 385, in build_model_with_cfg
+    model = model_cls(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'initialization_choice'
+[2024-06-08 02:14:18,187] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1732814) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/home/sharipov/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/sharipov/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-08_02:14:18
+  host      : i32.izar.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1732814)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

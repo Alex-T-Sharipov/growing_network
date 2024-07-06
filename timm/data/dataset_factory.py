@@ -118,7 +118,8 @@ class New_CIFAR10(CIFAR10):
         return f"Split: {split}"
 
 _TORCH_BASIC_DS = dict(
-    cifar10=New_CIFAR10,
+    # Could be an issue!
+    cifar10=CIFAR10,
     cifar100=CIFAR100,
     mnist=MNIST,
     kmnist=KMNIST,
@@ -199,7 +200,7 @@ def create_dataset(
         if name in _TORCH_BASIC_DS:
             ds_class = _TORCH_BASIC_DS[name]
             use_train = split in _TRAIN_SYNONYM
-            ds = ds_class(train=use_train, validation=validation,  **torch_kwargs)
+            ds = ds_class(train=use_train,  **torch_kwargs)
         elif name == 'inaturalist' or name == 'inat':
             assert has_inaturalist, 'Please update to PyTorch 1.10, torchvision 0.11+ for Inaturalist'
             target_type = 'full'

@@ -10,7 +10,7 @@ This script was started from an early version of the PyTorch ImageNet example
 (https://github.com/pytorch/examples/tree/master/imagenet)
 
 NVIDIA CUDA specific speedups adopted from NVIDIA Apex examples
-(https://github.com/NVIDIA/apex/tree/master/examples/imagenet)
+(https://github.com/NVIDIA/apex/tree/mm ==3aster/examples/imagenet)
 
 Hacked together by / Copyright 2020 Ross Wightman (https://github.com/rwightman)
 """
@@ -28,15 +28,19 @@ import torch.nn as nn
 import torchvision.utils
 import yaml
 from torch.nn.parallel import DistributedDataParallel as NativeDDP
+import math 
 
 from timm import utils
 from timm.data import create_dataset, create_loader, resolve_data_config, Mixup, FastCollateMixup, AugMixDataset
 from timm.layers import convert_splitbn_model, convert_sync_batchnorm, set_fast_norm
 from timm.loss import JsdCrossEntropy, SoftTargetCrossEntropy, BinaryCrossEntropy, LabelSmoothingCrossEntropy
 from timm.models import create_model, safe_model_name, resume_checkpoint, load_checkpoint, model_parameters
+from timm.models.monet import PolyBlock
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler_v2, scheduler_kwargs
 from timm.utils import ApexScaler, NativeScaler
+from torch.autograd import grad
+from einops import rearrange
 
 try:
     from apex import amp
@@ -362,6 +366,16 @@ group.add_argument('--initialization_choice_width', default=4, type=str,
                    help='intitialization choice width')
 group.add_argument('--double_at_epoch', default=-1, type=str, 
                    help='double the number of layers at a certain epoch.')
+group.add_argument('--grow_mode', default=-1, type=str, 
+                   help='What aspect of the model are we going to grow?')
+group.add_argument('--new_layers', default=4, type=str, 
+                   help='How many layers are we going to add?')
+group.add_argument('--new_layers_index', default=-1, type=str, 
+                   help='Where will we add the new layers?')
+group.add_argument('--use_residuals', default=-1, type=str, 
+                   help='Are we using residuals?')
+group.add_argument('--crelu', default=-1, type=str, 
+                   help='Are we using concatenated relu + looks linear inits?')
 
 def _parse_args():
     # Do we have a config file to parse?
@@ -451,8 +465,12 @@ def main():
         checkpoint_path=args.initial_checkpoint,
         initialization_choice = int(args.initialization_choice),
         initialization_choice_width = int(args.initialization_choice_width),
+        grow_width = (int(args.grow_mode) == 1),
+        crelu = (int(args.crelu) == 1),
         **args.model_kwargs,
     )
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device)
     if args.head_init_scale is not None:
         with torch.no_grad():
             model.get_classifier().weight.mul_(args.head_init_scale)
@@ -608,7 +626,7 @@ def main():
         batch_size=args.batch_size,
         seed=args.seed,
         repeats=args.epoch_repeats,
-        validation = False
+        # validation = False
     )
 
     dataset_eval = create_dataset(
@@ -621,7 +639,7 @@ def main():
         batch_size=args.batch_size,
         seed=args.seed,
         repeats=args.epoch_repeats,
-        validation = True
+        # validation = True
     )
 
 
@@ -921,7 +939,8 @@ def main():
         val_acc_history = []
         total_layers = 0
         active_layers_count = 0
-        HW = args.input_size[1] * args.input_size[2]
+        if args.input_size: HW = args.input_size[1] * args.input_size[2]
+        else: HW = 224**2
         total_flops = 19584 * HW
         start_training_time = time.time()
         weight_f_history = []
@@ -938,12 +957,158 @@ def main():
             # Here, add logic to update the model's active layers based on validation accuracy history
             # print("Calling the layer strategy")
             layer_strategy(args.strategy)
-            
+            m = int(args.grow_mode)
             if epoch == int(args.double_at_epoch): 
-                # model.need_initialization = model.active_layers
-                # model.active_layers *= 2
-                model.expand = True
-                print(f"Doubling at epoch: {epoch}")
+                if m == 1: 
+                    model.expand = True
+                    print(f"About to double the width at the epoch: {epoch};")
+                elif m == 2: 
+                    model.need_initialization = model.active_layers
+                    model.active_layers = min(len(model.network[0].model), model.active_layers*2)
+                    print(f"About to double the depth at epoch: {epoch}; current number of layers: {model.active_layers}")
+                elif m in [3, 4]:
+                    print(f"About to insert PolyBlocks at the epoch: {epoch};")
+                    def compute_fisher_information_matrix(model, loss_fn, inputs, targets):
+                        # Zero the gradients
+                        model.zero_grad()
+
+                        # Forward pass
+                        outputs = model(inputs)
+
+                        # Compute the loss
+                        loss = loss_fn(outputs, targets)
+
+                        # Backward pass to compute gradients
+                        loss.backward(create_graph=True)
+
+                        # Initialize Fisher Information Matrix
+                        fisher_matrix = []
+                        grads = []
+                        # Iterate over model parameters
+                        for param in model.parameters():
+                            if param.grad is not None:
+                                # Flatten the gradient
+                                grad = param.grad.view(-1)
+                                grads.append(grad)
+                        grads = torch.cat(grads)
+                        # Stack the outer products to form the Fiher Information Matrix
+                        fisher_matrix = torch.outer(grads, grads)
+
+                        # Scale by the factor 1/N
+                        N = inputs.size(0)
+                        fisher_matrix = fisher_matrix / N
+
+                        # print(grads.shape)
+                        # print(fisher_matrix.shape)
+
+                        inv_fisher_information = torch.linalg.pinv(fisher_matrix)
+                        score = torch.dot(grads, torch.matmul(inv_fisher_information, grads))
+                        
+                        # Reset gradients to avoid memory leaks
+                        for p in model.parameters():
+                            if p.grad is not None:
+                                p.grad = None
+
+                        return score
+
+                    def compute_gradient_norm(model, loss_fn, inputs, targets):
+                        model.zero_grad()
+                        outputs = model(inputs)
+                        loss = loss_fn(outputs, targets)
+                        loss.backward(create_graph=True)
+                        grad_norm = torch.sqrt(sum(p.grad.norm()**2 for p in model.parameters() if p.grad is not None))
+
+                        # Reset gradients to None to break reference cycle and avoid memory leaks
+                        for p in model.parameters():
+                            if p.grad is not None:
+                                p.grad = None
+
+                        return grad_norm
+                    
+                    def insert_new_layers(model, position, new_layers):
+                        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+                        new_layers = [layer.to(device) for layer in new_layers]  # Move new layers to the model's device
+                        model.network[0].model = nn.Sequential(
+                            *list(model.network[0].model)[:position],
+                            *list(new_layers),
+                            *list(model.network[0].model)[position:]
+                        )
+                        model.active_layers = len(model.network[0].model)
+                        return model
+
+                    def excise_extra_layers(model, position, num_new_layers):
+                        model.network[0].model = nn.Sequential(
+                            *list(model.network[0].model)[:position],
+                            *list(model.network[0].model)[position + num_new_layers:]
+                        )
+                        return model
+
+
+                    def maximize_gradient_norm(original_model, loss_fn, data_loader):
+                        print("Maximizing the gradient norm now")
+                        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+                        max_norm = float('-inf')
+                        best_i = -1
+
+                        inputs, targets = next(iter(data_loader))
+                        inputs, targets = inputs.to(device), targets.to(device)  # Move to the correct device
+
+                        total_layers = len(original_model.network[0].model)
+                        possible_insert_positions = [0, round(0.25 * total_layers), round(0.5 * total_layers), round(0.75 * total_layers), total_layers]
+                        print(f"Total layers: {total_layers};\nPossible insert locations: {possible_insert_positions}")
+                        # Define new layers
+                        use_skip_connections = int(args.use_residuals) != -1
+                        print(f"Are we using the skip connections? {use_skip_connections}")
+                        new_layers = [
+                            PolyBlock(
+                                embed_dim=original_model.embed_dim[0], 
+                                expansion_factor=original_model.expansion_factor[0], 
+                                drop=original_model.drop_rate,
+                                drop_path=original_model.drop_path_rate,
+                                use_act=original_model.use_act,
+                                act_layer=original_model.act_layer,
+                                norm_layer=original_model.norm_layer,
+                                use_skip_connections=use_skip_connections  # Enable skip connections for new layers
+                            ).to(device) for _ in range(int(args.new_layers))
+                        ]
+                        if int(args.new_layers_index) != -1:
+                            print(f"Given an insert location: {args.new_layers_index}")
+                            i = int(args.new_layers_index)
+                            model = insert_new_layers(original_model, i, new_layers)
+                            model.to(device)  # Ensure the entire model is on the correct device
+                            print(f"Current model: {len(model.network[0].model)}")
+                            # if m == 3: norm = compute_gradient_norm(model, loss_fn, inputs, targets)
+                            # elif m == 4: norm = compute_fisher_information_matrix(model, loss_fn, inputs, targets) 
+                            norm = compute_gradient_norm(model, loss_fn, inputs, targets)
+                            # natural_gradient_score = compute_fisher_information_matrix(model, loss_fn, inputs, targets) 
+                            natural_gradient_score = 123
+                            print(f"Current insert position: {i}; Current norm: {norm}; Natural gradient score: {natural_gradient_score}")
+                            best_model = model
+                        else:
+                            print("Not given the position")
+                            for i in possible_insert_positions:
+                                print(f"Layers before the update: {len(model.network[0].model)}")
+                                model = insert_new_layers(original_model, i, new_layers)
+                                model.to(device)  # Ensure the entire model is on the correct device
+                                print(f"Current model: {len(model.network[0].model)}")
+                                if m == 3: norm = compute_gradient_norm(model, loss_fn, inputs, targets)
+                                elif m == 4: norm = compute_fisher_information_matrix(model, loss_fn, inputs, targets) 
+                                print(f"Current insert position: {i}; Current norm: {norm}")
+                                if norm > max_norm:
+                                    max_norm = norm
+                                    best_i = i
+                                # Excise the extra layer
+                                model = excise_extra_layers(model, i, len(new_layers))
+                            best_model = insert_new_layers(original_model, best_i, new_layers)
+                            best_model.to(device)  # Ensure the best model is on the correct device
+                            print(f"The best index: {best_i}")
+                        print("Returning the best model!")
+                        return best_model
+
+                    model = maximize_gradient_norm(model, train_loss_fn, loader_train)
+                    print(f"Layers after the update: {len(model.network[0].model)}")
+
+
 
             train_metrics = train_one_epoch(
                 epoch,
@@ -962,8 +1127,10 @@ def main():
             )
 
             # Update this section to include train_metrics in any logging or saving action.
-            # print(f"Training metrics: Loss {train_metrics['loss']:.4f}, Acc@1 {train_metrics['acc1']:.4f}")
-            model.update_last_norm(train_metrics['avg_grad_norm'])
+            print(f"Training metrics: Loss {train_metrics['loss']:.4f}, Acc@1 {train_metrics['acc1']:.4f}")
+            # Ensure avg_grad_norm is not infinity before calling update_last_norm
+            if not math.isinf(train_metrics['avg_grad_norm']):
+                model.update_last_norm(train_metrics['avg_grad_norm'])
 
             if args.distributed and args.dist_bn in ('broadcast', 'reduce'):
                 if utils.is_primary(args):
@@ -1129,7 +1296,9 @@ def train_one_epoch(
     data_start_time = update_start_time = time.time()
     optimizer.zero_grad()
     update_sample_count = 0
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     for batch_idx, (input, target) in enumerate(loader):
+        input, target = input.to(device), target.to(device)
         last_batch = batch_idx == last_batch_idx
         need_update = last_batch or (batch_idx + 1) % accum_steps == 0
         update_idx = batch_idx // accum_steps
@@ -1147,18 +1316,10 @@ def train_one_epoch(
         data_time_m.update(accum_steps * (time.time() - data_start_time))
 
         def _forward():
+            nonlocal target  # Ensure target is inherited from the outer scope
             with amp_autocast():
                 output = model(input)
-                # print("\n\n\n")
-                # print("Output shape:", output.shape)
-                # print("Target shape:", target.shape)
-                # print(output[0])
-                # print(target[0])
-                # print("forward!\n")
-                # print(output[0])
-                # print(target[0])
-                acc1 = custom_accuracy_one_hot(output, target)
-                # print(acc1)
+                acc1, acc5 = utils.accuracy(output, torch.argmax(target, dim=1), topk=(1, 5))
                 loss = loss_fn(output, target)
             if accum_steps > 1:
                 loss /= accum_steps
@@ -1300,8 +1461,10 @@ def validate(
 
     end = time.time()
     last_idx = len(loader) - 1
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     with torch.no_grad():
         for batch_idx, (input, target) in enumerate(loader):
+            input, target = input.to(device), target.to(device)
             last_batch = batch_idx == last_idx
             if not args.prefetcher:
                 input = input.to(device)
